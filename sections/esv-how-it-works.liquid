@@ -1,0 +1,485 @@
+<section class="esv-hiw" id="esv-hiw-{{ section.id }}">
+  <div class="esv-hiw__container">
+
+    <!-- Header -->
+    <div class="esv-hiw__header esv-reveal">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="esv-hiw__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      <h2 class="esv-hiw__heading">{{ section.settings.heading }}</h2>
+      {%- if section.settings.subheading != blank -%}
+        <p class="esv-hiw__subheading">{{ section.settings.subheading }}</p>
+      {%- endif -%}
+    </div>
+
+    <!-- Steps -->
+    <div class="esv-hiw__steps">
+
+      <div class="esv-hiw__step esv-reveal esv-reveal--delay-1">
+        <div class="esv-hiw__step-top">
+          <span class="esv-hiw__step-num">01</span>
+          <div class="esv-hiw__step-icon">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="16" y="28" width="16" height="12" rx="3" stroke="currentColor" stroke-width="1.5"/>
+              <rect x="20" y="22" width="8" height="8" rx="2" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M24 8v6M24 8l-4 4M24 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12 44h24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+            </svg>
+          </div>
+        </div>
+        <h3 class="esv-hiw__step-title">{{ section.settings.step_1_title }}</h3>
+        <p class="esv-hiw__step-body">{{ section.settings.step_1_body }}</p>
+      </div>
+
+      <div class="esv-hiw__step-divider esv-reveal esv-reveal--delay-2">
+        <svg viewBox="0 0 40 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 12h36M28 4l8 8-8 8" stroke="rgba(255,43,92,0.4)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <div class="esv-hiw__step esv-reveal esv-reveal--delay-2">
+        <div class="esv-hiw__step-top">
+          <span class="esv-hiw__step-num">02</span>
+          <div class="esv-hiw__step-icon">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="24" cy="24" rx="18" ry="11" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="24" cy="24" r="5" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="24" cy="24" r="2" fill="#FF2B5C"/>
+              <!-- laser dot moving path -->
+              <path d="M6 24 Q15 14 24 24 Q33 34 42 24" stroke="rgba(255,43,92,0.35)" stroke-width="1" stroke-dasharray="3 2"/>
+            </svg>
+          </div>
+        </div>
+        <h3 class="esv-hiw__step-title">{{ section.settings.step_2_title }}</h3>
+        <p class="esv-hiw__step-body">{{ section.settings.step_2_body }}</p>
+      </div>
+
+      <div class="esv-hiw__step-divider esv-reveal esv-reveal--delay-3">
+        <svg viewBox="0 0 40 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 12h36M28 4l8 8-8 8" stroke="rgba(255,43,92,0.4)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <div class="esv-hiw__step esv-reveal esv-reveal--delay-3">
+        <div class="esv-hiw__step-top">
+          <span class="esv-hiw__step-num">03</span>
+          <div class="esv-hiw__step-icon">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="24" cy="24" r="16" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M24 14v10l6 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M8 8l4 4M40 8l-4 4" stroke="rgba(255,43,92,0.5)" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+        <h3 class="esv-hiw__step-title">{{ section.settings.step_3_title }}</h3>
+        <p class="esv-hiw__step-body">{{ section.settings.step_3_body }}</p>
+      </div>
+
+    </div>
+
+    <!-- Specs strip -->
+    <div class="esv-hiw__specs esv-reveal">
+      <div class="esv-hiw__spec">
+        <span class="esv-hiw__spec-value">{{ section.settings.spec_1_value }}</span>
+        <span class="esv-hiw__spec-label">{{ section.settings.spec_1_label }}</span>
+      </div>
+      <div class="esv-hiw__spec-sep"></div>
+      <div class="esv-hiw__spec">
+        <span class="esv-hiw__spec-value">{{ section.settings.spec_2_value }}</span>
+        <span class="esv-hiw__spec-label">{{ section.settings.spec_2_label }}</span>
+      </div>
+      <div class="esv-hiw__spec-sep"></div>
+      <div class="esv-hiw__spec">
+        <span class="esv-hiw__spec-value">{{ section.settings.spec_3_value }}</span>
+        <span class="esv-hiw__spec-label">{{ section.settings.spec_3_label }}</span>
+      </div>
+      <div class="esv-hiw__spec-sep"></div>
+      <div class="esv-hiw__spec">
+        <span class="esv-hiw__spec-value">{{ section.settings.spec_4_value }}</span>
+        <span class="esv-hiw__spec-label">{{ section.settings.spec_4_label }}</span>
+      </div>
+      <div class="esv-hiw__spec-sep"></div>
+      <div class="esv-hiw__spec">
+        <span class="esv-hiw__spec-value">{{ section.settings.spec_5_value }}</span>
+        <span class="esv-hiw__spec-label">{{ section.settings.spec_5_label }}</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  #esv-hiw-{{ section.id }} {
+    background: #f4f3f7;
+    padding: 120px 40px;
+  }
+
+  #esv-hiw-{{ section.id }} .esv-hiw__container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* ── Header ── */
+  #esv-hiw-{{ section.id }} .esv-hiw__header {
+    max-width: 680px;
+    margin-bottom: 80px;
+  }
+
+  #esv-hiw-{{ section.id }} .esv-hiw__eyebrow {
+    font-size: clamp(0.75rem, 1.2vw, 0.875rem);
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #FF2B5C;
+    margin: 0 0 20px;
+  }
+
+  #esv-hiw-{{ section.id }} .esv-hiw__heading {
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+    color: #111111;
+    margin: 0 0 24px;
+  }
+
+  #esv-hiw-{{ section.id }} .esv-hiw__subheading {
+    font-size: clamp(1rem, 1.6vw, 1.15rem);
+    line-height: 1.7;
+    color: rgba(17,17,17,0.55);
+    margin: 0;
+    max-width: 560px;
+  }
+
+  /* ── Steps ── */
+  #esv-hiw-{{ section.id }} .esv-hiw__steps {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    gap: 0;
+    align-items: start;
+    margin-bottom: 72px;
+  }
+
+  #esv-hiw-{{ section.id }} .esv-hiw__step-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 24px;
+    margin-top: 60px;
+  }
+
+  #esv-hiw-{{ section.id }} .esv-hiw__step-divider svg {
+    width: 48px;
+    height: 28px;
+  }
+
+  #esv-hiw-{{ section.id }} .esv-hiw__step {
+    background: rgba(0,0,0,0.04);
+    border: 1px solid rgba(0,0,0,0.09);
+    border-radius: 24px;
+    padding: 40px 36px;
+    transition: border-color 0.3s ease, background 0.3s ease;
+  }
+
+  #esv-hiw-{{ section.id }} .esv-hiw__step:hover {
+    background: rgba(0,0,0,0.07);
+    border-color: rgba(255,43,92,0.2);
+  }
+
+  #esv-hiw-{{ section.id }} .esv-hiw__step-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 28px;
+  }
+
+  #esv-hiw-{{ section.id }} .esv-hiw__step-num {
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    color: rgba(255,43,92,0.2);
+    line-height: 1;
+  }
+
+  #esv-hiw-{{ section.id }} .esv-hiw__step-icon {
+    width: 48px;
+    height: 48px;
+    color: rgba(17,17,17,0.35);
+  }
+
+  #esv-hiw-{{ section.id }} .esv-hiw__step-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  #esv-hiw-{{ section.id }} .esv-hiw__step-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #111111;
+    margin: 0 0 14px;
+  }
+
+  #esv-hiw-{{ section.id }} .esv-hiw__step-body {
+    font-size: 0.925rem;
+    line-height: 1.7;
+    color: rgba(17,17,17,0.5);
+    margin: 0;
+  }
+
+  /* ── Specs strip ── */
+  #esv-hiw-{{ section.id }} .esv-hiw__specs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    border: 1px solid rgba(0,0,0,0.09);
+    border-radius: 20px;
+    padding: 32px 40px;
+    background: rgba(0,0,0,0.03);
+  }
+
+  #esv-hiw-{{ section.id }} .esv-hiw__spec {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
+  }
+
+  #esv-hiw-{{ section.id }} .esv-hiw__spec-value {
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: #111111;
+    line-height: 1;
+  }
+
+  #esv-hiw-{{ section.id }} .esv-hiw__spec-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(17,17,17,0.45);
+    text-align: center;
+  }
+
+  #esv-hiw-{{ section.id }} .esv-hiw__spec-sep {
+    width: 1px;
+    height: 40px;
+    background: rgba(0,0,0,0.1);
+    flex-shrink: 0;
+  }
+
+  /* ── Scroll-reveal ── */
+  #esv-hiw-{{ section.id }} .esv-reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  #esv-hiw-{{ section.id }} .esv-reveal--delay-1 { transition-delay: 0.1s; }
+  #esv-hiw-{{ section.id }} .esv-reveal--delay-2 { transition-delay: 0.22s; }
+  #esv-hiw-{{ section.id }} .esv-reveal--delay-3 { transition-delay: 0.34s; }
+  #esv-hiw-{{ section.id }} .esv-reveal.esv-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 1024px) {
+    #esv-hiw-{{ section.id }} .esv-hiw__steps {
+      grid-template-columns: 1fr;
+    }
+    #esv-hiw-{{ section.id }} .esv-hiw__step-divider {
+      transform: rotate(90deg);
+      margin: 8px auto;
+      padding: 0;
+    }
+    #esv-hiw-{{ section.id }} .esv-hiw__specs {
+      flex-wrap: wrap;
+      gap: 24px;
+      padding: 28px 24px;
+    }
+    #esv-hiw-{{ section.id }} .esv-hiw__spec-sep { display: none; }
+    #esv-hiw-{{ section.id }} .esv-hiw__spec { flex: 0 0 calc(33% - 16px); }
+  }
+
+  @media (max-width: 749px) {
+    #esv-hiw-{{ section.id }} {
+      padding: 80px 20px;
+    }
+    #esv-hiw-{{ section.id }} .esv-hiw__header {
+      margin-bottom: 48px;
+    }
+    #esv-hiw-{{ section.id }} .esv-hiw__step {
+      padding: 28px 24px;
+    }
+    #esv-hiw-{{ section.id }} .esv-hiw__spec { flex: 0 0 calc(50% - 12px); }
+    #esv-hiw-{{ section.id }} .esv-hiw__specs { padding: 24px 20px; }
+  }
+</style>
+
+<script>
+(function() {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('esv-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('#esv-hiw-{{ section.id }} .esv-reveal').forEach(function(el) {
+    observer.observe(el);
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "ESV — How It Works",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Header"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "How It Works"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Follow the dot. Your eyes do the rest."
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "No apps. No instructions to memorise. Eye Star Vision projects a guided laser target and your eyes simply follow — off-screen, in your own space."
+    },
+    {
+      "type": "header",
+      "content": "Step 1"
+    },
+    {
+      "type": "text",
+      "id": "step_1_title",
+      "label": "Title",
+      "default": "Place & Aim"
+    },
+    {
+      "type": "textarea",
+      "id": "step_1_body",
+      "label": "Description",
+      "default": "Set Eye Star Vision on any stable surface — desk, shelf, or bedside table. Point it toward a light-coloured wall or ceiling at least 2 metres away. No special setup required."
+    },
+    {
+      "type": "header",
+      "content": "Step 2"
+    },
+    {
+      "type": "text",
+      "id": "step_2_title",
+      "label": "Title",
+      "default": "Follow the Dot"
+    },
+    {
+      "type": "textarea",
+      "id": "step_2_body",
+      "label": "Description",
+      "default": "A red laser point moves through precisely designed patterns — horizontal, vertical, diagonal, circular, and complex Lissajous curves. Keep your head still and follow only with your eyes."
+    },
+    {
+      "type": "header",
+      "content": "Step 3"
+    },
+    {
+      "type": "text",
+      "id": "step_3_title",
+      "label": "Title",
+      "default": "Repeat Daily"
+    },
+    {
+      "type": "textarea",
+      "id": "step_3_body",
+      "label": "Description",
+      "default": "5 to 6 minutes per session, up to 6 times a day. Use it during work breaks, after long study sessions, or before bed. Consistent daily use is where the benefit builds."
+    },
+    {
+      "type": "header",
+      "content": "Specs Strip"
+    },
+    {
+      "type": "text",
+      "id": "spec_1_value",
+      "label": "Spec 1 value",
+      "default": "5–6 min"
+    },
+    {
+      "type": "text",
+      "id": "spec_1_label",
+      "label": "Spec 1 label",
+      "default": "Per session"
+    },
+    {
+      "type": "text",
+      "id": "spec_2_value",
+      "label": "Spec 2 value",
+      "default": "6× daily"
+    },
+    {
+      "type": "text",
+      "id": "spec_2_label",
+      "label": "Spec 2 label",
+      "default": "Recommended"
+    },
+    {
+      "type": "text",
+      "id": "spec_3_value",
+      "label": "Spec 3 value",
+      "default": "Up to 50°"
+    },
+    {
+      "type": "text",
+      "id": "spec_3_label",
+      "label": "Spec 3 label",
+      "default": "Movement range"
+    },
+    {
+      "type": "text",
+      "id": "spec_4_value",
+      "label": "Spec 4 value",
+      "default": "~20°/s"
+    },
+    {
+      "type": "text",
+      "id": "spec_4_label",
+      "label": "Spec 4 label",
+      "default": "Stimulus speed"
+    },
+    {
+      "type": "text",
+      "id": "spec_5_value",
+      "label": "Spec 5 value",
+      "default": "No screen"
+    },
+    {
+      "type": "text",
+      "id": "spec_5_label",
+      "label": "Spec 5 label",
+      "default": "Required"
+    }
+  ],
+  "presets": [
+    {
+      "name": "ESV — How It Works"
+    }
+  ]
+}
+{% endschema %}

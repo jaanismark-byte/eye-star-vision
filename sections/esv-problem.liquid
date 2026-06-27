@@ -1,0 +1,469 @@
+<section class="esv-problem" id="esv-problem-{{ section.id }}">
+  <div class="esv-problem__container">
+
+    <div class="esv-problem__header esv-reveal">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="esv-problem__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      <h2 class="esv-problem__heading">{{ section.settings.heading }}</h2>
+      {%- if section.settings.subheading != blank -%}
+        <p class="esv-problem__subheading">{{ section.settings.subheading }}</p>
+      {%- endif -%}
+    </div>
+
+    <!-- Featured stat -->
+    <div class="esv-problem__stat-bar esv-reveal esv-reveal--delay-1">
+      <span class="esv-problem__stat-number">{{ section.settings.stat_number }}</span>
+      <span class="esv-problem__stat-label">{{ section.settings.stat_label }}</span>
+    </div>
+
+    <!-- Symptoms grid -->
+    <div class="esv-problem__grid">
+
+      <div class="esv-problem__card esv-reveal esv-reveal--delay-1">
+        <div class="esv-problem__card-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="12" cy="12" rx="10" ry="6" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M12 5V3M12 21v-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="esv-problem__card-title">{{ section.settings.symptom_1_title }}</h3>
+        <p class="esv-problem__card-body">{{ section.settings.symptom_1_body }}</p>
+      </div>
+
+      <div class="esv-problem__card esv-reveal esv-reveal--delay-2">
+        <div class="esv-problem__card-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="12" cy="12" rx="10" ry="6" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M7 19l1.5-2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M12 20v-2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M17 19l-1.5-2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="esv-problem__card-title">{{ section.settings.symptom_2_title }}</h3>
+        <p class="esv-problem__card-body">{{ section.settings.symptom_2_body }}</p>
+      </div>
+
+      <div class="esv-problem__card esv-reveal esv-reveal--delay-3">
+        <div class="esv-problem__card-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 3C7 3 3 7.5 3 12s4 9 9 9 9-4 9-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M13 8l-2 4h3l-2 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="esv-problem__card-title">{{ section.settings.symptom_3_title }}</h3>
+        <p class="esv-problem__card-body">{{ section.settings.symptom_3_body }}</p>
+      </div>
+
+      <div class="esv-problem__card esv-reveal esv-reveal--delay-1">
+        <div class="esv-problem__card-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="12" cy="12" rx="10" ry="6" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/>
+            <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/>
+          </svg>
+        </div>
+        <h3 class="esv-problem__card-title">{{ section.settings.symptom_4_title }}</h3>
+        <p class="esv-problem__card-body">{{ section.settings.symptom_4_body }}</p>
+      </div>
+
+      <div class="esv-problem__card esv-reveal esv-reveal--delay-2">
+        <div class="esv-problem__card-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="2" fill="currentColor"/>
+            <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+            <path d="M12 3v2M12 19v2M3 12h2M19 12h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="esv-problem__card-title">{{ section.settings.symptom_5_title }}</h3>
+        <p class="esv-problem__card-body">{{ section.settings.symptom_5_body }}</p>
+      </div>
+
+      <div class="esv-problem__card esv-reveal esv-reveal--delay-3">
+        <div class="esv-problem__card-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="12" cy="12" rx="10" ry="6" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M12 6V4" stroke="#FF2B5C" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="12" cy="3" r="0.75" fill="#FF2B5C"/>
+          </svg>
+        </div>
+        <h3 class="esv-problem__card-title">{{ section.settings.symptom_6_title }}</h3>
+        <p class="esv-problem__card-body">{{ section.settings.symptom_6_body }}</p>
+      </div>
+
+    </div>
+
+    <!-- Closing hook -->
+    {%- if section.settings.outro != blank -%}
+      <div class="esv-problem__outro esv-reveal">
+        <p>{{ section.settings.outro }}</p>
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+<style>
+  #esv-problem-{{ section.id }} {
+    background: #f4f3f7;
+    padding: 120px 40px;
+  }
+
+  #esv-problem-{{ section.id }} .esv-problem__container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* ── Header ── */
+  #esv-problem-{{ section.id }} .esv-problem__header {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 72px;
+  }
+
+  #esv-problem-{{ section.id }} .esv-problem__eyebrow {
+    font-size: clamp(0.75rem, 1.2vw, 0.875rem);
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #FF2B5C;
+    margin: 0 0 20px;
+  }
+
+  #esv-problem-{{ section.id }} .esv-problem__heading {
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+    color: #111111;
+    margin: 0 0 24px;
+  }
+
+  #esv-problem-{{ section.id }} .esv-problem__subheading {
+    font-size: clamp(1rem, 1.6vw, 1.15rem);
+    line-height: 1.7;
+    color: rgba(17,17,17,0.55);
+    margin: 0;
+  }
+
+  /* ── Stat bar ── */
+  #esv-problem-{{ section.id }} .esv-problem__stat-bar {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    background: linear-gradient(135deg, rgba(255,43,92,0.12), rgba(239,42,193,0.08));
+    border: 1px solid rgba(255,43,92,0.25);
+    border-radius: 20px;
+    padding: 36px 48px;
+    margin-bottom: 64px;
+  }
+
+  #esv-problem-{{ section.id }} .esv-problem__stat-number {
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: #FF2B5C;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  #esv-problem-{{ section.id }} .esv-problem__stat-label {
+    font-size: clamp(1rem, 1.8vw, 1.3rem);
+    font-weight: 400;
+    line-height: 1.5;
+    color: rgba(17,17,17,0.65);
+    max-width: 560px;
+  }
+
+  /* ── Symptoms grid ── */
+  #esv-problem-{{ section.id }} .esv-problem__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 64px;
+  }
+
+  #esv-problem-{{ section.id }} .esv-problem__card {
+    background: rgba(0,0,0,0.04);
+    border: 1px solid rgba(0,0,0,0.09);
+    border-radius: 20px;
+    padding: 36px 32px;
+    transition: background 0.25s ease, border-color 0.25s ease;
+  }
+
+  #esv-problem-{{ section.id }} .esv-problem__card:hover {
+    background: rgba(0,0,0,0.07);
+    border-color: rgba(255,43,92,0.2);
+  }
+
+  #esv-problem-{{ section.id }} .esv-problem__card-icon {
+    width: 44px;
+    height: 44px;
+    color: rgba(17,17,17,0.4);
+    margin-bottom: 20px;
+  }
+
+  #esv-problem-{{ section.id }} .esv-problem__card-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  #esv-problem-{{ section.id }} .esv-problem__card-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: #111111;
+    margin: 0 0 10px;
+  }
+
+  #esv-problem-{{ section.id }} .esv-problem__card-body {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: rgba(17,17,17,0.5);
+    margin: 0;
+  }
+
+  /* ── Outro ── */
+  #esv-problem-{{ section.id }} .esv-problem__outro {
+    text-align: center;
+    border-top: 1px solid rgba(0,0,0,0.09);
+    padding-top: 52px;
+  }
+
+  #esv-problem-{{ section.id }} .esv-problem__outro p {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-weight: 500;
+    line-height: 1.6;
+    color: rgba(17,17,17,0.5);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  #esv-problem-{{ section.id }} .esv-problem__outro p strong {
+    color: rgba(17,17,17,0.85);
+    font-weight: 600;
+  }
+
+  /* ── Scroll-reveal ── */
+  #esv-problem-{{ section.id }} .esv-reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  #esv-problem-{{ section.id }} .esv-reveal--delay-1 { transition-delay: 0.1s; }
+  #esv-problem-{{ section.id }} .esv-reveal--delay-2 { transition-delay: 0.2s; }
+  #esv-problem-{{ section.id }} .esv-reveal--delay-3 { transition-delay: 0.3s; }
+  #esv-problem-{{ section.id }} .esv-reveal.esv-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 1024px) {
+    #esv-problem-{{ section.id }} .esv-problem__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 749px) {
+    #esv-problem-{{ section.id }} {
+      padding: 80px 20px;
+    }
+    #esv-problem-{{ section.id }} .esv-problem__header {
+      margin-bottom: 48px;
+    }
+    #esv-problem-{{ section.id }} .esv-problem__stat-bar {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 28px 24px;
+      margin-bottom: 40px;
+    }
+    #esv-problem-{{ section.id }} .esv-problem__grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 48px;
+    }
+    #esv-problem-{{ section.id }} .esv-problem__card {
+      padding: 28px 24px;
+    }
+  }
+</style>
+
+<script>
+(function() {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('esv-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('#esv-problem-{{ section.id }} .esv-reveal').forEach(function(el) {
+    observer.observe(el);
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "ESV — Problem",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Header"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "The Problem"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Your Screen Is Working Against You."
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Modern work, study, and entertainment keep eyes locked at close range for hours. Over time, this creates a compounding cycle of visual fatigue that rest alone cannot fix."
+    },
+    {
+      "type": "header",
+      "content": "Featured Statistic"
+    },
+    {
+      "type": "text",
+      "id": "stat_number",
+      "label": "Statistic (e.g. Up to 90%)",
+      "default": "Up to 90%"
+    },
+    {
+      "type": "textarea",
+      "id": "stat_label",
+      "label": "Statistic description",
+      "default": "of daily computer users experience symptoms of Computer Vision Syndrome — eye fatigue, dryness, headaches, and blurred vision — yet most people accept this as normal."
+    },
+    {
+      "type": "header",
+      "content": "Symptom 1"
+    },
+    {
+      "type": "text",
+      "id": "symptom_1_title",
+      "label": "Title",
+      "default": "Eye Fatigue"
+    },
+    {
+      "type": "textarea",
+      "id": "symptom_1_body",
+      "label": "Description",
+      "default": "Overworked eye muscles lock into the same focus distance for hours, losing their natural ability to shift and relax."
+    },
+    {
+      "type": "header",
+      "content": "Symptom 2"
+    },
+    {
+      "type": "text",
+      "id": "symptom_2_title",
+      "label": "Title",
+      "default": "Dry & Watery Eyes"
+    },
+    {
+      "type": "textarea",
+      "id": "symptom_2_body",
+      "label": "Description",
+      "default": "Screen concentration reduces your blink rate, leaving eyes under-lubricated and reactive — cycling between dryness and excessive tearing."
+    },
+    {
+      "type": "header",
+      "content": "Symptom 3"
+    },
+    {
+      "type": "text",
+      "id": "symptom_3_title",
+      "label": "Title",
+      "default": "Headaches"
+    },
+    {
+      "type": "textarea",
+      "id": "symptom_3_body",
+      "label": "Description",
+      "default": "Eye strain doesn't stay in your eyes. Tension in the ciliary and extraocular muscles radiates outward, triggering recurring tension headaches."
+    },
+    {
+      "type": "header",
+      "content": "Symptom 4"
+    },
+    {
+      "type": "text",
+      "id": "symptom_4_title",
+      "label": "Title",
+      "default": "Blurred Vision"
+    },
+    {
+      "type": "textarea",
+      "id": "symptom_4_body",
+      "label": "Description",
+      "default": "After long screen sessions, eyes temporarily lose the ability to shift focus cleanly — a condition researchers call nearwork-induced transient myopia."
+    },
+    {
+      "type": "header",
+      "content": "Symptom 5"
+    },
+    {
+      "type": "text",
+      "id": "symptom_5_title",
+      "label": "Title",
+      "default": "Difficulty Focusing"
+    },
+    {
+      "type": "textarea",
+      "id": "symptom_5_body",
+      "label": "Description",
+      "default": "The eye's ability to switch between near and far distances weakens with prolonged close-up use, making everyday tasks feel slow and imprecise."
+    },
+    {
+      "type": "header",
+      "content": "Symptom 6"
+    },
+    {
+      "type": "text",
+      "id": "symptom_6_title",
+      "label": "Title",
+      "default": "Eye Pain & Redness"
+    },
+    {
+      "type": "textarea",
+      "id": "symptom_6_body",
+      "label": "Description",
+      "default": "Persistent visual stress inflames the surface of the eye and surrounding tissue, causing visible redness, irritation, and a dull ache that worsens through the day."
+    },
+    {
+      "type": "header",
+      "content": "Closing Statement"
+    },
+    {
+      "type": "textarea",
+      "id": "outro",
+      "label": "Outro text (use <strong> for emphasis)",
+      "default": "And most solutions? They hand you <strong>another screen</strong> to stare at."
+    }
+  ],
+  "presets": [
+    {
+      "name": "ESV — Problem"
+    }
+  ]
+}
+{% endschema %}

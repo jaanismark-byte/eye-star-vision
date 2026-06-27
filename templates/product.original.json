@@ -1,0 +1,439 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "disabled": true,
+          "settings": {}
+        },
+        "ffa289eb-8606-429e-a515-ec7e1c16e9ed": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<p style=\"font-size: 14px; line-height: 1.2;\">\n  <span style=\"color:#FF2B5C;\">✔</span> Less eye strain after screen time — relax your eyes effortlessly.\n</p>\n<p style=\"font-size: 14px; line-height: 1.2;\">\n  <span style=\"color:#FF2B5C;\">✔</span> Move your eyes naturally again — not just stare at one point all day.\n</p>\n<p style=\"font-size: 14px; line-height: 1.2;\">\n  <span style=\"color:#FF2B5C;\">✔</span> 5-minute daily routine — no apps, no learning curve, just follow the dot.\n</p>"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "d30936a3-495a-4de0-8429-d478a2414fd1": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<p style=\"font-size:14px; margin:0; padding:0; color:black;\">\n    <span style=\"height:8px; width:8px; background-color:#FF2B5C; border-radius:50%; display:inline-block; animation:blinking 1.5s infinite;\"></span>\n    <span style=\"color:#dc143c;\">Note:</span> ONLY <span style=\"font-weight:bold;\">15</span> UNITS LEFT FOR PRESALE\n</p>\n\n<style>\n@keyframes blinking {\n    0% { opacity: 1.0; }\n    50% { opacity: 0.0; }\n    100% { opacity: 1.0; }\n}\n</style>"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "9b148d1e-658b-4216-9163-02579464eca2": {
+          "type": "icon-with-text",
+          "settings": {
+            "layout": "horizontal",
+            "icon_1": "truck",
+            "heading_1": "Free Shipping",
+            "icon_2": "heart",
+            "heading_2": "30-Day Guarantee",
+            "icon_3": "chat_bubble",
+            "heading_3": "24/7 Chat Support"
+          }
+        },
+        "2061b738-5ad5-4e19-af56-23bfaf814c45": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Product description",
+            "icon": "price_tag",
+            "content": "",
+            "page": "product-description"
+          }
+        },
+        "725c193a-bbb5-443d-bebd-3841deb4edba": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "How It Works",
+            "icon": "question_mark",
+            "content": "<p>Explain how to use the product</p><p>For clothing, rename to \"Size Chart\" and add the size chart here.</p>",
+            "page": ""
+          }
+        },
+        "8196dec4-aaca-4aeb-9ae4-8e3e1ee4e641": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Shipping Info",
+            "icon": "truck",
+            "content": "<p>We offer fast and reliable shipping on all orders. You can expect to receive it within 6-12 business days based on your location.</p><p>Please contact our customer service team for assistance if you have any questions or concerns about your shipment.</p>",
+            "page": ""
+          }
+        },
+        "4fea8a72-3bad-4798-947e-067c7fc62199": {
+          "type": "description",
+          "disabled": true,
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "ffa289eb-8606-429e-a515-ec7e1c16e9ed",
+        "variant_picker",
+        "quantity_selector",
+        "d30936a3-495a-4de0-8429-d478a2414fd1",
+        "buy_buttons",
+        "9b148d1e-658b-4216-9163-02579464eca2",
+        "2061b738-5ad5-4e19-af56-23bfaf814c45",
+        "725c193a-bbb5-443d-bebd-3841deb4edba",
+        "8196dec4-aaca-4aeb-9ae4-8e3e1ee4e641",
+        "4fea8a72-3bad-4798-947e-067c7fc62199"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "background-1",
+        "media_size": "small",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "thumbnail_slider",
+        "media_position": "left",
+        "image_zoom": "none",
+        "mobile_thumbnails": "hide",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
+    "d73334d1-5ff9-4c47-a0d1-ce8c7d177d2c": {
+      "type": "image-with-text",
+      "blocks": {
+        "template--21538193178908__d73334d1-5ff9-4c47-a0d1-ce8c7d177d2c-heading-1": {
+          "type": "heading",
+          "settings": {
+            "heading": "Simple, guided routines you won’t do wrong",
+            "heading_size": "h1"
+          }
+        },
+        "template--21538193178908__d73334d1-5ff9-4c47-a0d1-ce8c7d177d2c-text-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Many people skip or incorrectly perform eye exercises because they don’t know where to look.<br/><br/>Eye Star Vision visually leads your gaze so you can follow effortlessly and complete the routine properly.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "template--21538193178908__d73334d1-5ff9-4c47-a0d1-ce8c7d177d2c-heading-1",
+        "template--21538193178908__d73334d1-5ff9-4c47-a0d1-ce8c7d177d2c-text-1"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/Produkts_Prototips.png",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "section_color_scheme": "background-2",
+        "color_scheme": "background-2",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "241041c6-793c-4743-befe-9a4ede74e1d7": {
+      "type": "image-with-text",
+      "blocks": {
+        "a249fbcd-849e-4318-923b-c27a4d3e337e": {
+          "type": "heading",
+          "settings": {
+            "heading": "What Makes It Different?",
+            "heading_size": "h1"
+          }
+        },
+        "8dab0b57-1c78-4caf-add0-79bce4e259b4": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Unlike screen-based apps where the target appears on a display, the Eye Star Vision stimulus exists in physical space, which enables natural eye pursuit and reduces digital strain. Movement sequences and amplitudes (up to ~50°) are engineered to work with actual eye biomechanics, not pixel animations.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "a249fbcd-849e-4318-923b-c27a4d3e337e",
+        "8dab0b57-1c78-4caf-add0-79bce4e259b4"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/Produkts_Prototips.png",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "section_color_scheme": "inverse",
+        "color_scheme": "inverse",
+        "image_behavior": "none",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "ddef2aae-5e73-44e8-885a-d45b3c078416": {
+      "type": "image-with-text",
+      "blocks": {
+        "007a9209-1e9f-4f63-93be-7c2eeb1682e2": {
+          "type": "heading",
+          "settings": {
+            "heading": "What you should expect",
+            "heading_size": "h1"
+          }
+        },
+        "74589e05-867e-4394-b580-63765c376b3f": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Eye Star Vision is a <strong>training and relaxation tool</strong>, not a medical device.<br/><br/>It does not diagnose or correct refractive errors — it supports better eye movement and comfort.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "007a9209-1e9f-4f63-93be-7c2eeb1682e2",
+        "74589e05-867e-4394-b580-63765c376b3f"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/Produkts_Prototips.png",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "section_color_scheme": "background-2",
+        "color_scheme": "background-2",
+        "image_behavior": "none",
+        "mobile_content_alignment": "left",
+        "padding_top": 12,
+        "padding_bottom": 12
+      }
+    },
+    "b0befb53-acc1-47e9-b1ce-3830aac233da": {
+      "type": "rich-text",
+      "blocks": {
+        "template--21538193178908__b0befb53-acc1-47e9-b1ce-3830aac233da-heading-1": {
+          "type": "heading",
+          "settings": {
+            "heading": "Why it would be useful?",
+            "heading_size": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "template--21538193178908__b0befb53-acc1-47e9-b1ce-3830aac233da-heading-1"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "background-1",
+        "full_width": true,
+        "padding_top": 36,
+        "padding_bottom": 16
+      }
+    },
+    "3713e29a-195e-4401-921e-9f6dd0dcc6ba": {
+      "type": "multicolumn",
+      "blocks": {
+        "template--21538193178908__3713e29a-195e-4401-921e-9f6dd0dcc6ba-column-1": {
+          "type": "column",
+          "settings": {
+            "title": "Relieves screen-induced discomfort",
+            "text": "<p>Guides your eyes through natural movement patterns that help reduce tension and discomfort caused by prolonged screen use.<br/>It gives your eyes a break without needing apps, filters, or extra software.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "template--21538193178908__3713e29a-195e-4401-921e-9f6dd0dcc6ba-column-2": {
+          "type": "column",
+          "settings": {
+            "title": "Restores movement your eyes normally don’t get",
+            "text": "<p>Instead of staring in one direction all day, the device engages horizontal, vertical, diagonal and rotational motions that counteract static near-work posture. This helps maintain balance in your extraocular muscles.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "template--21538193178908__3713e29a-195e-4401-921e-9f6dd0dcc6ba-column-3": {
+          "type": "column",
+          "settings": {
+            "title": "Works off-screen, in real space",
+            "text": "<p>The training happens on a wall or ceiling, not on a phone or monitor.<br/>This avoids adding even more screen time while trying to relax your eyes — a known limitation of app-based exercises.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--21538193178908__3713e29a-195e-4401-921e-9f6dd0dcc6ba-column-1",
+        "template--21538193178908__3713e29a-195e-4401-921e-9f6dd0dcc6ba-column-2",
+        "template--21538193178908__3713e29a-195e-4401-921e-9f6dd0dcc6ba-column-3"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "none",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "background-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 0,
+        "padding_bottom": 12
+      }
+    },
+    "9af997f2-18cc-4662-b276-5b073cd32edd": {
+      "type": "collapsible-content",
+      "blocks": {
+        "template--21538193178908__9af997f2-18cc-4662-b276-5b073cd32edd-collapsible_row-1": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Is this a medical device that will fix my eyesight?",
+            "icon": "question_mark",
+            "row_content": "<p><strong>No.</strong> Eye Star Vision is a training and relaxation tool for eye movement.<br/><strong>It does not diagnose conditions, treat medical issues, or replace glasses.</strong></p>",
+            "page": ""
+          }
+        },
+        "template--21538193178908__9af997f2-18cc-4662-b276-5b073cd32edd-collapsible_row-2": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Do I need to do special exercises or memorize routines?",
+            "icon": "question_mark",
+            "row_content": "<p><strong>No. </strong>The device leads the movement visually so you only follow the dot with your eyes.<br/>There’s no counting, no apps, and no learning curve.</p>",
+            "page": ""
+          }
+        },
+        "template--21538193178908__9af997f2-18cc-4662-b276-5b073cd32edd-collapsible_row-3": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Is the device safe for my eyes?",
+            "icon": "question_mark",
+            "row_content": "<p><strong>Yes.</strong> The laser dot is not looked into directly — it is projected on a wall or ceiling and simply followed with your eyes.<br/>You should <strong>never point the device toward eyes</strong>, reflective surfaces, or mirrors.</p>",
+            "page": ""
+          }
+        },
+        "b8ee14b2-a7c5-437e-8f0c-2453da288c00": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Where should I use the device?",
+            "icon": "question_mark",
+            "row_content": "<p>Place it at eye level and project onto a matte, light-colored surface such as a wall or ceiling.<br/><strong>Avoid </strong>reflective or glossy surfaces that could bounce the beam.</p>",
+            "page": ""
+          }
+        },
+        "9482ea3a-54f1-4d44-a5d6-be68ba27166a": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How long should I use it per day?",
+            "icon": "question_mark",
+            "row_content": "<p>Short, consistent sessions are most effective. Most users will benefit from <strong>5–6 minutes</strong> of guided movement daily.</p>",
+            "page": ""
+          }
+        },
+        "template--21538193178908__9af997f2-18cc-4662-b276-5b073cd32edd-collapsible_row-4": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Do I need to have vision problems to use it?",
+            "icon": "question_mark",
+            "row_content": "<p><strong>No</strong>. Eye Star Vision is designed for everyday users — anyone who spends time on screens, studies, works remotely, games, or simply wants to relax their eyes.<br/>You don’t need <strong>prior training or special experience</strong> to benefit from it.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--21538193178908__9af997f2-18cc-4662-b276-5b073cd32edd-collapsible_row-1",
+        "template--21538193178908__9af997f2-18cc-4662-b276-5b073cd32edd-collapsible_row-2",
+        "template--21538193178908__9af997f2-18cc-4662-b276-5b073cd32edd-collapsible_row-3",
+        "b8ee14b2-a7c5-437e-8f0c-2453da288c00",
+        "9482ea3a-54f1-4d44-a5d6-be68ba27166a",
+        "template--21538193178908__9af997f2-18cc-4662-b276-5b073cd32edd-collapsible_row-4"
+      ],
+      "custom_css": [
+        ".collapsible-row__content,.accordion__content {background-color: #ff2b5c !important; padding: 20px 24px;}"
+      ],
+      "settings": {
+        "caption": "",
+        "heading": "Frequently Asked Questions",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "none",
+        "color_scheme": "background-1",
+        "container_color_scheme": "background-2",
+        "open_first_collapsible_row": true,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "1701441748a8eef5e2": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "disabled": true,
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "color_scheme": "background-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    }
+  },
+  "order": [
+    "main",
+    "d73334d1-5ff9-4c47-a0d1-ce8c7d177d2c",
+    "241041c6-793c-4743-befe-9a4ede74e1d7",
+    "ddef2aae-5e73-44e8-885a-d45b3c078416",
+    "b0befb53-acc1-47e9-b1ce-3830aac233da",
+    "3713e29a-195e-4401-921e-9f6dd0dcc6ba",
+    "9af997f2-18cc-4662-b276-5b073cd32edd",
+    "1701441748a8eef5e2",
+    "related-products"
+  ]
+}

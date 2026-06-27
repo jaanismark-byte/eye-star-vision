@@ -1,0 +1,634 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_banner_67DaYB": {
+      "type": "image-banner",
+      "blocks": {
+        "buttons_gMjqLN": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Shop Now",
+            "button_link_1": "shopify://products/eye-star-portable-vision-trainer-preorder",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "buttons_gMjqLN"
+      ],
+      "custom_css": [
+        "/* MOBILE */.banner__buttons {position: absolute; left: 230px; top: 95px; z-index: 5;}",
+        ".banner__buttons .button {min-width: 0 !important; width: 105px; min-height: 20px; padding: 0 28px; border-radius: 16px; font-size: 7px; font-weight: 300;}",
+        "@media only screen and (min-width: 750px) {.banner__buttons {transform: translateY(100px) translateX(500px); } .banner__buttons .button {min-height: 62px !important; /* button height */ padding: 0 30px !important; /* inside spacing */ border-radius: 999px !important; /* fully rounded */ font-size: 24px !important; }}"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Image_banner_V1.svg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "desktop_content_position": "middle-center",
+        "show_text_box": false,
+        "desktop_content_alignment": "left",
+        "color_scheme": "background-1",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": true,
+        "show_text_below": false
+      }
+    },
+    "ss_gallery_9_ee4ab8_3tk6KD": {
+      "type": "ss-gallery-9-ee4ab8",
+      "blocks": {
+        "heading_re6URE": {
+          "type": "heading",
+          "settings": {
+            "heading": "<h2>Discover Eye Star</h2>",
+            "heading_custom": false,
+            "heading_font": "anton_n4",
+            "heading_size": 48,
+            "heading_size_mobile": 28,
+            "heading_height": 110,
+            "heading_color": "#ffffff"
+          }
+        },
+        "text_nDWGRM": {
+          "type": "text",
+          "settings": {
+            "text": "<p>The Era of Proactive Eye Wellness Is Here</p>",
+            "text_custom": false,
+            "text_font": "josefin_sans_n4",
+            "text_size": 16,
+            "text_size_mobile": 11,
+            "text_height": 150,
+            "text_mt": 14,
+            "text_mt_mobile": 14,
+            "text_color": "#fff"
+          }
+        },
+        "slide_cQwVWi": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_May_17_2026_at_04_03_47_PM.png",
+            "text": "Office Professionals",
+            "title": "For daily visual recovery",
+            "url": ""
+          }
+        },
+        "slide_7YRHeD": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_May_17_2026_at_06_10_53_PM.png",
+            "text": "Students & Academics",
+            "title": "For long study sessions",
+            "url": ""
+          }
+        },
+        "slide_fc8JTQ": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_May_17_2026_at_07_08_23_PM.png",
+            "text": "Gamers & Digital Enthusiasts",
+            "title": "For screen fatigue relief",
+            "url": ""
+          }
+        },
+        "slide_pVGMQY": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_May_17_2026_at_07_14_52_PM.png",
+            "text": "Creative Professionals",
+            "title": "For sustained visual focus",
+            "url": ""
+          }
+        },
+        "slide_CLGzWJ": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_May_17_2026_at_07_27_21_PM.png",
+            "text": "Healthcare & Laboratory Professionals",
+            "title": "For recovery of focus",
+            "url": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_re6URE",
+        "text_nDWGRM",
+        "slide_cQwVWi",
+        "slide_7YRHeD",
+        "slide_fc8JTQ",
+        "slide_pVGMQY",
+        "slide_CLGzWJ"
+      ],
+      "name": "SS - Gallery #9 🎛️ Preset 2",
+      "settings": {
+        "content_align": "center",
+        "content_align_mobile": "center",
+        "slider_view": 3,
+        "slider_view_mobile": 1.2,
+        "slider_gap": 12,
+        "slider_gap_mobile": 12,
+        "slider_mt": 30,
+        "slider_mt_mobile": 16,
+        "slide_padding_advanced": false,
+        "slide_padding_horizontal": 120,
+        "slide_padding_horizontal_mobile": 10,
+        "slide_padding_vertical": 20,
+        "slide_padding_vertical_mobile": 10,
+        "slide_radius": 32,
+        "slide_border_thickness": 0,
+        "slide_overlay": 0.2,
+        "slide_ratio": "square",
+        "slide_ratio_mobile": "square",
+        "slide_align": "center",
+        "slide_align_mobile": "center",
+        "text_shadow": true,
+        "text_custom": true,
+        "text_font": "montserrat_n4",
+        "text_size": 14,
+        "text_size_mobile": 14,
+        "text_height": 130,
+        "title_custom": false,
+        "title_font": "anton_n4",
+        "title_size": 34,
+        "title_size_mobile": 20,
+        "title_height": 130,
+        "arrow_show_desktop": true,
+        "arrow_show_mobile": false,
+        "arrow_size": 48,
+        "arrow_size_mobile": 48,
+        "arrow_icon_size": 10,
+        "arrow_icon_size_mobile": 10,
+        "arrow_border_thickness": 0,
+        "arrow_radius": 100,
+        "arrow_hover_effect": "color",
+        "text_color": "#ffffff",
+        "title_color": "#ffffff",
+        "slide_border_color": "#121212",
+        "slide_overlay_color": "#000000",
+        "arrow_color": "#ffffff",
+        "arrow_hover_color": "#afafaf",
+        "arrow_bg_color": "#121212",
+        "arrow_bg_hover_color": "#f3f3f3",
+        "arrow_border_color": "#121212",
+        "arrow_border_hover_color": "#121212",
+        "background_style": "solid",
+        "background_color": "rgba(0,0,0,0)",
+        "background_gradient": "linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(242, 242, 242, 1) 100%)",
+        "border_color": "rgba(0,0,0,0)",
+        "margin_top": 0,
+        "margin_bottom": 48,
+        "margin_horizontal": 2,
+        "margin_horizontal_mobile": 1,
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "padding_horizontal": 5,
+        "padding_horizontal_mobile": 1.5,
+        "full_width": true,
+        "content_width": 1200,
+        "border_thickness": 0,
+        "section_radius": 32,
+        "lazy": true
+      }
+    },
+    "ss_wave_2_pi8fmz": {
+      "type": "ss-wave-2",
+      "name": "SS - Wave #2",
+      "settings": {
+        "wave_height": 120,
+        "wave_height_mobile": 80,
+        "wave_animation": true,
+        "wave_rotate": false,
+        "wave_color": "#121212",
+        "background_color": "rgba(0,0,0,0)",
+        "background_gradient": "",
+        "border_color": "#000000",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_horizontal": 0,
+        "padding_horizontal_mobile": 0,
+        "full_width": true,
+        "content_width": 120,
+        "border_thickness": 0
+      }
+    },
+    "image_with_text_PDVwKM": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_E6Y9PT": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>YOUR EYES WERE NEVER DESIGNED FOR THIS MUCH SCREEN TIME</strong>",
+            "heading_size": "h1"
+          }
+        },
+        "text_wtNFnP": {
+          "type": "text",
+          "settings": {
+            "text": "<h3><strong>Modern lifestyles expose our eyes to constant screen time, artificial lighting, and prolonged focus every single day. Over time, this can contribute to visual fatigue, discomfort, and increased eye strain — making eye wellness more important than ever.</strong></h3>",
+            "text_style": "body"
+          }
+        },
+        "button_4PpTx4": {
+          "type": "button",
+          "settings": {
+            "button_label": "Discover Eye Star",
+            "button_link": "shopify://products/eye-star-portable-vision-trainer-preorder",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_E6Y9PT",
+        "text_wtNFnP",
+        "button_4PpTx4"
+      ],
+      "custom_css": [
+        ".image-with-text__media,.image-with-text img {border: none !important; box-shadow: none !important; outline: none !important; overflow: visible !important; object-fit: contain !important;}",
+        "@media only screen and (min-width: 750px) {.image-with-text__content {transform: translateX(-140px); max-width: none !important; width: 820px !important; } .image-with-text__heading, .image-with-text__text {max-width: 820px !important; width: 500px !important; } .image-with-text__media img {max-width: 650px !important; margin-left: 150px !important; }}"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Gatavs_produkts_3.png",
+        "height": "adapt",
+        "desktop_image_width": "large",
+        "layout": "text_first",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "section_color_scheme": "scheme-3b523f9b-252f-4e85-89a4-dfb799b41cce",
+        "color_scheme": "scheme-3b523f9b-252f-4e85-89a4-dfb799b41cce",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "slideshow_KYzXzn": {
+      "type": "slideshow",
+      "name": "t:sections.slideshow.presets.name",
+      "settings": {
+        "layout": "full_bleed",
+        "slide_height": "medium",
+        "slider_visual": "dots",
+        "auto_rotate": false,
+        "change_slides_speed": 3,
+        "image_behavior": "none",
+        "show_text_below": false,
+        "accessibility_info": "Slideshow about our brand"
+      }
+    },
+    "featured_image_split_cwb9Bn": {
+      "type": "featured-image-split",
+      "blocks": {
+        "tab_tgmL94": {
+          "type": "tab",
+          "settings": {
+            "tab_label": "Screen Fatigue",
+            "tab_icon": "",
+            "badge": "",
+            "heading": "Your eyes were not built for endless screen time.",
+            "text": "Phones, laptops, tablets, and office monitors keep your eyes exposed to close-up focus, artificial light, and constant visual stimulation for hours at a time. Over time, this can leave your eyes feeling tired, heavy, dry, or strained.",
+            "button_label": "Start Your Eye Reset",
+            "button_url": "shopify://products/eye-star-portable-vision-trainer-preorder",
+            "image": "shopify://shop_images/ChatGPT_Image_May_31_2026_at_06_01_18_PM.png"
+          }
+        },
+        "tab_7YwY3q": {
+          "type": "tab",
+          "settings": {
+            "tab_label": "Locked Focus",
+            "tab_icon": "",
+            "badge": "",
+            "heading": "Your eyes get stuck in the same visual pattern.",
+            "text": "Modern work keeps your eyes fixed at the same distance for long periods. Reading, typing, gaming, editing, scrolling, and studying all demand close-up focus with very little natural eye movement or distance variation.",
+            "button_label": "Break the Pattern",
+            "button_url": "shopify://products/eye-star-portable-vision-trainer-preorder",
+            "image": "shopify://shop_images/ChatGPT_Image_May_31_2026_at_06_21_06_PM.png"
+          }
+        },
+        "tab_QCbKQB": {
+          "type": "tab",
+          "settings": {
+            "tab_label": "Visual Stress",
+            "tab_icon": "",
+            "badge": "",
+            "heading": "Your eyes need recovery, not another screen.",
+            "text": "Most reminders tell you to take a break, but they do not guide your eyes through a structured off-screen routine. Eye Star Vision turns short breaks into guided eye movement and relaxation sessions designed for daily screen-heavy life.",
+            "button_label": "Discover Eye Star Vision",
+            "button_url": "shopify://products/eye-star-portable-vision-trainer-preorder",
+            "image": "shopify://shop_images/ChatGPT_Image_May_31_2026_at_06_33_33_PM.png"
+          }
+        }
+      },
+      "block_order": [
+        "tab_tgmL94",
+        "tab_7YwY3q",
+        "tab_QCbKQB"
+      ],
+      "custom_css": [],
+      "name": "Feature Tabs",
+      "settings": {
+        "heading": "3 daily habits that overload your eyes",
+        "subheading": "Most eye strain does not come from one moment — it builds up from repeated visual stress every day.",
+        "background_color": "rgba(0,0,0,0)",
+        "heading_color": "#1a1a1a",
+        "text_color": "#121212",
+        "tab_active_bg": "#ff2b5c",
+        "tab_active_text": "#121212",
+        "button_bg_color": "#ff2b5c",
+        "button_text_color": "#121212"
+      }
+    },
+    "featured_vertical_card_YpphmD": {
+      "type": "featured-vertical-card",
+      "blocks": {
+        "tab_QiXbGT": {
+          "type": "tab",
+          "settings": {
+            "tab_label": "Guided Target",
+            "icon": "",
+            "card_tag": "A clear point for your eyes to follow.",
+            "image": "shopify://shop_images/Noformejums_bez_nosaukuma-7.png",
+            "use_gif_grid": false,
+            "eyebrow": "",
+            "heading": "Eye Star Vision projects a small visual target onto a light wall or surface. Instead of guessing where to look, your eyes follow a clear point designed to guide the exercise from start to finish.",
+            "button_label": "",
+            "button_url": "shopify://products/eye-star-portable-vision-trainer-preorder"
+          }
+        },
+        "tab_UPbq9J": {
+          "type": "tab",
+          "settings": {
+            "tab_label": "Off-Screen Routine",
+            "icon": "",
+            "card_tag": "Your eye break should not happen on another screen.",
+            "image": "shopify://shop_images/ChatGPT_Image_2026._g._1._jun._20_47_43.png",
+            "use_gif_grid": false,
+            "eyebrow": "",
+            "heading": "Most digital reminders still keep you connected to a device. Eye Star Vision creates a guided routine away from your laptop, phone, or tablet, helping your eyes shift out of constant close-up screen use.",
+            "button_label": "",
+            "button_url": ""
+          }
+        },
+        "tab_birAmR": {
+          "type": "tab",
+          "settings": {
+            "tab_label": "Controlled Eye Movement",
+            "icon": "",
+            "card_tag": "Structured movement instead of random eye exercises.",
+            "use_gif_grid": true,
+            "gif_1": "shopify://shop_images/tr12_lissajous_high_quality_1.gif",
+            "gif_2": "shopify://shop_images/tr2_square_lines_cw_ccw_high_quality_1.gif",
+            "gif_3": "shopify://shop_images/tr29_sine_wave_vertical_high_quality.gif",
+            "gif_4": "shopify://shop_images/tr9_five_squares_high_quality.gif",
+            "eyebrow": "",
+            "heading": "Eye Star Vision gives your eyes a guided movement pattern to follow while your head stays still. This makes the routine easier to repeat consistently compared with doing manual exercises from memory.",
+            "button_label": "",
+            "button_url": ""
+          }
+        },
+        "tab_EMWAGj": {
+          "type": "tab",
+          "settings": {
+            "tab_label": "Daily Reset",
+            "icon": "",
+            "card_tag": "A short routine built for screen-heavy days.",
+            "use_gif_grid": false,
+            "eyebrow": "",
+            "heading": "Use Eye Star Vision during work breaks, study breaks, gaming breaks, or after long screen sessions. The goal is to make eye relaxation simple enough to become part of your daily routine.",
+            "button_label": "",
+            "button_url": ""
+          }
+        },
+        "tab_KFBYHr": {
+          "type": "tab",
+          "settings": {
+            "tab_label": "Simple Home Setup",
+            "icon": "",
+            "card_tag": "Place it, start it, follow the dot.",
+            "use_gif_grid": false,
+            "eyebrow": "",
+            "heading": "Eye Star Vision is designed to fit naturally into your home, office, or study space. Place it on a stable surface, aim it toward a light wall, and follow the projected target as instructed.",
+            "button_label": "",
+            "button_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "tab_QiXbGT",
+        "tab_UPbq9J",
+        "tab_birAmR",
+        "tab_EMWAGj",
+        "tab_KFBYHr"
+      ],
+      "name": "Feature Vertical Tabs",
+      "settings": {
+        "heading": "How Eye Star Works",
+        "subheading": "A simple off-screen routine that guides your eyes through controlled movement, helping them break away from screen fatigue and locked close-up focus.",
+        "heading_color": "#ffffff",
+        "subheading_color": "#ffffff",
+        "background_color": "#111111",
+        "sidebar_color": "#1a1a1a",
+        "tab_text_color": "#e88c82",
+        "tab_border_color": "#e88c82",
+        "tab_active_bg": "#ff2b5c",
+        "tab_active_text": "#fff",
+        "card_bg_color": "#1a1a1a",
+        "card_meta_color": "#fff",
+        "card_heading_color": "#ffffff",
+        "button_bg_color": "#ffffff",
+        "button_text_color": "#111111"
+      }
+    },
+    "gallery_carousel_pGDmQA": {
+      "type": "gallery-carousel",
+      "blocks": {
+        "card_WybKxz": {
+          "type": "card",
+          "settings": {
+            "title": "Screen users studied",
+            "description": "Real users. Real screen habits. Different daily intensity",
+            "button_label": "Read more",
+            "link": "shopify://pages/backed-by-research-into-guided-eye-relaxation",
+            "image": "shopify://shop_images/89.png"
+          }
+        },
+        "card_KNJNph": {
+          "type": "card",
+          "settings": {
+            "title": "4+ daily screen hours",
+            "description": "Tested on people with high daily screen exposure",
+            "button_label": "Read more",
+            "link": "shopify://pages/backed-by-research-into-guided-eye-relaxation",
+            "image": "shopify://shop_images/ChatGPT_Image_2026._g._2._jun._20_50_57.png"
+          }
+        },
+        "card_mKxREf": {
+          "type": "card",
+          "settings": {
+            "title": "Complaint reduction",
+            "description": "Lower visual complaint scores.",
+            "button_label": "Read more",
+            "link": "shopify://pages/backed-by-research-into-guided-eye-relaxation",
+            "image": "shopify://shop_images/Kolazu_galerija.png"
+          }
+        },
+        "card_UPw87G": {
+          "type": "card",
+          "settings": {
+            "title": "Off-screen guided routine",
+            "description": "Away from phones and monitors",
+            "button_label": "Read more",
+            "link": "shopify://pages/backed-by-research-into-guided-eye-relaxation",
+            "image": "shopify://shop_images/ChatGPT_Image_2026._g._2._jun._21_11_50.png"
+          }
+        },
+        "card_eEAhyU": {
+          "type": "card",
+          "settings": {
+            "title": "Workday-friendly concept",
+            "description": "Made for daily visual breaks.",
+            "button_label": "Read more",
+            "link": "shopify://pages/backed-by-research-into-guided-eye-relaxation",
+            "image": "shopify://shop_images/ChatGPT_Image_2026._g._3._jun._19_14_32.png"
+          }
+        }
+      },
+      "block_order": [
+        "card_WybKxz",
+        "card_KNJNph",
+        "card_mKxREf",
+        "card_UPw87G",
+        "card_eEAhyU"
+      ],
+      "name": "Gallery Carousel",
+      "settings": {
+        "heading_line_1": "BACKED BY RESEARCH",
+        "heading_line_2": "Into guided eye relaxation",
+        "heading_line_1_color": "#fff",
+        "heading_line_2_color": "#1a1a1a",
+        "heading_line_1_size": 92,
+        "heading_line_2_size": 74,
+        "heading_line_1_mobile_size": 62,
+        "heading_line_2_mobile_size": 50,
+        "heading_line_1_weight": "700",
+        "heading_line_2_weight": "400",
+        "heading_line_1_italic": false,
+        "heading_line_2_italic": true,
+        "subheading": "Built on studies exploring eye movement, screen fatigue, and off-screen vision relaxation routines.",
+        "background_color": "rgba(0,0,0,0)",
+        "heading_color": "#fff",
+        "text_color": "#121212",
+        "arrow_color": "#ff2b5c",
+        "dot_color": "#000000",
+        "dot_active_color": "#000000"
+      }
+    },
+    "orbital_timeline_XmEtyn": {
+      "type": "orbital-timeline",
+      "blocks": {
+        "node_nC39U8": {
+          "type": "node",
+          "settings": {
+            "title": "Research-Based Development",
+            "date": "Step 01",
+            "icon": "🔬",
+            "content": "Eye Star Vision is based on the idea of guiding the eyes through structured movement patterns in open space, helping users create a repeatable off-screen relaxation routine.",
+            "status": "completed",
+            "status_label": "Complete",
+            "energy": 80,
+            "related_ids": "2"
+          }
+        },
+        "node_R7RcQU": {
+          "type": "node",
+          "settings": {
+            "title": "European protection",
+            "date": "",
+            "icon": "EU",
+            "content": "Eye Star Vision’s device mechanism is protected in Europe, supporting the uniqueness of the product and its approach to guided off-screen eye relaxation.",
+            "status": "completed",
+            "status_label": "Complete",
+            "energy": 100,
+            "related_ids": "2"
+          }
+        },
+        "node_X4cEXP": {
+          "type": "node",
+          "settings": {
+            "title": "Canadian protection",
+            "date": "Step 02",
+            "icon": "CA",
+            "content": "The technology is also protected in Canada, helping position Eye Star Vision as a distinctive product rather than a generic eye-care accessory.",
+            "status": "completed",
+            "status_label": "Complete",
+            "energy": 85,
+            "related_ids": "1,3"
+          }
+        },
+        "node_N9zjJ6": {
+          "type": "node",
+          "settings": {
+            "title": "American protection",
+            "date": "Step 03",
+            "icon": "US",
+            "content": "Protection in the United States strengthens the product’s credibility and supports Eye Star Vision’s position as a new approach to daily eye wellness.",
+            "status": "in-progress",
+            "status_label": "Active",
+            "energy": 65,
+            "related_ids": "2,4"
+          }
+        }
+      },
+      "block_order": [
+        "node_nC39U8",
+        "node_R7RcQU",
+        "node_X4cEXP",
+        "node_N9zjJ6"
+      ],
+      "name": "Orbital Timeline",
+      "settings": {
+        "heading": "Protected technology. Built for modern eye wellness.",
+        "subheading": "Eye Star Vision is built around a unique device mechanism designed to guide structured eye relaxation exercises away from screens.",
+        "bottom_subheading": "Eye Star Vision is a wellness device for guided eye relaxation. Patent protection refers to the device mechanism and does not imply medical treatment or vision correction.",
+        "orbit_radius": 205,
+        "rotation_speed": 0.3,
+        "background_color": "#000000",
+        "heading_color": "#ffffff",
+        "subheading_color": "#fff",
+        "text_color": "#ffffff",
+        "center_color": "#ff2b5c",
+        "node_border_color": "#ff2b5c",
+        "active_node_color": "#ff2b5c",
+        "active_node_text_color": "#000000",
+        "energy_start_color": "#3b82f6",
+        "energy_end_color": "#ff2b5c"
+      }
+    }
+  },
+  "order": [
+    "image_banner_67DaYB",
+    "ss_gallery_9_ee4ab8_3tk6KD",
+    "ss_wave_2_pi8fmz",
+    "image_with_text_PDVwKM",
+    "slideshow_KYzXzn",
+    "featured_image_split_cwb9Bn",
+    "featured_vertical_card_YpphmD",
+    "gallery_carousel_pGDmQA",
+    "orbital_timeline_XmEtyn"
+  ]
+}

@@ -1,0 +1,1180 @@
+<div class="esv-hero" id="esv-hero-{{ section.id }}">
+
+  <!-- NeatGradient canvas — always behind everything, never moves -->
+  <canvas class="esv-hero__neat-canvas" id="esv-neat-canvas-{{ section.id }}"></canvas>
+
+  <!-- Grain noise — above slider, pointer-events none -->
+  <div class="esv-hero__noise"></div>
+
+  <!-- Navigation — outside slider so position:fixed works from viewport -->
+  <nav class="esv-nav" id="esv-nav-{{ section.id }}">
+    <div class="esv-nav__inner">
+
+      <a href="{{ routes.root_url }}" class="esv-nav__logo">
+        <img
+          src="{{ 'esv-icon.png' | asset_url }}"
+          alt="{{ shop.name }}"
+          class="esv-nav__logo-img"
+          width="44"
+          height="44"
+        >
+      </a>
+
+      <ul class="esv-nav__links">
+        {%- for link in linklists[section.settings.menu].links -%}
+          <li class="esv-nav__item">
+            <a href="{{ link.url }}" class="esv-nav__link">{{ link.title }}</a>
+          </li>
+        {%- endfor -%}
+      </ul>
+
+      <div class="esv-nav__actions">
+        <a href="{{ routes.search_url }}" class="esv-nav__icon-link" aria-label="Search">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="8.5" cy="8.5" r="6.5" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M13.5 13.5L18 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </a>
+        <a href="{{ routes.cart_url }}" class="esv-nav__icon-link" aria-label="Cart">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 2h2l2.4 9.6A2 2 0 008.3 13H16a2 2 0 001.9-1.4L19.5 6H5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="9" cy="17" r="1" fill="currentColor"/>
+            <circle cx="15" cy="17" r="1" fill="currentColor"/>
+          </svg>
+        </a>
+        <button class="esv-nav__hamburger" id="esv-hamburger-{{ section.id }}" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- Mobile full-screen menu -->
+  <div class="esv-nav__mobile" id="esv-mobile-menu-{{ section.id }}" aria-hidden="true">
+    {%- for link in linklists[section.settings.menu].links -%}
+      <a href="{{ link.url }}" class="esv-nav__mobile-link">{{ link.title }}</a>
+    {%- endfor -%}
+    <div class="esv-nav__mobile-actions">
+      <a href="{{ routes.search_url }}" class="esv-nav__icon-link" aria-label="Search">
+        <svg width="22" height="22" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="8.5" cy="8.5" r="6.5" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M13.5 13.5L18 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </a>
+      <a href="{{ routes.cart_url }}" class="esv-nav__icon-link" aria-label="Cart">
+        <svg width="22" height="22" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 2h2l2.4 9.6A2 2 0 008.3 13H16a2 2 0 001.9-1.4L19.5 6H5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="9" cy="17" r="1" fill="currentColor"/>
+          <circle cx="15" cy="17" r="1" fill="currentColor"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Slider track: screen 1 (dark) and screen 2 (light), side by side -->
+  <div class="esv-hero__slider" id="esv-slider-{{ section.id }}">
+
+    <!-- Screen 1: dark state with intro animation -->
+    <div class="esv-hero__slide esv-hero__slide--1">
+
+      <!-- Dark overlay — snaps opaque at forward-slide start so NeatGradient can safely switch to white -->
+      <div class="esv-hero__slide1-bg" id="esv-slide1-bg-{{ section.id }}"></div>
+
+      <div class="esv-hero__content">
+
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="esv-hero__eyebrow" data-text="{{ section.settings.eyebrow | escape }}"><span class="esv-cursor">_</span></p>
+        {%- endif -%}
+
+        <h1 class="esv-hero__heading" data-text="{{ section.settings.heading | escape }}"></h1>
+
+        <div class="esv-hero__product">
+          <div class="esv-hero__product-wrap">
+            <img
+              src="{{ 'esv-product-hero.png' | asset_url }}"
+              alt="Eye Star Vision device"
+              class="esv-hero__product-img"
+              id="esv-img-white-{{ section.id }}"
+              width="900"
+              loading="eager"
+            >
+          </div>
+        </div>
+
+        {%- if section.settings.subheading != blank -%}
+          <p class="esv-hero__subheading">{{ section.settings.subheading }}</p>
+        {%- endif -%}
+
+        <div class="esv-hero__cta">
+          {%- if section.settings.button_label != blank -%}
+            <a href="{{ section.settings.button_link }}" class="esv-hero__button">
+              {{ section.settings.button_label }}
+              <span class="esv-hero__button-arrow">→</span>
+            </a>
+          {%- endif -%}
+          {%- if section.settings.trust_text != blank -%}
+            <p class="esv-hero__trust">{{ section.settings.trust_text }}</p>
+          {%- endif -%}
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Screen 2: light state, pre-styled, no animation -->
+    <div class="esv-hero__slide esv-hero__slide--2">
+
+      <!-- White bg overlay — fades out after NeatGradient switches to white bg -->
+      <div class="esv-hero__slide2-bg" id="esv-slide2-bg-{{ section.id }}"></div>
+
+      <div class="esv-hero__content esv-hero__content--light">
+
+        {%- if section.settings.s2_eyebrow != blank -%}
+          <p class="esv-hero__eyebrow">{{ section.settings.s2_eyebrow }}</p>
+        {%- endif -%}
+
+        <h1 class="esv-hero__heading">{{ section.settings.s2_heading }}</h1>
+
+        <div class="esv-hero__product">
+          <div class="esv-hero__product-wrap">
+            <img
+              src="{{ 'esv-product-hero-black.png' | asset_url }}"
+              alt="Eye Star Vision device"
+              class="esv-hero__product-img esv-hero__product-img--s2"
+              width="900"
+              loading="eager"
+            >
+          </div>
+        </div>
+
+        {%- if section.settings.s2_subheading != blank -%}
+          <p class="esv-hero__subheading">{{ section.settings.s2_subheading }}</p>
+        {%- endif -%}
+
+        <div class="esv-hero__cta">
+          {%- if section.settings.s2_button_label != blank -%}
+            <a href="{{ section.settings.s2_button_link }}" class="esv-hero__button">
+              {{ section.settings.s2_button_label }}
+              <span class="esv-hero__button-arrow">→</span>
+            </a>
+          {%- endif -%}
+          {%- if section.settings.s2_trust_text != blank -%}
+            <p class="esv-hero__trust">{{ section.settings.s2_trust_text }}</p>
+          {%- endif -%}
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<style>
+  /* ── Navigation ── */
+  #esv-hero-{{ section.id }} .esv-nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    transition: background 0.35s ease, backdrop-filter 0.35s ease;
+  }
+
+  #esv-hero-{{ section.id }} .esv-nav.scrolled {
+    position: fixed;
+    background: rgba(4, 0, 12, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  #esv-hero-{{ section.id }} .esv-nav__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    height: 72px;
+  }
+
+  #esv-hero-{{ section.id }} .esv-nav__logo {
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  #esv-hero-{{ section.id }} .esv-nav__logo-img {
+    height: 44px;
+    width: 44px;
+    display: block;
+    border-radius: 10px;
+    object-fit: contain;
+  }
+
+  #esv-hero-{{ section.id }} .esv-nav__links {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  #esv-hero-{{ section.id }} .esv-nav__link {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    transition: color 0.3s ease;
+  }
+
+  #esv-hero-{{ section.id }} .esv-nav__link:hover {
+    color: #ffffff;
+  }
+
+  #esv-hero-{{ section.id }} .esv-nav__actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  #esv-hero-{{ section.id }} .esv-nav__icon-link {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+  }
+
+  #esv-hero-{{ section.id }} .esv-nav__icon-link:hover {
+    color: #ffffff;
+  }
+
+  /* ── Hamburger button ── */
+  #esv-hero-{{ section.id }} .esv-nav__hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  #esv-hero-{{ section.id }} .esv-nav__hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #ffffff;
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s ease;
+  }
+
+  #esv-hero-{{ section.id }} .esv-nav__hamburger[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  #esv-hero-{{ section.id }} .esv-nav__hamburger[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+  #esv-hero-{{ section.id }} .esv-nav__hamburger[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* ── Mobile drawer ── */
+  #esv-hero-{{ section.id }} .esv-nav__mobile {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(4, 0, 12, 0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 9;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  #esv-hero-{{ section.id }} .esv-nav__mobile.open {
+    opacity: 1;
+  }
+
+  #esv-hero-{{ section.id }} .esv-nav__mobile-link {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    padding: 18px 0;
+    display: block;
+    transition: color 0.2s;
+  }
+
+  #esv-hero-{{ section.id }} .esv-nav__mobile-link:hover {
+    color: #ffffff;
+  }
+
+  #esv-hero-{{ section.id }} .esv-nav__mobile-actions {
+    display: flex;
+    gap: 32px;
+    margin-top: 40px;
+  }
+
+  #esv-hero-{{ section.id }} .esv-nav__mobile-actions .esv-nav__icon-link {
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+  }
+
+  @media (max-width: 749px) {
+    #esv-hero-{{ section.id }} .esv-nav__links { display: none; }
+    #esv-hero-{{ section.id }} .esv-nav__inner { padding: 0 20px; }
+    #esv-hero-{{ section.id }} .esv-nav__hamburger { display: flex; }
+    #esv-hero-{{ section.id }} .esv-nav__mobile { display: flex; pointer-events: none; }
+    #esv-hero-{{ section.id }} .esv-nav__mobile.open { pointer-events: auto; }
+    #esv-hero-{{ section.id }} .esv-nav__actions .esv-nav__icon-link { display: none; }
+
+    /* Scale the canvas output 2× taller so gradient content fills the full section.
+       transform doesn't fight NeatGradient's inline styles; overflow:hidden clips the excess. */
+    #esv-hero-{{ section.id }} .esv-hero__neat-canvas {
+      transform: scaleY(2);
+      transform-origin: center center;
+    }
+  }
+
+  /* ── Nav light-state color overrides (applied after slide-in completes) ── */
+  #esv-hero-{{ section.id }}.esv-hero--light .esv-nav__link {
+    color: rgba(8,0,8,0.7);
+  }
+  #esv-hero-{{ section.id }}.esv-hero--light .esv-nav__icon-link {
+    color: rgba(8,0,8,0.7);
+  }
+  #esv-hero-{{ section.id }}.esv-hero--light .esv-nav__hamburger span {
+    background: #080008;
+  }
+  /* Scrolled dark-glass bar always keeps white text */
+  #esv-hero-{{ section.id }}.esv-hero--light .esv-nav.scrolled .esv-nav__link,
+  #esv-hero-{{ section.id }}.esv-hero--light .esv-nav.scrolled .esv-nav__icon-link {
+    color: rgba(255,255,255,0.8) !important;
+  }
+  #esv-hero-{{ section.id }}.esv-hero--light .esv-nav.scrolled .esv-nav__hamburger span {
+    background: #ffffff !important;
+  }
+
+  /* ── Hero shell ── */
+  #esv-hero-{{ section.id }} {
+    position: relative;
+    height: {{ section.settings.hero_height }}vh;
+    background: #000000;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  /* NeatGradient canvas — sits in background, never moves */
+  #esv-hero-{{ section.id }} .esv-hero__neat-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  /* Grain texture — above slider so it covers both screens */
+  #esv-hero-{{ section.id }} .esv-hero__noise {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    opacity: 0.055;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+    pointer-events: none;
+  }
+
+  /* ── Slider track ── */
+  /* 200% wide so each slide = 50% of slider = 100% of hero viewport */
+  #esv-hero-{{ section.id }} .esv-hero__slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 200%;
+    display: flex;
+    z-index: 1;
+    will-change: transform;
+  }
+
+  /* Each slide occupies exactly one hero-width */
+  #esv-hero-{{ section.id }} .esv-hero__slide {
+    width: 50%;
+    flex-shrink: 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Slide 1 dark overlay — starts transparent; snaps opaque at forward-slide start so
+     NeatGradient can switch to white while slide 1 is still animating off-screen */
+  #esv-hero-{{ section.id }} .esv-hero__slide1-bg {
+    position: absolute;
+    inset: 0;
+    background: #000000;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  /* Slide 2 white overlay — visible during slide, fades out when NeatGrad bg switches */
+  #esv-hero-{{ section.id }} .esv-hero__slide2-bg {
+    position: absolute;
+    inset: 0;
+    background: #ffffff;
+    z-index: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  /* ── Content layout — desktop grid ── */
+  #esv-hero-{{ section.id }} .esv-hero__content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1400px;
+    padding: 120px 40px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "eyebrow  product"
+      "heading  product"
+      "sub      product"
+      "cta      product";
+    column-gap: 60px;
+    row-gap: 24px;
+    align-items: start;
+  }
+
+  #esv-hero-{{ section.id }} .esv-hero__eyebrow   { grid-area: eyebrow; }
+  #esv-hero-{{ section.id }} .esv-hero__heading    { grid-area: heading; }
+  #esv-hero-{{ section.id }} .esv-hero__subheading { grid-area: sub; }
+  #esv-hero-{{ section.id }} .esv-hero__cta        { grid-area: cta; }
+  #esv-hero-{{ section.id }} .esv-hero__product    {
+    grid-area: product;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+  }
+
+  /* ── Product image ── */
+  #esv-hero-{{ section.id }} .esv-hero__product-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 560px;
+  }
+
+  /* Slide 1 device — starts hidden, animated in by intro sequence */
+  #esv-hero-{{ section.id }} .esv-hero__product-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    opacity: 0;
+    transform: scale(0.96);
+    transition: opacity 1.4s cubic-bezier(0.16,1,0.3,1), transform 1.4s cubic-bezier(0.16,1,0.3,1);
+    filter: drop-shadow(0 40px 80px rgba(180,100,255,0.18));
+  }
+
+  #esv-hero-{{ section.id }} .esv-hero__product-img.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Slide 2 device — always fully visible, no animation */
+  #esv-hero-{{ section.id }} .esv-hero__product-img--s2 {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  /* ── Light-state content overrides (slide 2) ── */
+  #esv-hero-{{ section.id }} .esv-hero__content--light .esv-hero__eyebrow {
+    transition: none;
+  }
+  #esv-hero-{{ section.id }} .esv-hero__content--light .esv-hero__heading {
+    color: #080008;
+  }
+  #esv-hero-{{ section.id }} .esv-hero__content--light .esv-hero__subheading {
+    color: rgba(8,0,8,0.55);
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  #esv-hero-{{ section.id }} .esv-hero__content--light .esv-hero__cta {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  #esv-hero-{{ section.id }} .esv-hero__content--light .esv-hero__button {
+    background: #080008;
+    color: #ffffff;
+  }
+  #esv-hero-{{ section.id }} .esv-hero__content--light .esv-hero__button:hover {
+    background: #cc0066;
+    color: #ffffff;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(204,0,102,0.4);
+  }
+  #esv-hero-{{ section.id }} .esv-hero__content--light .esv-hero__trust {
+    color: rgba(8,0,8,0.35);
+  }
+
+  /* ── Eyebrow ── */
+  #esv-hero-{{ section.id }} .esv-hero__eyebrow {
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #FF2B5C;
+    margin: 0;
+    min-height: 1.4em;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  @keyframes esv-blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
+
+  #esv-hero-{{ section.id }} .esv-cursor {
+    animation: esv-blink 1s step-end infinite;
+    color: inherit;
+    font-weight: 700;
+  }
+
+  /* ── Heading ── */
+  #esv-hero-{{ section.id }} .esv-hero__heading {
+    font-size: clamp(2.8rem, 6.5vw, 6rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    color: #ffffff;
+    margin: 0;
+    max-width: 900px;
+  }
+
+  #esv-hero-{{ section.id }} .esv-word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.55s cubic-bezier(0.16,1,0.3,1), transform 0.55s cubic-bezier(0.16,1,0.3,1);
+    margin-right: 0.25em;
+  }
+
+  #esv-hero-{{ section.id }} .esv-word.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── Subheading ── */
+  #esv-hero-{{ section.id }} .esv-hero__subheading {
+    font-size: clamp(1rem, 1.8vw, 1.2rem);
+    font-weight: 400;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.55);
+    max-width: 540px;
+    margin: 0;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  #esv-hero-{{ section.id }} .esv-hero__subheading.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── CTA group ── */
+  #esv-hero-{{ section.id }} .esv-hero__cta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    max-width: 540px;
+    margin-top: -8px;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  #esv-hero-{{ section.id }} .esv-hero__cta.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  #esv-hero-{{ section.id }} .esv-hero__button {
+    align-self: center;
+  }
+
+  #esv-hero-{{ section.id }} .esv-hero__button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 18px 40px;
+    background: #ffffff;
+    color: #080008;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    border-radius: 100px;
+    transition: background 0.25s, color 0.25s, transform 0.25s, box-shadow 0.25s;
+  }
+
+  #esv-hero-{{ section.id }} .esv-hero__button:hover {
+    background: #cc0066;
+    color: #ffffff;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(204,0,102,0.4);
+  }
+
+  #esv-hero-{{ section.id }} .esv-hero__button:hover .esv-hero__button-arrow {
+    transform: translateX(5px);
+  }
+
+  #esv-hero-{{ section.id }} .esv-hero__button-arrow {
+    display: inline-block;
+    transition: transform 0.25s;
+  }
+
+  #esv-hero-{{ section.id }} .esv-hero__trust {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin: 0;
+  }
+
+  @media (max-width: 749px) {
+    #esv-hero-{{ section.id }} .esv-hero__content {
+      display: flex;
+      flex-direction: column;
+      padding: 100px 20px 44px;
+      gap: 14px;
+    }
+    #esv-hero-{{ section.id }} .esv-hero__eyebrow    { order: 1; margin-bottom: 18px; }
+    #esv-hero-{{ section.id }} .esv-hero__heading    { order: 2; }
+    #esv-hero-{{ section.id }} .esv-hero__product    { order: 3; justify-content: center; margin-top: -6px; margin-bottom: -6px; }
+    #esv-hero-{{ section.id }} .esv-hero__subheading { order: 4; text-align: center; }
+    #esv-hero-{{ section.id }} .esv-hero__cta        { order: 5; align-items: center; text-align: center; }
+    #esv-hero-{{ section.id }} .esv-hero__product-img { max-width: 260px; }
+    #esv-hero-{{ section.id }} .esv-hero__heading { font-size: clamp(2.2rem, 8vw, 3rem); }
+  }
+
+</style>
+
+<script>
+(function() {
+  // ── Nav scroll ──
+  const nav = document.getElementById('esv-nav-{{ section.id }}');
+  if (nav) {
+    window.addEventListener('scroll', function() {
+      nav.classList.toggle('scrolled', window.scrollY > 30);
+    }, { passive: true });
+  }
+
+  // ── Mobile menu ──
+  const hamburger = document.getElementById('esv-hamburger-{{ section.id }}');
+  const mobileMenu = document.getElementById('esv-mobile-menu-{{ section.id }}');
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', function() {
+      const open = mobileMenu.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', open);
+      mobileMenu.setAttribute('aria-hidden', !open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    mobileMenu.querySelectorAll('.esv-nav__mobile-link').forEach(function(link) {
+      link.addEventListener('click', function() {
+        mobileMenu.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
+  // ── Intro animation sequence ──
+  function animateWords(el, onDone) {
+    var text = el.getAttribute('data-text') || '';
+    var words = text.split(' ');
+    el.innerHTML = words.map(function(w) {
+      return '<span class="esv-word">' + w + '</span>';
+    }).join('');
+    var spans = el.querySelectorAll('.esv-word');
+    spans.forEach(function(span, i) {
+      setTimeout(function() {
+        span.classList.add('visible');
+        if (i === spans.length - 1 && onDone) {
+          setTimeout(onDone, 600);
+        }
+      }, i * 130);
+    });
+  }
+
+  // Scope slide-1 element queries so they don't match slide-2 duplicates
+  var slide1     = document.querySelector('#esv-hero-{{ section.id }} .esv-hero__slide--1');
+  var heroEl     = document.getElementById('esv-hero-{{ section.id }}');
+  var sliderEl   = document.getElementById('esv-slider-{{ section.id }}');
+  var slide1BgEl = document.getElementById('esv-slide1-bg-{{ section.id }}');
+  var slide2BgEl = document.getElementById('esv-slide2-bg-{{ section.id }}');
+  var productImg = document.getElementById('esv-img-white-{{ section.id }}');
+  var eyebrowEl  = slide1 ? slide1.querySelector('.esv-hero__eyebrow')   : null;
+  var headingEl  = slide1 ? slide1.querySelector('.esv-hero__heading')    : null;
+  var subEl      = slide1 ? slide1.querySelector('.esv-hero__subheading') : null;
+  var ctaEl      = slide1 ? slide1.querySelector('.esv-hero__cta')        : null;
+
+  // ── Slide state ──
+  var slideProgress = 0;  // 0 = slide 1 visible, 1 = slide 2 visible
+  var slideRunning  = false;
+  var SLIDE_DURATION = 1100;
+
+  // ── Sequence state ──
+  var sequenceDone = false;
+  var typedSoFar   = 0;
+  var stopTyping   = false;
+
+  // ── Push-slide animation ──
+  // direction: 1 = forward (dark→light), -1 = reverse (light→dark)
+  function animateSlide(direction) {
+    if (slideRunning) return;
+    slideRunning = true;
+    var startTs = null;
+    var startP  = slideProgress;
+    var endP    = direction > 0 ? 1 : 0;
+
+    if (direction > 0) {
+      // Forward start: snap slide1-bg black instantly so NeatGradient can switch to white
+      // without the canvas colour change showing through while slide 1 is still animating out
+      if (slide1BgEl) { slide1BgEl.style.transition = 'none'; slide1BgEl.style.opacity = '1'; }
+      if (neatGrad) neatGrad.backgroundColor = '#ffffff';
+    } else {
+      // Reverse start: restore dark gradient and white overlay on slide 2 immediately
+      // (slide 2 is on screen, so white overlay hides the gradient switch back to dark)
+      if (neatGrad) neatGrad.backgroundColor = '#000000';
+      if (slide2BgEl) slide2BgEl.style.opacity = '1';
+      if (heroEl) heroEl.classList.remove('esv-hero--light');
+    }
+
+    function tick(ts) {
+      if (!startTs) startTs = ts;
+      var raw  = Math.min((ts - startTs) / SLIDE_DURATION, 1);
+      var ease = raw < 0.5 ? 4*raw*raw*raw : 1 - Math.pow(-2*raw+2, 3)/2;
+      slideProgress = startP + (endP - startP) * ease;
+
+      // Slider is 200% wide; translateX(-50%) moves it one hero-width left, revealing slide 2
+      if (sliderEl) {
+        sliderEl.style.transform = 'translateX(-' + (slideProgress * 50) + '%)';
+      }
+
+      if (raw < 1) {
+        requestAnimationFrame(tick);
+      } else {
+        slideProgress = endP;
+        slideRunning  = false;
+        if (direction > 0) {
+          // Forward complete: fade out slide-2 white overlay (NeatGradient already white)
+          if (slide2BgEl) slide2BgEl.style.opacity = '0';
+          if (heroEl) heroEl.classList.add('esv-hero--light');
+          unlockScroll();
+        } else {
+          // Reverse complete: fade slide1-bg back out to reveal the dark gradient
+          if (slide1BgEl) { slide1BgEl.style.transition = 'opacity 0.5s ease'; slide1BgEl.style.opacity = '0'; }
+          unlockScroll();
+        }
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+
+  // ── Instantly complete the intro sequence (called on first downward scroll) ──
+  function completeSequenceNow() {
+    if (sequenceDone) return;
+    sequenceDone = true;
+    stopTyping   = true;
+
+    if (eyebrowEl) {
+      var full   = eyebrowEl.getAttribute('data-text') || '';
+      var cursor = eyebrowEl.querySelector('.esv-cursor');
+      if (cursor) cursor.insertAdjacentText('beforebegin', full.slice(typedSoFar));
+    }
+    if (headingEl) {
+      if (!headingEl.querySelector('.esv-word')) {
+        var words = (headingEl.getAttribute('data-text') || '').split(' ');
+        headingEl.innerHTML = words.map(function(w) {
+          return '<span class="esv-word visible">' + w + '</span>';
+        }).join('');
+      } else {
+        headingEl.querySelectorAll('.esv-word').forEach(function(w) { w.classList.add('visible'); });
+      }
+    }
+    if (productImg) { productImg.style.transition = 'none'; productImg.classList.add('visible'); }
+    if (subEl) subEl.classList.add('visible');
+    if (ctaEl) ctaEl.classList.add('visible');
+
+    lockScroll();
+    animateSlide(1);
+  }
+
+  // ── Scroll lock helpers ──
+  function lockScroll() {
+    var sbWidth = window.innerWidth - document.documentElement.clientWidth;
+    document.body.style.paddingRight = sbWidth + 'px';
+    document.body.style.overflow = 'hidden';
+  }
+  function unlockScroll() {
+    document.body.style.overflow = '';
+    document.body.style.paddingRight = '';
+  }
+
+  // ── Input handlers — intercept wheel & touch before the page moves ──
+  var touchStartY = 0;
+
+  function onScrollIntent(deltaY) {
+    // Before sequence is done: skip intro on any downward intent
+    if (!sequenceDone) {
+      if (deltaY > 0) { completeSequenceNow(); }
+      return;
+    }
+    // While animation is running: eat all input
+    if (slideRunning) return;
+
+    // Forward: first downward intent after sequence completes
+    if (deltaY > 0 && slideProgress === 0) {
+      lockScroll();
+      animateSlide(1);
+      return;
+    }
+
+    // Reverse: upward intent when page is at very top and slide 2 is fully shown
+    if (deltaY < 0 && window.scrollY === 0 && slideProgress === 1) {
+      lockScroll();
+      animateSlide(-1);
+    }
+  }
+
+  window.addEventListener('wheel', function(e) {
+    var needsControl = !sequenceDone ||
+                       slideRunning ||
+                       (slideProgress === 0 && e.deltaY > 0) ||
+                       (slideProgress === 1 && window.scrollY === 0 && e.deltaY < 0);
+    if (needsControl) e.preventDefault();
+    onScrollIntent(e.deltaY);
+  }, { passive: false });
+
+  window.addEventListener('touchstart', function(e) {
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+
+  window.addEventListener('touchmove', function(e) {
+    var dy = touchStartY - e.touches[0].clientY; // positive = scroll down
+    var needsControl = !sequenceDone ||
+                       slideRunning ||
+                       (slideProgress === 0 && dy > 5) ||
+                       (slideProgress === 1 && window.scrollY === 0 && dy < -5);
+    if (needsControl) e.preventDefault();
+    if (Math.abs(dy) > 5) { onScrollIntent(dy); touchStartY = e.touches[0].clientY; }
+  }, { passive: false });
+
+  // ── Intro sequence (runs on load, abortable by scroll) ──
+  function startSequence() {
+    var eyebrowText    = eyebrowEl ? (eyebrowEl.getAttribute('data-text') || '') : '';
+    var typingDuration = eyebrowText.length * 55;
+
+    if (productImg && typingDuration > 0) {
+      productImg.style.transitionDuration = typingDuration + 'ms, ' + typingDuration + 'ms';
+      requestAnimationFrame(function() { productImg.classList.add('visible'); });
+    }
+
+    function typeEyebrow(onDone) {
+      var cursor = eyebrowEl ? eyebrowEl.querySelector('.esv-cursor') : null;
+      function tick() {
+        if (stopTyping) return;
+        if (typedSoFar < eyebrowText.length) {
+          if (cursor) cursor.insertAdjacentText('beforebegin', eyebrowText[typedSoFar]);
+          typedSoFar++;
+          setTimeout(tick, 55);
+        } else {
+          if (onDone) onDone();
+        }
+      }
+      tick();
+    }
+
+    if (eyebrowEl) {
+      typeEyebrow(function() {
+        if (stopTyping) return;
+        setTimeout(step2, 300);
+      });
+    } else { step2(); }
+
+    function step2() {
+      if (stopTyping) return;
+      if (headingEl) { animateWords(headingEl, step3); } else { step3(); }
+    }
+
+    function step3() {
+      if (stopTyping) return;
+      setTimeout(function() {
+        if (stopTyping) return;
+        if (subEl) subEl.classList.add('visible');
+        if (ctaEl) ctaEl.classList.add('visible');
+        sequenceDone = true;
+      }, 200);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startSequence);
+  } else {
+    startSequence();
+  }
+
+  // ── NeatGradient animated background ──
+  const neatCanvas = document.getElementById('esv-neat-canvas-{{ section.id }}');
+  var   neatGrad   = null;
+
+  import('https://cdn.jsdelivr.net/npm/@firecms/neat/+esm').then(function(mod) {
+    var NeatGradient = mod.NeatGradient;
+    neatGrad = new NeatGradient({
+      ref: neatCanvas,
+      colors: [
+        { color: '#FF2B5C', enabled: true  },
+        { color: '#EF2AC1', enabled: true  },
+        { color: '#7E177C', enabled: true  },
+        { color: '#E0115F', enabled: true  },
+        { color: '#FFFFFF',  enabled: false },
+        { color: '#000000',  enabled: false },
+      ],
+      speed: 2.5,
+      horizontalPressure: 5,
+      verticalPressure: 5,
+      waveFrequencyX: 2,
+      waveFrequencyY: 3,
+      waveAmplitude: 6,
+      shadows: 2,
+      highlights: 0,
+      colorBrightness: 0.9,
+      colorSaturation: -3,
+      wireframe: false,
+      colorBlending: 5,
+      backgroundColor: '#000000',
+      backgroundAlpha: 1,
+      grainScale: 0,
+      grainSparsity: 0,
+      grainIntensity: 0,
+      grainSpeed: 0,
+      resolution: 0.4,
+      yOffset: 100,
+      yOffsetWaveMultiplier: 1,
+      yOffsetColorMultiplier: 4.8,
+      yOffsetFlowMultiplier: 5.3,
+      flowDistortionA: 3.7,
+      flowDistortionB: 0.8,
+      flowScale: 1.6,
+      flowEase: 0.32,
+      flowEnabled: true,
+      enableProceduralTexture: false,
+      transparentTextureVoid: true,
+      textureVoidLikelihood: 0.29,
+      textureVoidWidthMin: 120,
+      textureVoidWidthMax: 420,
+      textureBandDensity: 2.9,
+      textureColorBlending: 0.06,
+      textureSeed: 536,
+      textureEase: 0.93,
+      proceduralBackgroundColor: '#775454',
+      textureShapeTriangles: 48,
+      textureShapeCircles: 15,
+      textureShapeBars: 15,
+      textureShapeSquiggles: 27,
+      domainWarpEnabled: true,
+      domainWarpIntensity: 0.1,
+      domainWarpScale: 2.4,
+      vignetteIntensity: 0.45,
+      vignetteRadius: 0.55,
+      fresnelEnabled: false,
+      fresnelPower: 2.7,
+      fresnelIntensity: 1.3,
+      fresnelColor: '#F7E7CE',
+      iridescenceEnabled: false,
+      iridescenceIntensity: 0.5,
+      iridescenceSpeed: 1,
+      bloomIntensity: 1.9,
+      bloomThreshold: 0.6,
+      chromaticAberration: 17,
+      shapeType: 'ribbon',
+      shapeRotationX: 0.348,
+      shapeRotationY: -26.783,
+      shapeRotationZ: -0.29,
+      shapeAutoRotateSpeedX: 0,
+      shapeAutoRotateSpeedY: 0,
+      sphereRadius: 15,
+      torusRadius: 15,
+      torusTube: 5,
+      cylinderRadius: 10,
+      cylinderHeight: 40,
+      planeBend: 2.3,
+      planeTwist: -2.9,
+      silhouetteFade: 0.83,
+      cylinderFade: 0.08,
+      ribbonFade: 0.31,
+      flatShading: false,
+      cameraLock: false,
+      cameraX: 0,
+      cameraY: 0,
+      cameraZ: 0,
+      cameraRotationX: -0.014,
+      cameraRotationY: -0.238,
+      cameraRotationZ: 0,
+      cameraZoom: 1,
+    });
+  });
+
+})();
+</script>
+
+{% schema %}
+{
+  "name": "ESV Hero Banner",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Navigation"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "header",
+      "content": "Screen 1 — Dark"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Patented Eye Training Technology"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Your eyes are working harder than they were built to."
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Most people don't notice until it's too late. Eye Star Vision gives your eyes the training they've always needed."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button text",
+      "default": "Discover Eye Star"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "text",
+      "id": "trust_text",
+      "label": "Trust line (below button)",
+      "default": "Backed by 2 peer-reviewed studies · 4 international patents"
+    },
+    {
+      "type": "header",
+      "content": "Screen 2 — Light"
+    },
+    {
+      "type": "text",
+      "id": "s2_eyebrow",
+      "label": "Eyebrow",
+      "default": "Patented Eye Training Technology"
+    },
+    {
+      "type": "text",
+      "id": "s2_heading",
+      "label": "Heading",
+      "default": "Your eyes are working harder than they were built to."
+    },
+    {
+      "type": "textarea",
+      "id": "s2_subheading",
+      "label": "Subheading",
+      "default": "Most people don't notice until it's too late. Eye Star Vision gives your eyes the training they've always needed."
+    },
+    {
+      "type": "text",
+      "id": "s2_button_label",
+      "label": "Button text",
+      "default": "Discover Eye Star"
+    },
+    {
+      "type": "url",
+      "id": "s2_button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "text",
+      "id": "s2_trust_text",
+      "label": "Trust line (below button)",
+      "default": "Backed by 2 peer-reviewed studies · 4 international patents"
+    },
+    {
+      "type": "header",
+      "content": "Product Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product image (right side)"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "hero_height",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "vh",
+      "label": "Section height",
+      "default": 95
+    }
+  ],
+  "presets": [
+    {
+      "name": "ESV Hero Banner"
+    }
+  ]
+}
+{% endschema %}
