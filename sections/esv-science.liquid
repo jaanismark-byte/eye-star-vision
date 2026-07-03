@@ -39,78 +39,28 @@
       </div>
     </div>
 
-    <!-- Study card -->
-    <div class="esv-science__study esv-reveal esv-reveal--delay-2">
-      <div class="esv-science__study-badge">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6L12 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-        </svg>
-        {{ section.settings.study_badge }}
-      </div>
-      <div class="esv-science__study-body">
-        <h3 class="esv-science__study-title">{{ section.settings.study_title }}</h3>
-        <p class="esv-science__study-text">{{ section.settings.study_text }}</p>
-      </div>
-      <div class="esv-science__study-meta">
-        <p class="esv-science__study-source">{{ section.settings.study_source }}</p>
-        <p class="esv-science__study-funding">{{ section.settings.study_funding }}</p>
-        {%- if section.settings.study_link_label != blank and section.settings.study_link_url != blank -%}
-          <a href="{{ section.settings.study_link_url }}" class="esv-science__study-link" target="_blank" rel="noopener">
-            {{ section.settings.study_link_label }}
-            <svg width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M5 15L15 5M15 5H8M15 5v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-        {%- endif -%}
-      </div>
-    </div>
-
     <!-- Patents -->
     <div class="esv-science__patents esv-reveal">
       <div class="esv-science__patents-header">
         <h3 class="esv-science__patents-heading">{{ section.settings.patents_heading }}</h3>
         <p class="esv-science__patents-sub">{{ section.settings.patents_subheading }}</p>
       </div>
-      <div class="esv-science__patents-grid">
-
-        <div class="esv-science__patent esv-reveal esv-reveal--delay-1">
-          <div class="esv-science__patent-flag">US</div>
-          <div class="esv-science__patent-info">
-            <span class="esv-science__patent-num">{{ section.settings.patent_1_number }}</span>
-            <span class="esv-science__patent-region">{{ section.settings.patent_1_region }}</span>
-          </div>
-        </div>
-
-        <div class="esv-science__patent esv-reveal esv-reveal--delay-2">
-          <div class="esv-science__patent-flag">EU</div>
-          <div class="esv-science__patent-info">
-            <span class="esv-science__patent-num">{{ section.settings.patent_2_number }}</span>
-            <span class="esv-science__patent-region">{{ section.settings.patent_2_region }}</span>
-          </div>
-        </div>
-
-        <div class="esv-science__patent esv-reveal esv-reveal--delay-3">
-          <div class="esv-science__patent-flag">CA</div>
-          <div class="esv-science__patent-info">
-            <span class="esv-science__patent-num">{{ section.settings.patent_3_number }}</span>
-            <span class="esv-science__patent-region">{{ section.settings.patent_3_region }}</span>
-          </div>
-        </div>
-
-        <div class="esv-science__patent esv-reveal esv-reveal--delay-3">
-          <div class="esv-science__patent-flag">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M2 12h20M12 2c-2.5 3-4 6-4 10s1.5 7 4 10M12 2c2.5 3 4 6 4 10s-1.5 7-4 10" stroke="currentColor" stroke-width="1.5"/>
-            </svg>
-          </div>
-          <div class="esv-science__patent-info">
-            <span class="esv-science__patent-num">{{ section.settings.patent_4_number }}</span>
-            <span class="esv-science__patent-region">{{ section.settings.patent_4_region }}</span>
-          </div>
-        </div>
-
+      <!-- Globe -->
+      <div class="esv-science__globe-wrap">
+        <canvas id="esv-globe-{{ section.id }}" class="esv-science__globe"></canvas>
+        <canvas id="esv-globe-ov-{{ section.id }}" class="esv-science__globe-overlay" aria-label="Interactive patent map — tap a country badge to see details"></canvas>
       </div>
+
+      <!-- Patent detail panel (2D, crisp, slides in below globe) -->
+      <div class="esv-science__patent-panel" id="esv-patent-panel-{{ section.id }}">
+        <span class="esv-science__patent-panel-badge"></span>
+        <div class="esv-science__patent-panel-text">
+          <strong class="esv-science__patent-panel-num"></strong>
+          <p class="esv-science__patent-panel-region"></p>
+        </div>
+        <button type="button" class="esv-science__patent-panel-close" aria-label="Close">&#x2715;</button>
+      </div>
+
     </div>
 
     <!-- Disclaimer -->
@@ -158,9 +108,9 @@
   }
 
   #esv-science-{{ section.id }} .esv-science__subheading {
-    font-size: clamp(1rem, 1.6vw, 1.15rem);
+    font-size: calc(clamp(1rem, 1.6vw, 1.15rem) * var(--esv-text-scale, 1));
     line-height: 1.7;
-    color: rgba(17,17,17,0.55);
+    color: rgba(17,17,17, calc(0.55 + var(--esv-muted-boost, 0)));
     margin: 0;
   }
 
@@ -202,11 +152,11 @@
   }
 
   #esv-science-{{ section.id }} .esv-science__stat-label {
-    font-size: 0.72rem;
+    font-size: calc(0.72rem * var(--esv-text-scale, 1));
     font-weight: 500;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(17,17,17,0.45);
+    color: rgba(17,17,17, calc(0.45 + var(--esv-muted-boost, 0)));
     margin-top: 8px;
     text-align: center;
   }
@@ -217,96 +167,10 @@
     flex-shrink: 0;
   }
 
-  /* ── Study card ── */
-  #esv-science-{{ section.id }} .esv-science__study {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    gap: 0;
-    align-items: start;
-    border: 1px solid rgba(0,0,0,0.09);
-    border-radius: 24px;
-    padding: 48px;
-    margin-bottom: 72px;
-    background: rgba(0,0,0,0.03);
-    column-gap: 48px;
-  }
-
-  #esv-science-{{ section.id }} .esv-science__study-badge {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: #FF2B5C;
-    background: rgba(255,43,92,0.1);
-    border: 1px solid rgba(255,43,92,0.2);
-    border-radius: 100px;
-    padding: 10px 18px;
-    white-space: nowrap;
-    align-self: start;
-  }
-
-  #esv-science-{{ section.id }} .esv-science__study-title {
-    font-size: clamp(1.1rem, 2vw, 1.4rem);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    color: #111111;
-    margin: 0 0 16px;
-    line-height: 1.3;
-  }
-
-  #esv-science-{{ section.id }} .esv-science__study-text {
-    font-size: 0.95rem;
-    line-height: 1.75;
-    color: rgba(17,17,17,0.55);
-    margin: 0;
-  }
-
-  #esv-science-{{ section.id }} .esv-science__study-meta {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    min-width: 240px;
-    border-left: 1px solid rgba(0,0,0,0.09);
-    padding-left: 48px;
-  }
-
-  #esv-science-{{ section.id }} .esv-science__study-source {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: rgba(17,17,17,0.65);
-    margin: 0;
-    line-height: 1.5;
-  }
-
-  #esv-science-{{ section.id }} .esv-science__study-funding {
-    font-size: 0.75rem;
-    color: rgba(17,17,17,0.4);
-    margin: 0;
-    line-height: 1.5;
-  }
-
-  #esv-science-{{ section.id }} .esv-science__study-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: #FF2B5C;
-    text-decoration: none;
-    margin-top: 8px;
-    transition: opacity 0.2s;
-  }
-
-  #esv-science-{{ section.id }} .esv-science__study-link:hover {
-    opacity: 0.75;
-  }
-
-  /* ── Patents ── */
+  /* ── Patents / Globe ── */
   #esv-science-{{ section.id }} .esv-science__patents-header {
-    margin-bottom: 32px;
+    margin-bottom: 24px;
+    text-align: center;
   }
 
   #esv-science-{{ section.id }} .esv-science__patents-heading {
@@ -318,78 +182,115 @@
   }
 
   #esv-science-{{ section.id }} .esv-science__patents-sub {
-    font-size: 0.9rem;
+    font-size: calc(0.9rem * var(--esv-text-scale, 1));
     line-height: 1.65;
-    color: rgba(17,17,17,0.5);
-    margin: 0;
-    max-width: 640px;
+    color: rgba(17,17,17, calc(0.5 + var(--esv-muted-boost, 0)));
+    margin: 0 auto;
+    max-width: 560px;
   }
 
-  #esv-science-{{ section.id }} .esv-science__patents-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
+  #esv-science-{{ section.id }} .esv-science__globe-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 540px;
+    margin: 0 auto;
+    aspect-ratio: 1 / 1;
   }
 
-  #esv-science-{{ section.id }} .esv-science__patent {
+  #esv-science-{{ section.id }} .esv-science__globe,
+  #esv-science-{{ section.id }} .esv-science__globe-overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+
+  #esv-science-{{ section.id }} .esv-science__globe {
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+
+  #esv-science-{{ section.id }} .esv-science__globe-overlay {
+    cursor: grab;
+    background: transparent;
+  }
+
+  #esv-science-{{ section.id }} .esv-science__globe-overlay:active {
+    cursor: grabbing;
+  }
+
+  /* Patent detail panel */
+  #esv-science-{{ section.id }} .esv-science__patent-panel {
     display: flex;
     align-items: center;
     gap: 20px;
-    background: rgba(0,0,0,0.04);
-    border: 1px solid rgba(0,0,0,0.09);
-    border-radius: 18px;
-    padding: 28px 24px;
-    transition: border-color 0.25s ease, background 0.25s ease;
+    background: #111111;
+    border-radius: 16px;
+    padding: 20px 24px;
+    margin: 16px auto 0;
+    max-width: 540px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    pointer-events: none;
   }
 
-  #esv-science-{{ section.id }} .esv-science__patent:hover {
-    background: rgba(0,0,0,0.07);
-    border-color: rgba(255,43,92,0.2);
+  #esv-science-{{ section.id }} .esv-science__patent-panel.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
   }
 
-  #esv-science-{{ section.id }} .esv-science__patent-flag {
+  #esv-science-{{ section.id }} .esv-science__patent-panel-badge {
     font-size: 0.7rem;
     font-weight: 800;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     color: #FF2B5C;
-    background: rgba(255,43,92,0.1);
-    border: 1px solid rgba(255,43,92,0.2);
-    border-radius: 8px;
-    padding: 6px 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 40px;
-    min-height: 40px;
-    flex-shrink: 0;
+    white-space: nowrap;
+    padding-top: 2px;
   }
 
-  #esv-science-{{ section.id }} .esv-science__patent-info {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+  #esv-science-{{ section.id }} .esv-science__patent-panel-text {
+    flex: 1;
   }
 
-  #esv-science-{{ section.id }} .esv-science__patent-num {
-    font-size: 0.78rem;
+  #esv-science-{{ section.id }} .esv-science__patent-panel-num {
+    display: block;
+    font-size: calc(0.95rem * var(--esv-text-scale, 1));
     font-weight: 700;
-    color: rgba(17,17,17,0.7);
-    font-variant-numeric: tabular-nums;
-    letter-spacing: 0.01em;
+    color: #ffffff;
+    margin-bottom: 4px;
   }
 
-  #esv-science-{{ section.id }} .esv-science__patent-region {
-    font-size: 0.7rem;
-    color: rgba(17,17,17,0.4);
-    letter-spacing: 0.05em;
+  #esv-science-{{ section.id }} .esv-science__patent-panel-region {
+    font-size: calc(0.78rem * var(--esv-text-scale, 1));
+    color: rgba(255,255,255,0.55);
+    margin: 0;
     text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  #esv-science-{{ section.id }} .esv-science__patent-panel-close {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.4);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 2px 0 0 8px;
+    flex-shrink: 0;
+    transition: color 0.2s;
+  }
+
+  #esv-science-{{ section.id }} .esv-science__patent-panel-close:hover {
+    color: rgba(255,255,255,0.85);
   }
 
   /* ── Disclaimer ── */
   #esv-science-{{ section.id }} .esv-science__disclaimer {
-    font-size: 0.72rem;
+    font-size: calc(0.72rem * var(--esv-text-scale, 1));
     line-height: 1.6;
-    color: rgba(17,17,17,0.3);
+    color: rgba(17,17,17, calc(0.3 + var(--esv-muted-boost, 0)));
     text-align: center;
     max-width: 760px;
     margin: 48px auto 0;
@@ -409,44 +310,22 @@
     transform: translateY(0);
   }
 
-  @media (max-width: 1024px) {
-    #esv-science-{{ section.id }} .esv-science__study {
-      grid-template-columns: 1fr;
-      gap: 32px;
-    }
-    #esv-science-{{ section.id }} .esv-science__study-meta {
-      border-left: none;
-      border-top: 1px solid rgba(0,0,0,0.09);
-      padding-left: 0;
-      padding-top: 32px;
-    }
-    #esv-science-{{ section.id }} .esv-science__patents-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
   @media (max-width: 749px) {
     #esv-science-{{ section.id }} {
-      padding: 80px 20px;
+      padding: 40px 16px 44px;
     }
     #esv-science-{{ section.id }} .esv-science__header {
-      margin-bottom: 48px;
+      margin-bottom: 28px;
     }
     #esv-science-{{ section.id }} .esv-science__stats {
       flex-direction: column;
     }
     #esv-science-{{ section.id }} .esv-science__stat {
-      padding: 32px 24px;
+      padding: 22px 18px;
     }
     #esv-science-{{ section.id }} .esv-science__stat-divider {
       width: 100%;
       height: 1px;
-    }
-    #esv-science-{{ section.id }} .esv-science__study {
-      padding: 32px 24px;
-    }
-    #esv-science-{{ section.id }} .esv-science__patents-grid {
-      grid-template-columns: 1fr;
     }
   }
 </style>
@@ -464,6 +343,238 @@
 
   document.querySelectorAll('#esv-science-{{ section.id }} .esv-reveal').forEach(function(el) {
     observer.observe(el);
+  });
+})();
+</script>
+
+<script type="module">
+import createGlobe from 'https://esm.sh/cobe@0.6.3';
+
+(function() {
+  var canvas  = document.getElementById('esv-globe-{{ section.id }}');
+  var overlay = document.getElementById('esv-globe-ov-{{ section.id }}');
+  var panel   = document.getElementById('esv-patent-panel-{{ section.id }}');
+  if (!canvas || !overlay) return;
+
+  var ctx = overlay.getContext('2d');
+  var panelBadge  = panel && panel.querySelector('.esv-science__patent-panel-badge');
+  var panelNum    = panel && panel.querySelector('.esv-science__patent-panel-num');
+  var panelRegion = panel && panel.querySelector('.esv-science__patent-panel-region');
+  var panelClose  = panel && panel.querySelector('.esv-science__patent-panel-close');
+
+  var THETA = 0.3;
+
+  var PATENTS = [
+    { lat: 38.9072,  lon: -77.0369,  badge: 'US',  number: '{{ section.settings.patent_1_number | escape }}', region: '{{ section.settings.patent_1_region | escape }}' },
+    { lat: 50.8503,  lon:   4.3517,  badge: 'EU',  number: '{{ section.settings.patent_2_number | escape }}', region: '{{ section.settings.patent_2_region | escape }}' },
+    { lat: 45.4215,  lon: -75.6972,  badge: 'CA',  number: '{{ section.settings.patent_3_number | escape }}', region: '{{ section.settings.patent_3_region | escape }}' },
+    { lat: 56.9496,  lon:  24.1052,  badge: 'PCT', number: '{{ section.settings.patent_4_number | escape }}', region: '{{ section.settings.patent_4_region | escape }}' },
+  ];
+
+  var autoPhi     = 0;
+  var dragPhi     = 0;
+  var startDragPhi = 0;
+  var pointerDownX = null;
+  var pointerMoved = false;
+  var isDragging  = false;
+  var paused      = false;
+  var activeIdx   = null;
+  var width       = 0;
+
+  /* ── Projection ── */
+  function project(lat, lon, phi, size) {
+    var lam  = lon * Math.PI / 180;
+    var plat = lat * Math.PI / 180;
+    var x = Math.cos(plat) * Math.sin(lam);
+    var y = Math.sin(plat);
+    var z = Math.cos(plat) * Math.cos(lam);
+    /* Derived from cobe@0.6.3 source: markers stored as (cos(lat)*cos(lon), sin(lat),
+       -cos(lat)*sin(lon)), projected via row-vec × L(theta,phi). With my standard
+       sphere coords (x=cos*sin(lon), y=sin(lat), z=cos*cos(lon)):
+       W = cos(theta)*x + sin(theta)*y  (theta-combined term, phi-independent)
+       screen_x = cos(phi)*z + sin(phi)*W
+       screen_y = cos(theta)*y - sin(theta)*x   (constant as globe spins)
+       visible  = sin(phi)*z - cos(phi)*W > 0                                    */
+    var ct = Math.cos(THETA), st = Math.sin(THETA);
+    var W    = ct * x + st * y;
+    var cp = Math.cos(phi), sp = Math.sin(phi);
+    var x_sc  = cp * z + sp * W;
+    var y_sc  = ct * y - st * x;
+    var z_vis = sp * z - cp * W;
+    if (z_vis < 0.05) return null;
+    var r = size / 2;
+    return { x: size / 2 + x_sc * r, y: size / 2 - y_sc * r };
+  }
+
+  /* ── Draw rounded rect (roundRect polyfill) ── */
+  function fillRoundRect(c, x, y, w, h, r) {
+    c.beginPath();
+    c.moveTo(x + r, y);
+    c.lineTo(x + w - r, y);
+    c.quadraticCurveTo(x + w, y, x + w, y + r);
+    c.lineTo(x + w, y + h - r);
+    c.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    c.lineTo(x + r, y + h);
+    c.quadraticCurveTo(x, y + h, x, y + h - r);
+    c.lineTo(x, y + r);
+    c.quadraticCurveTo(x, y, x + r, y);
+    c.closePath();
+    c.fill();
+  }
+
+  /* ── Overlay — draw click rings at each projected dot position ── */
+  function drawOverlay(totalPhi) {
+    var size = overlay.offsetWidth;
+    if (!size) return;
+    if (overlay.width !== size || overlay.height !== size) {
+      overlay.width  = size;
+      overlay.height = size;
+    }
+    ctx.clearRect(0, 0, size, size);
+
+    PATENTS.forEach(function(p, i) {
+      var pos = project(p.lat, p.lon, totalPhi, size);
+      if (!pos) return;
+      var isActive = activeIdx === i;
+      ctx.beginPath();
+      ctx.arc(pos.x, pos.y, isActive ? 14 : 10, 0, 2 * Math.PI);
+      ctx.strokeStyle = isActive ? '#FF2B5C' : 'rgba(255,43,92,0.7)';
+      ctx.lineWidth   = isActive ? 2.5 : 1.5;
+      ctx.stroke();
+    });
+  }
+
+  /* ── onRender (called every frame by COBE) ── */
+  function onRender(state) {
+    if (!paused && !isDragging) autoPhi += 0.005;
+    var totalPhi = autoPhi + dragPhi;
+    state.phi    = totalPhi;
+    state.width  = width * 2;
+    state.height = width * 2;
+    drawOverlay(totalPhi);
+  }
+
+  function onResize() {
+    width = canvas.offsetWidth || 400;
+  }
+  window.addEventListener('resize', onResize);
+  onResize();
+
+  /* ── Init globe ── */
+  createGlobe(canvas, {
+    devicePixelRatio: 2,
+    width:  width * 2,
+    height: width * 2,
+    phi: 0,
+    theta: THETA,
+    dark: 1,
+    diffuse: 1.2,
+    mapSamples: 16000,
+    mapBrightness: 6,
+    baseColor:   [0.1,  0.1,  0.16],
+    markerColor: [1,    43/255, 92/255],
+    glowColor:   [0.35, 0.35, 0.55],
+    markers: PATENTS.map(function(p) {
+      return { location: [p.lat, p.lon], size: 0.07 };
+    }),
+    onRender: onRender
+  });
+
+  setTimeout(function() { canvas.style.opacity = '1'; });
+
+  /* ── Pointer interaction ── */
+  function clientX(e) {
+    return e.touches ? e.touches[0].clientX : e.clientX;
+  }
+
+  overlay.addEventListener('pointerdown', function(e) {
+    isDragging    = true;
+    pointerDownX  = clientX(e);
+    startDragPhi  = autoPhi;
+    dragPhi       = 0;
+    pointerMoved  = false;
+    overlay.setPointerCapture(e.pointerId);
+  });
+
+  overlay.addEventListener('pointermove', function(e) {
+    if (!isDragging) return;
+    var dx = clientX(e) - pointerDownX;
+    if (Math.abs(dx) > 4) pointerMoved = true;
+    dragPhi = dx / 180;
+  });
+
+  overlay.addEventListener('pointerup', function(e) {
+    if (!isDragging) return;
+    isDragging = false;
+
+    if (!pointerMoved) {
+      /* Click — hit test */
+      var rect     = overlay.getBoundingClientRect();
+      var cx       = e.clientX - rect.left;
+      var cy       = e.clientY - rect.top;
+      var size     = overlay.offsetWidth;
+      var totalPhi = autoPhi + dragPhi;
+      var hitR     = 28;
+      var hit      = null;
+
+      PATENTS.forEach(function(p, i) {
+        var pos = project(p.lat, p.lon, totalPhi, size);
+        if (!pos) return;
+        var dx = cx - pos.x, dy = cy - pos.y;
+        if (Math.sqrt(dx*dx + dy*dy) < hitR) hit = i;
+      });
+
+      if (hit !== null) {
+        activeIdx = hit;
+        paused    = true;
+        showPanel(PATENTS[hit]);
+      } else if (activeIdx !== null) {
+        activeIdx = null;
+        paused    = false;
+        hidePanel();
+      }
+      dragPhi = 0;
+    } else {
+      /* Drag ended — absorb delta into autoPhi */
+      autoPhi += dragPhi;
+      dragPhi  = 0;
+      if (activeIdx === null) paused = false;
+    }
+  });
+
+  overlay.addEventListener('pointercancel', function() {
+    if (pointerMoved) { autoPhi += dragPhi; }
+    dragPhi    = 0;
+    isDragging = false;
+  });
+
+  /* ── Panel show/hide ── */
+  function showPanel(patent) {
+    if (!panel) return;
+    if (panelBadge)  panelBadge.textContent  = patent.badge;
+    if (panelNum)    panelNum.textContent     = patent.number;
+    if (panelRegion) panelRegion.textContent  = patent.region;
+    panel.classList.add('is-visible');
+  }
+
+  function hidePanel() {
+    if (panel) panel.classList.remove('is-visible');
+  }
+
+  if (panelClose) {
+    panelClose.addEventListener('click', function() {
+      activeIdx = null;
+      paused    = false;
+      hidePanel();
+    });
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && activeIdx !== null) {
+      activeIdx = null;
+      paused    = false;
+      hidePanel();
+    }
   });
 })();
 </script>
@@ -581,51 +692,6 @@
       "id": "stat_4_label",
       "label": "Label",
       "default": "Statistical significance"
-    },
-    {
-      "type": "header",
-      "content": "Research Study"
-    },
-    {
-      "type": "text",
-      "id": "study_badge",
-      "label": "Badge label",
-      "default": "Peer-Reviewed Study"
-    },
-    {
-      "type": "text",
-      "id": "study_title",
-      "label": "Study title",
-      "default": "Application of a New Device for Vision Relaxation in Computer Users"
-    },
-    {
-      "type": "textarea",
-      "id": "study_text",
-      "label": "Study description",
-      "default": "An 8-week prospective study of 89 screen workers — each using screens 4 or more hours daily — assessed the effect of guided eye exercises using the Eye Roll device. Results showed a statistically significant reduction of 35% or more in visual complaint scores at 4 weeks, sustained and continued to improve through week 8. Both eye fatigue and visual discomfort showed significant improvement (p<0.001). The control group that received no exercises showed no change, confirming that the exercises — not time or placebo — were responsible for the benefit."
-    },
-    {
-      "type": "text",
-      "id": "study_source",
-      "label": "Publication source",
-      "default": "Vision 2024, 8, 40 · Published June 23, 2024 · University of Latvia, Department of Optometry and Vision Science"
-    },
-    {
-      "type": "text",
-      "id": "study_funding",
-      "label": "Funding note",
-      "default": "EU Horizon Research Project No. 1.1.1.1/20/A/038"
-    },
-    {
-      "type": "text",
-      "id": "study_link_label",
-      "label": "Read study link label",
-      "default": "Read the full study"
-    },
-    {
-      "type": "url",
-      "id": "study_link_url",
-      "label": "Read study link URL"
     },
     {
       "type": "header",

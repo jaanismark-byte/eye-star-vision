@@ -1,107 +1,220 @@
 <section class="esv-problem" id="esv-problem-{{ section.id }}">
+
+  <!-- ── Intro animation overlay (desktop only) ── -->
+  <div class="esv-problem__intro-stage" aria-hidden="true">
+    <div class="esv-problem__intro-center">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="esv-problem__intro-eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      <h2 class="esv-problem__intro-heading">{{ section.settings.heading }}</h2>
+    </div>
+  </div>
+
   <div class="esv-problem__container">
 
-    <div class="esv-problem__header esv-reveal">
-      {%- if section.settings.eyebrow != blank -%}
-        <p class="esv-problem__eyebrow">{{ section.settings.eyebrow }}</p>
-      {%- endif -%}
-      <h2 class="esv-problem__heading">{{ section.settings.heading }}</h2>
-      {%- if section.settings.subheading != blank -%}
-        <p class="esv-problem__subheading">{{ section.settings.subheading }}</p>
-      {%- endif -%}
+    <div class="esv-problem__layout">
+
+      <!-- Left: viewport with text layer + image+description layer stacked -->
+      <div class="esv-problem__left">
+        <div class="esv-problem__left-viewport">
+
+          <!-- Text layer — normal flow, defines viewport height -->
+          <div class="esv-problem__left-text esv-reveal">
+            {%- if section.settings.eyebrow != blank -%}
+              <p class="esv-problem__eyebrow">{{ section.settings.eyebrow }}</p>
+            {%- endif -%}
+            <h2 class="esv-problem__heading">{{ section.settings.heading }}</h2>
+            {%- if section.settings.subheading != blank -%}
+              <p class="esv-problem__subheading">{{ section.settings.subheading }}</p>
+            {%- endif -%}
+            {%- if section.settings.stat_number != blank -%}
+              <div class="esv-problem__stat-block">
+                <span class="esv-problem__stat-number">{{ section.settings.stat_number }}</span>
+                <span class="esv-problem__stat-label">{{ section.settings.stat_label }}</span>
+              </div>
+            {%- endif -%}
+          </div>
+
+          <!-- Image + description layer — rolls up from below on click -->
+          <div class="esv-problem__left-image">
+            <div class="esv-problem__active-title-strip">
+              <div class="esv-problem__active-icon-wrap"></div>
+              <h3 class="esv-problem__active-title"></h3>
+            </div>
+            <img class="esv-problem__active-img" src="" alt="" aria-hidden="true">
+            <p class="esv-problem__active-body"></p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Right: symptom list, titles only (descriptions moved to left panel) -->
+      <div class="esv-problem__right">
+
+        <div class="esv-problem__symptom esv-reveal esv-reveal--delay-1"
+             data-image="{{ section.settings.image_1 | image_url: width: 900 }}"
+             data-body="{{ section.settings.symptom_1_body | escape }}">
+          <button class="esv-problem__symptom-header" aria-expanded="false">
+            <div class="esv-problem__symptom-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="12" cy="12" rx="10" ry="6" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M12 5V3M12 21v-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3 class="esv-problem__symptom-title">{{ section.settings.symptom_1_title }}</h3>
+            <span class="esv-problem__symptom-toggle" aria-hidden="true"></span>
+          </button>
+          <div class="esv-problem__mobile-detail">
+            {%- if section.settings.image_1 != blank -%}
+              <img class="esv-problem__mobile-img" src="{{ section.settings.image_1 | image_url: width: 800 }}" alt="{{ section.settings.symptom_1_title }}" loading="lazy">
+            {%- endif -%}
+            {%- if section.settings.symptom_1_body != blank -%}
+              <p class="esv-problem__mobile-body">{{ section.settings.symptom_1_body }}</p>
+            {%- endif -%}
+          </div>
+        </div>
+
+        <div class="esv-problem__symptom esv-reveal esv-reveal--delay-2"
+             data-image="{{ section.settings.image_2 | image_url: width: 900 }}"
+             data-body="{{ section.settings.symptom_2_body | escape }}">
+          <button class="esv-problem__symptom-header" aria-expanded="false">
+            <div class="esv-problem__symptom-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="12" cy="12" rx="10" ry="6" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M7 19l1.5-2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M12 20v-2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M17 19l-1.5-2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3 class="esv-problem__symptom-title">{{ section.settings.symptom_2_title }}</h3>
+            <span class="esv-problem__symptom-toggle" aria-hidden="true"></span>
+          </button>
+          <div class="esv-problem__mobile-detail">
+            {%- if section.settings.image_2 != blank -%}
+              <img class="esv-problem__mobile-img" src="{{ section.settings.image_2 | image_url: width: 800 }}" alt="{{ section.settings.symptom_2_title }}" loading="lazy">
+            {%- endif -%}
+            {%- if section.settings.symptom_2_body != blank -%}
+              <p class="esv-problem__mobile-body">{{ section.settings.symptom_2_body }}</p>
+            {%- endif -%}
+          </div>
+        </div>
+
+        <div class="esv-problem__symptom esv-reveal esv-reveal--delay-3"
+             data-image="{{ section.settings.image_3 | image_url: width: 900 }}"
+             data-body="{{ section.settings.symptom_3_body | escape }}">
+          <button class="esv-problem__symptom-header" aria-expanded="false">
+            <div class="esv-problem__symptom-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 3C7 3 3 7.5 3 12s4 9 9 9 9-4 9-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M13 8l-2 4h3l-2 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3 class="esv-problem__symptom-title">{{ section.settings.symptom_3_title }}</h3>
+            <span class="esv-problem__symptom-toggle" aria-hidden="true"></span>
+          </button>
+          <div class="esv-problem__mobile-detail">
+            {%- if section.settings.image_3 != blank -%}
+              <img class="esv-problem__mobile-img" src="{{ section.settings.image_3 | image_url: width: 800 }}" alt="{{ section.settings.symptom_3_title }}" loading="lazy">
+            {%- endif -%}
+            {%- if section.settings.symptom_3_body != blank -%}
+              <p class="esv-problem__mobile-body">{{ section.settings.symptom_3_body }}</p>
+            {%- endif -%}
+          </div>
+        </div>
+
+        <div class="esv-problem__symptom esv-reveal esv-reveal--delay-1"
+             data-image="{{ section.settings.image_4 | image_url: width: 900 }}"
+             data-body="{{ section.settings.symptom_4_body | escape }}">
+          <button class="esv-problem__symptom-header" aria-expanded="false">
+            <div class="esv-problem__symptom-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="12" cy="12" rx="10" ry="6" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/>
+                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/>
+              </svg>
+            </div>
+            <h3 class="esv-problem__symptom-title">{{ section.settings.symptom_4_title }}</h3>
+            <span class="esv-problem__symptom-toggle" aria-hidden="true"></span>
+          </button>
+          <div class="esv-problem__mobile-detail">
+            {%- if section.settings.image_4 != blank -%}
+              <img class="esv-problem__mobile-img" src="{{ section.settings.image_4 | image_url: width: 800 }}" alt="{{ section.settings.symptom_4_title }}" loading="lazy">
+            {%- endif -%}
+            {%- if section.settings.symptom_4_body != blank -%}
+              <p class="esv-problem__mobile-body">{{ section.settings.symptom_4_body }}</p>
+            {%- endif -%}
+          </div>
+        </div>
+
+        <div class="esv-problem__symptom esv-reveal esv-reveal--delay-2"
+             data-image="{{ section.settings.image_5 | image_url: width: 900 }}"
+             data-body="{{ section.settings.symptom_5_body | escape }}">
+          <button class="esv-problem__symptom-header" aria-expanded="false">
+            <div class="esv-problem__symptom-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="2" fill="currentColor"/>
+                <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+                <path d="M12 3v2M12 19v2M3 12h2M19 12h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3 class="esv-problem__symptom-title">{{ section.settings.symptom_5_title }}</h3>
+            <span class="esv-problem__symptom-toggle" aria-hidden="true"></span>
+          </button>
+          <div class="esv-problem__mobile-detail">
+            {%- if section.settings.image_5 != blank -%}
+              <img class="esv-problem__mobile-img" src="{{ section.settings.image_5 | image_url: width: 800 }}" alt="{{ section.settings.symptom_5_title }}" loading="lazy">
+            {%- endif -%}
+            {%- if section.settings.symptom_5_body != blank -%}
+              <p class="esv-problem__mobile-body">{{ section.settings.symptom_5_body }}</p>
+            {%- endif -%}
+          </div>
+        </div>
+
+        <div class="esv-problem__symptom esv-reveal esv-reveal--delay-3"
+             data-image="{{ section.settings.image_6 | image_url: width: 900 }}"
+             data-body="{{ section.settings.symptom_6_body | escape }}">
+          <button class="esv-problem__symptom-header" aria-expanded="false">
+            <div class="esv-problem__symptom-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="12" cy="12" rx="10" ry="6" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M12 6V4" stroke="#FF2B5C" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="12" cy="3" r="0.75" fill="#FF2B5C"/>
+              </svg>
+            </div>
+            <h3 class="esv-problem__symptom-title">{{ section.settings.symptom_6_title }}</h3>
+            <span class="esv-problem__symptom-toggle" aria-hidden="true"></span>
+          </button>
+          <div class="esv-problem__mobile-detail">
+            {%- if section.settings.image_6 != blank -%}
+              <img class="esv-problem__mobile-img" src="{{ section.settings.image_6 | image_url: width: 800 }}" alt="{{ section.settings.symptom_6_title }}" loading="lazy">
+            {%- endif -%}
+            {%- if section.settings.symptom_6_body != blank -%}
+              <p class="esv-problem__mobile-body">{{ section.settings.symptom_6_body }}</p>
+            {%- endif -%}
+          </div>
+        </div>
+
+        <div class="esv-problem__global-stat esv-reveal esv-reveal--delay-1">
+          <div class="esv-problem__global-stat-header">
+            <span class="esv-problem__global-stat-number">66%</span>
+            <span class="esv-problem__global-stat-caption">of people who use digital screens daily report symptoms like these, worldwide</span>
+          </div>
+          <div class="esv-problem__global-stat-bar" role="img" aria-label="66 out of 100 people worldwide report digital eye strain symptoms">
+            <div class="esv-problem__global-stat-bar-fill" style="width: 66% !important; background-color: #FF2B5C !important; display: block !important; height: 100% !important; min-height: 10px;"></div>
+          </div>
+          <p class="esv-problem__global-stat-source">
+            Pooled prevalence across 45 studies, 17,526 participants —
+            <a href="https://www.nature.com/articles/s41598-023-28750-6" target="_blank" rel="noopener noreferrer">Etsay Woldu Anbesu and Asamene Kelelom Lema</a>
+            (2023), Scientific Reports
+          </p>
+        </div>
+
+      </div>
     </div>
 
-    <!-- Featured stat -->
-    <div class="esv-problem__stat-bar esv-reveal esv-reveal--delay-1">
-      <span class="esv-problem__stat-number">{{ section.settings.stat_number }}</span>
-      <span class="esv-problem__stat-label">{{ section.settings.stat_label }}</span>
-    </div>
-
-    <!-- Symptoms grid -->
-    <div class="esv-problem__grid">
-
-      <div class="esv-problem__card esv-reveal esv-reveal--delay-1">
-        <div class="esv-problem__card-icon">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="12" cy="12" rx="10" ry="6" stroke="currentColor" stroke-width="1.5"/>
-            <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/>
-            <path d="M12 5V3M12 21v-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <h3 class="esv-problem__card-title">{{ section.settings.symptom_1_title }}</h3>
-        <p class="esv-problem__card-body">{{ section.settings.symptom_1_body }}</p>
-      </div>
-
-      <div class="esv-problem__card esv-reveal esv-reveal--delay-2">
-        <div class="esv-problem__card-icon">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="12" cy="12" rx="10" ry="6" stroke="currentColor" stroke-width="1.5"/>
-            <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/>
-            <path d="M7 19l1.5-2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M12 20v-2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M17 19l-1.5-2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <h3 class="esv-problem__card-title">{{ section.settings.symptom_2_title }}</h3>
-        <p class="esv-problem__card-body">{{ section.settings.symptom_2_body }}</p>
-      </div>
-
-      <div class="esv-problem__card esv-reveal esv-reveal--delay-3">
-        <div class="esv-problem__card-icon">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 3C7 3 3 7.5 3 12s4 9 9 9 9-4 9-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M13 8l-2 4h3l-2 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <h3 class="esv-problem__card-title">{{ section.settings.symptom_3_title }}</h3>
-        <p class="esv-problem__card-body">{{ section.settings.symptom_3_body }}</p>
-      </div>
-
-      <div class="esv-problem__card esv-reveal esv-reveal--delay-1">
-        <div class="esv-problem__card-icon">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="12" cy="12" rx="10" ry="6" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/>
-            <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/>
-          </svg>
-        </div>
-        <h3 class="esv-problem__card-title">{{ section.settings.symptom_4_title }}</h3>
-        <p class="esv-problem__card-body">{{ section.settings.symptom_4_body }}</p>
-      </div>
-
-      <div class="esv-problem__card esv-reveal esv-reveal--delay-2">
-        <div class="esv-problem__card-icon">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="12" cy="12" r="2" fill="currentColor"/>
-            <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.5"/>
-            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
-            <path d="M12 3v2M12 19v2M3 12h2M19 12h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <h3 class="esv-problem__card-title">{{ section.settings.symptom_5_title }}</h3>
-        <p class="esv-problem__card-body">{{ section.settings.symptom_5_body }}</p>
-      </div>
-
-      <div class="esv-problem__card esv-reveal esv-reveal--delay-3">
-        <div class="esv-problem__card-icon">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="12" cy="12" rx="10" ry="6" stroke="currentColor" stroke-width="1.5"/>
-            <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/>
-            <path d="M12 6V4" stroke="#FF2B5C" stroke-width="2" stroke-linecap="round"/>
-            <circle cx="12" cy="3" r="0.75" fill="#FF2B5C"/>
-          </svg>
-        </div>
-        <h3 class="esv-problem__card-title">{{ section.settings.symptom_6_title }}</h3>
-        <p class="esv-problem__card-body">{{ section.settings.symptom_6_body }}</p>
-      </div>
-
-    </div>
-
-    <!-- Closing hook -->
-    {%- if section.settings.outro != blank -%}
-      <div class="esv-problem__outro esv-reveal">
-        <p>{{ section.settings.outro }}</p>
-      </div>
-    {%- endif -%}
 
   </div>
 </section>
@@ -117,15 +230,118 @@
     margin: 0 auto;
   }
 
-  /* ── Header ── */
-  #esv-problem-{{ section.id }} .esv-problem__header {
-    text-align: center;
-    max-width: 760px;
-    margin: 0 auto 72px;
+  /* ── Two-column layout ── */
+  #esv-problem-{{ section.id }} .esv-problem__layout {
+    display: grid;
+    grid-template-columns: 38% 1fr;
+    gap: 80px;
+    align-items: start;
   }
 
+  /* ── Left column ── */
+  #esv-problem-{{ section.id }} .esv-problem__left {
+    position: sticky;
+    top: 40px;
+  }
+
+  #esv-problem-{{ section.id }} .esv-problem__left-viewport {
+    position: relative;
+    overflow: hidden;
+    transition: height 1.3s cubic-bezier(0.76, 0, 0.24, 1),
+                background 0.55s ease,
+                border-radius 0.55s ease,
+                box-shadow 0.55s ease;
+  }
+
+  #esv-problem-{{ section.id }} .esv-problem__left-viewport.is-image-active {
+    background: linear-gradient(160deg, rgba(255,255,255,0.74) 0%, rgba(238,236,248,0.54) 100%);
+    backdrop-filter: blur(40px) saturate(1.25);
+    -webkit-backdrop-filter: blur(40px) saturate(1.25);
+    border-radius: 28px;
+    box-shadow:
+      0 28px 72px rgba(0,0,0,0.13),
+      0 6px 20px rgba(0,0,0,0.07),
+      inset 0 0 0 1px rgba(255,255,255,0.78),
+      inset 0 2px 0 rgba(255,255,255,1);
+  }
+
+  /* Text layer — normal flow, defines container height */
+  #esv-problem-{{ section.id }} .esv-problem__left-text {
+    padding: 0 0 4px;
+    transform: translateY(0);
+    transition: transform 1.3s cubic-bezier(0.76, 0, 0.24, 1);
+    will-change: transform;
+  }
+
+  #esv-problem-{{ section.id }} .esv-problem__left-viewport.is-image-active .esv-problem__left-text {
+    transform: translateY(-100%);
+  }
+
+  /* Image + description layer — no bottom constraint so image keeps full size */
+  #esv-problem-{{ section.id }} .esv-problem__left-image {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    transform: translateY(100%);
+    transition: transform 1.3s cubic-bezier(0.76, 0, 0.24, 1);
+    will-change: transform;
+    padding: 20px 20px 20px;
+  }
+
+  #esv-problem-{{ section.id }} .esv-problem__left-viewport.is-image-active .esv-problem__left-image {
+    transform: translateY(0);
+  }
+
+  #esv-problem-{{ section.id }} .esv-problem__active-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    border-radius: 14px;
+  }
+
+  #esv-problem-{{ section.id }} .esv-problem__active-body {
+    padding: 16px 0 0;
+    font-size: calc(1.2rem * var(--esv-text-scale, 1));
+    font-weight: 600;
+    line-height: 1.6;
+    color: #111111;
+    background: transparent;
+    margin: 0;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    margin-top: 14px;
+  }
+
+  #esv-problem-{{ section.id }} .esv-problem__active-title-strip {
+    padding: 0 0 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  #esv-problem-{{ section.id }} .esv-problem__active-icon-wrap {
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+    color: #FF2B5C;
+  }
+
+  #esv-problem-{{ section.id }} .esv-problem__active-icon-wrap svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  #esv-problem-{{ section.id }} .esv-problem__active-title {
+    font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: #FF2B5C;
+    margin: 0;
+  }
+
+  /* ── Left text content ── */
   #esv-problem-{{ section.id }} .esv-problem__eyebrow {
-    font-size: clamp(0.75rem, 1.2vw, 0.875rem);
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
     font-weight: 700;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -134,7 +350,7 @@
   }
 
   #esv-problem-{{ section.id }} .esv-problem__heading {
-    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
     font-weight: 800;
     line-height: 1.08;
     letter-spacing: -0.035em;
@@ -143,169 +359,726 @@
   }
 
   #esv-problem-{{ section.id }} .esv-problem__subheading {
-    font-size: clamp(1rem, 1.6vw, 1.15rem);
-    line-height: 1.7;
-    color: rgba(17,17,17,0.55);
-    margin: 0;
+    font-size: calc(clamp(0.95rem, 1.4vw, 1.05rem) * var(--esv-text-scale, 1));
+    line-height: 1.75;
+    color: rgba(17,17,17, calc(0.55 + var(--esv-muted-boost, 0)));
+    margin: 0 0 40px;
   }
 
-  /* ── Stat bar ── */
-  #esv-problem-{{ section.id }} .esv-problem__stat-bar {
-    display: flex;
-    align-items: center;
-    gap: 28px;
-    background: linear-gradient(135deg, rgba(255,43,92,0.12), rgba(239,42,193,0.08));
-    border: 1px solid rgba(255,43,92,0.25);
-    border-radius: 20px;
-    padding: 36px 48px;
-    margin-bottom: 64px;
+  #esv-problem-{{ section.id }} .esv-problem__stat-block {
+    border-top: 1px solid rgba(0,0,0,0.09);
+    padding-top: 32px;
   }
 
   #esv-problem-{{ section.id }} .esv-problem__stat-number {
-    font-size: clamp(3rem, 7vw, 5.5rem);
+    display: block;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
     font-weight: 800;
     letter-spacing: -0.04em;
+    color: #FF2B5C;
+    line-height: 1;
+    margin-bottom: 14px;
+  }
+
+  #esv-problem-{{ section.id }} .esv-problem__stat-label {
+    display: block;
+    font-size: calc(0.9rem * var(--esv-text-scale, 1));
+    line-height: 1.65;
+    color: rgba(17,17,17, calc(0.55 + var(--esv-muted-boost, 0)));
+  }
+
+  /* ── Right column ── */
+  #esv-problem-{{ section.id }} .esv-problem__right {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── Symptom row — border dividers ── */
+  #esv-problem-{{ section.id }} .esv-problem__symptom {
+    border-top: 1px solid rgba(0,0,0,0.09);
+    transition: background 0.35s ease, border-radius 0.35s ease,
+                box-shadow 0.35s ease, border-color 0.35s ease,
+                margin 0.35s ease;
+  }
+
+  #esv-problem-{{ section.id }} .esv-problem__symptom:last-child {
+    border-bottom: 1px solid rgba(0,0,0,0.09);
+  }
+
+  /* ── Global stat pictogram ── */
+  #esv-problem-{{ section.id }} .esv-problem__global-stat {
+    padding: 18px 4px 0;
+  }
+
+  #esv-problem-{{ section.id }} .esv-problem__global-stat-header {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  #esv-problem-{{ section.id }} .esv-problem__global-stat-number {
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
     color: #FF2B5C;
     line-height: 1;
     flex-shrink: 0;
   }
 
-  #esv-problem-{{ section.id }} .esv-problem__stat-label {
-    font-size: clamp(1rem, 1.8vw, 1.3rem);
-    font-weight: 400;
-    line-height: 1.5;
-    color: rgba(17,17,17,0.65);
-    max-width: 560px;
+  #esv-problem-{{ section.id }} .esv-problem__global-stat-caption {
+    font-size: calc(0.85rem * var(--esv-text-scale, 1));
+    line-height: 1.4;
+    color: rgba(17,17,17, calc(0.6 + var(--esv-muted-boost, 0)));
   }
 
-  /* ── Symptoms grid ── */
-  #esv-problem-{{ section.id }} .esv-problem__grid {
+  #esv-problem-{{ section.id }} .esv-problem__global-stat-bar {
+    width: 100%;
+    height: 10px;
+    border-radius: 999px;
+    background: rgba(0,0,0,0.08);
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+
+  #esv-problem-{{ section.id }} .esv-problem__global-stat-bar-fill {
+    width: 66%;
+    height: 100%;
+    border-radius: 999px;
+    background: #FF2B5C;
+  }
+
+  #esv-problem-{{ section.id }} .esv-problem__global-stat-source {
+    font-size: calc(0.72rem * var(--esv-text-scale, 1));
+    color: rgba(17,17,17, calc(0.4 + var(--esv-muted-boost, 0)));
+    margin: 0;
+  }
+
+  #esv-problem-{{ section.id }} .esv-problem__global-stat-source a {
+    color: rgba(17,17,17, calc(0.55 + var(--esv-muted-boost, 0)));
+    text-decoration: underline;
+  }
+
+  #esv-problem-{{ section.id }} .esv-problem__global-stat-source a:hover {
+    color: #FF2B5C;
+  }
+
+  /* Desktop: open symptom collapses out of the list (height/opacity via JS) */
+  @media (min-width: 1025px) {
+    #esv-problem-{{ section.id }} .esv-problem__symptom.is-open {
+      border-color: transparent;
+      overflow: hidden;
+    }
+  }
+
+  /* Mobile/tablet: open symptom shows as glass card */
+  @media (max-width: 1024px) {
+    #esv-problem-{{ section.id }} .esv-problem__symptom.is-open {
+      background: rgba(255,255,255,0.62);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-color: transparent;
+      border-radius: 18px;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.07), inset 0 0 0 1px rgba(255,255,255,0.85);
+      margin: 6px 0;
+    }
+  }
+
+  /* ── Symptom header button ── */
+  #esv-problem-{{ section.id }} .esv-problem__symptom-header {
+    width: 100%;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-bottom: 64px;
+    grid-template-columns: 22px 1fr 20px;
+    column-gap: 20px;
+    align-items: center;
+    padding: 24px 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
   }
 
-  #esv-problem-{{ section.id }} .esv-problem__card {
-    background: rgba(0,0,0,0.04);
-    border: 1px solid rgba(0,0,0,0.09);
-    border-radius: 20px;
-    padding: 36px 32px;
-    transition: background 0.25s ease, border-color 0.25s ease;
+  #esv-problem-{{ section.id }} .esv-problem__symptom-icon {
+    width: 22px;
+    height: 22px;
+    color: rgba(17,17,17,0.35);
+    flex-shrink: 0;
+    transition: color 0.25s ease;
+    align-self: start;
+    margin-top: 4px;
   }
 
-  #esv-problem-{{ section.id }} .esv-problem__card:hover {
-    background: rgba(0,0,0,0.07);
-    border-color: rgba(255,43,92,0.2);
+  #esv-problem-{{ section.id }} .esv-problem__symptom.is-open .esv-problem__symptom-icon {
+    color: #FF2B5C;
   }
 
-  #esv-problem-{{ section.id }} .esv-problem__card-icon {
-    width: 44px;
-    height: 44px;
-    color: rgba(17,17,17,0.4);
-    margin-bottom: 20px;
-  }
-
-  #esv-problem-{{ section.id }} .esv-problem__card-icon svg {
+  #esv-problem-{{ section.id }} .esv-problem__symptom-icon svg {
     width: 100%;
     height: 100%;
   }
 
-  #esv-problem-{{ section.id }} .esv-problem__card-title {
-    font-size: 1.05rem;
+  /* Title — grows 3x when open */
+  #esv-problem-{{ section.id }} .esv-problem__symptom-title {
+    font-size: calc(1.2rem * var(--esv-text-scale, 1));
     font-weight: 700;
     letter-spacing: -0.01em;
+    line-height: 1.15;
     color: #111111;
-    margin: 0 0 10px;
-  }
-
-  #esv-problem-{{ section.id }} .esv-problem__card-body {
-    font-size: 0.9rem;
-    line-height: 1.65;
-    color: rgba(17,17,17,0.5);
     margin: 0;
+    transition: font-size 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+                letter-spacing 0.45s ease,
+                color 0.25s ease;
   }
 
-  /* ── Outro ── */
-  #esv-problem-{{ section.id }} .esv-problem__outro {
-    text-align: center;
-    border-top: 1px solid rgba(0,0,0,0.09);
-    padding-top: 52px;
+  /* Toggle +/× */
+  #esv-problem-{{ section.id }} .esv-problem__symptom-toggle {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    align-self: start;
+    margin-top: 4px;
   }
 
-  #esv-problem-{{ section.id }} .esv-problem__outro p {
-    font-size: clamp(1.1rem, 2vw, 1.4rem);
-    font-weight: 500;
-    line-height: 1.6;
-    color: rgba(17,17,17,0.5);
-    max-width: 700px;
-    margin: 0 auto;
+  #esv-problem-{{ section.id }} .esv-problem__symptom-toggle::before,
+  #esv-problem-{{ section.id }} .esv-problem__symptom-toggle::after {
+    content: '';
+    position: absolute;
+    background: rgba(17,17,17,0.4);
+    border-radius: 2px;
+    transition: transform 0.3s ease, background 0.25s ease;
   }
 
-  #esv-problem-{{ section.id }} .esv-problem__outro p strong {
-    color: rgba(17,17,17,0.85);
-    font-weight: 600;
+  #esv-problem-{{ section.id }} .esv-problem__symptom-toggle::before {
+    width: 16px; height: 1.5px;
+    top: 50%; left: 0;
+    transform: translateY(-50%);
   }
+
+  #esv-problem-{{ section.id }} .esv-problem__symptom-toggle::after {
+    width: 1.5px; height: 16px;
+    left: 50%; top: 0;
+    transform: translateX(-50%);
+  }
+
+  #esv-problem-{{ section.id }} .esv-problem__symptom.is-open .esv-problem__symptom-toggle::before,
+  #esv-problem-{{ section.id }} .esv-problem__symptom.is-open .esv-problem__symptom-toggle::after {
+    background: #FF2B5C;
+  }
+
+  #esv-problem-{{ section.id }} .esv-problem__symptom.is-open .esv-problem__symptom-toggle::before {
+    transform: translateY(-50%) rotate(45deg);
+  }
+
+  #esv-problem-{{ section.id }} .esv-problem__symptom.is-open .esv-problem__symptom-toggle::after {
+    transform: translateX(-50%) rotate(45deg);
+  }
+
 
   /* ── Scroll-reveal ── */
   #esv-problem-{{ section.id }} .esv-reveal {
     opacity: 0;
-    transform: translateY(32px);
+    transform: translateY(24px);
     transition: opacity 0.7s ease, transform 0.7s ease;
   }
-  #esv-problem-{{ section.id }} .esv-reveal--delay-1 { transition-delay: 0.1s; }
-  #esv-problem-{{ section.id }} .esv-reveal--delay-2 { transition-delay: 0.2s; }
-  #esv-problem-{{ section.id }} .esv-reveal--delay-3 { transition-delay: 0.3s; }
+  #esv-problem-{{ section.id }} .esv-reveal--delay-1 { transition-delay: 0.05s; }
+  #esv-problem-{{ section.id }} .esv-reveal--delay-2 { transition-delay: 0.12s; }
+  #esv-problem-{{ section.id }} .esv-reveal--delay-3 { transition-delay: 0.19s; }
   #esv-problem-{{ section.id }} .esv-reveal.esv-visible {
     opacity: 1;
     transform: translateY(0);
   }
 
+  /* ── Tablet — stack columns, disable roll ── */
   @media (max-width: 1024px) {
-    #esv-problem-{{ section.id }} .esv-problem__grid {
-      grid-template-columns: repeat(2, 1fr);
+    #esv-problem-{{ section.id }} .esv-problem__layout {
+      grid-template-columns: 1fr;
+      gap: 56px;
+    }
+    #esv-problem-{{ section.id }} .esv-problem__left {
+      position: static;
+    }
+    #esv-problem-{{ section.id }} .esv-problem__left-image {
+      display: none;
+    }
+    #esv-problem-{{ section.id }} .esv-problem__left-viewport.is-image-active .esv-problem__left-text {
+      transform: translateY(0) !important;
+    }
+    #esv-problem-{{ section.id }} .esv-problem__symptom.is-open .esv-problem__symptom-title {
+      font-size: 2rem;
     }
   }
 
+  /* ── Mobile symptom detail view ── */
+  #esv-problem-{{ section.id }} .esv-problem__mobile-detail {
+    display: none;
+  }
+
+  @keyframes esv-detail-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 1024px) {
+    /* Hide non-open symptoms when one is active */
+    #esv-problem-{{ section.id }}.esv-problem--mobile-open .esv-problem__symptom:not(.is-open) {
+      display: none;
+    }
+
+    /* Hide the left-column text block when a symptom is open — full screen for detail */
+    #esv-problem-{{ section.id }}.esv-problem--mobile-open .esv-problem__left {
+      display: none;
+    }
+
+    /* Show and animate the detail panel */
+    #esv-problem-{{ section.id }} .esv-problem__symptom.is-open .esv-problem__mobile-detail {
+      display: block;
+      animation: esv-detail-in 0.4s ease forwards;
+    }
+
+    #esv-problem-{{ section.id }} .esv-problem__mobile-img {
+      width: 100%;
+      display: block;
+      border-radius: 16px;
+      margin-top: 20px;
+      object-fit: cover;
+    }
+
+    #esv-problem-{{ section.id }} .esv-problem__mobile-body {
+      margin: 16px 0 28px;
+      font-size: calc(1rem * var(--esv-text-scale, 1));
+      line-height: 1.7;
+      color: rgba(17,17,17, calc(0.65 + var(--esv-muted-boost, 0)));
+    }
+
+    /* Keep the open symptom's title at a readable size on mobile */
+    #esv-problem-{{ section.id }} .esv-problem__symptom.is-open .esv-problem__symptom-title {
+      font-size: 1.6rem;
+    }
+  }
+
+  /* ── Mobile ── */
   @media (max-width: 749px) {
     #esv-problem-{{ section.id }} {
-      padding: 80px 20px;
+      padding: 36px 16px 40px;
     }
-    #esv-problem-{{ section.id }} .esv-problem__header {
-      margin-bottom: 48px;
+    #esv-problem-{{ section.id }} .esv-problem__layout {
+      gap: 20px;
     }
-    #esv-problem-{{ section.id }} .esv-problem__stat-bar {
+    #esv-problem-{{ section.id }} .esv-problem__eyebrow {
+      font-size: clamp(1.5rem, 6vw, 2rem);
+    }
+    #esv-problem-{{ section.id }} .esv-problem__heading {
+      font-size: clamp(1.5rem, 6vw, 2rem);
+      margin-bottom: 14px;
+    }
+    #esv-problem-{{ section.id }} .esv-problem__subheading {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    #esv-problem-{{ section.id }} .esv-problem__stat-block {
+      padding-top: 20px;
+    }
+    #esv-problem-{{ section.id }} .esv-problem__stat-number {
+      font-size: clamp(2rem, 10vw, 3rem);
+      margin-bottom: 8px;
+    }
+    #esv-problem-{{ section.id }} .esv-problem__stat-label {
+      font-size: 0.82rem;
+    }
+    #esv-problem-{{ section.id }} .esv-problem__symptom-header {
+      padding: 16px 14px;
+    }
+    #esv-problem-{{ section.id }} .esv-problem__symptom.is-open .esv-problem__symptom-title {
+      font-size: 1.4rem;
+    }
+    #esv-problem-{{ section.id }} .esv-problem__global-stat {
+      padding-top: 16px;
+    }
+    #esv-problem-{{ section.id }} .esv-problem__global-stat-header {
       flex-direction: column;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 28px 24px;
-      margin-bottom: 40px;
+      gap: 2px;
     }
-    #esv-problem-{{ section.id }} .esv-problem__grid {
-      grid-template-columns: 1fr;
-      gap: 12px;
-      margin-bottom: 48px;
+    #esv-problem-{{ section.id }} .esv-problem__global-stat-number {
+      font-size: 1.4rem;
     }
-    #esv-problem-{{ section.id }} .esv-problem__card {
-      padding: 28px 24px;
+    #esv-problem-{{ section.id }} .esv-problem__global-stat-caption {
+      font-size: 0.8rem;
+    }
+  }
+
+  /* ── Intro animation (all screen sizes) ── */
+
+  /* esv-reveal is bypassed — intro handles the entrance */
+  #esv-problem-{{ section.id }} .esv-reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    /* ── Intro stage (fixed overlay, covers full viewport) ── */
+    #esv-problem-{{ section.id }} .esv-problem__intro-stage {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0 17%;
+      z-index: 10;
+      pointer-events: none;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.7s ease, visibility 0s 0.7s;
+    }
+
+    #esv-problem-{{ section.id }} .esv-problem__intro-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    #esv-problem-{{ section.id }} .esv-problem__intro-eyebrow {
+      font-size: clamp(3.5rem, 6.5vw, 7rem);
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #FF2B5C;
+      text-align: center;
+      margin: 0;
+      opacity: 0;
+      transform: translateY(28px);
+      /* Appears first — no delay */
+      transition: opacity 1.1s ease,
+                  transform 1.1s cubic-bezier(0.34, 1.2, 0.64, 1);
+    }
+
+    #esv-problem-{{ section.id }} .esv-problem__intro-heading {
+      font-size: clamp(0.875rem, 1.625vw, 1.75rem);
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      color: #111111;
+      text-align: center;
+      margin: 0;
+      opacity: 0;
+      transform: translateY(20px);
+      /* Appears only after eyebrow finishes (1.1s) + small pause (0.4s) */
+      transition: opacity 1.1s ease 1.5s,
+                  transform 1.1s cubic-bezier(0.34, 1.2, 0.64, 1) 1.5s;
+    }
+
+    /* State: pre-intro / showing — container hidden, intro stage invisible/visible */
+    #esv-problem-{{ section.id }}.esv-problem--pre-intro .esv-problem__container,
+    #esv-problem-{{ section.id }}.esv-problem--showing .esv-problem__container {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+
+    /* State: showing — intro appears */
+    #esv-problem-{{ section.id }}.esv-problem--showing .esv-problem__intro-stage {
+      visibility: visible;
+      opacity: 1;
+      transition: opacity 0.8s ease;
+    }
+
+    #esv-problem-{{ section.id }}.esv-problem--showing .esv-problem__intro-eyebrow {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #esv-problem-{{ section.id }}.esv-problem--showing .esv-problem__intro-heading {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* State: settling — intro slides out left/down, container fades in */
+    #esv-problem-{{ section.id }}.esv-problem--settling .esv-problem__intro-stage {
+      visibility: visible;
+      opacity: 0;
+      transition: opacity 1.1s ease, visibility 0s 1.1s;
+    }
+
+    #esv-problem-{{ section.id }}.esv-problem--settling .esv-problem__intro-center {
+      opacity: 0;
+      transform: translateX(-8vw) translateY(-8px);
+      transition: opacity 1.0s ease, transform 1.0s ease;
+    }
+
+    /* Container stays hidden during settling so waterfall starts on a clean slate */
+    #esv-problem-{{ section.id }}.esv-problem--settling .esv-problem__container {
+      opacity: 0;
+      transform: translateY(0);
+    }
+
+    /* Container snaps visible instantly — the waterfall elements create the visual entrance */
+    #esv-problem-{{ section.id }}.esv-problem--settled .esv-problem__container {
+      opacity: 1;
+      transform: translateY(0);
+      transition: none;
+    }
+
+    /* State: settled — stage removed */
+    #esv-problem-{{ section.id }}.esv-problem--settled .esv-problem__intro-stage {
+      display: none;
+    }
+
+    /* ── Waterfall cascade ── */
+
+    /* All cascade elements start at translateY(-12px) during settling so they
+       animate downward the moment the container snaps visible */
+    #esv-problem-{{ section.id }}.esv-problem--settling .esv-problem__eyebrow,
+    #esv-problem-{{ section.id }}.esv-problem--settling .esv-problem__heading,
+    #esv-problem-{{ section.id }}.esv-problem--settling .esv-problem__subheading,
+    #esv-problem-{{ section.id }}.esv-problem--settling .esv-problem__stat-block,
+    #esv-problem-{{ section.id }}.esv-problem--settling .esv-problem__symptom {
+      opacity: 0;
+      transform: translateY(-12px);
+    }
+
+    /* All elements share the same fade+drop transition */
+    #esv-problem-{{ section.id }}.esv-problem--settled .esv-problem__eyebrow,
+    #esv-problem-{{ section.id }}.esv-problem--settled .esv-problem__heading,
+    #esv-problem-{{ section.id }}.esv-problem--settled .esv-problem__subheading,
+    #esv-problem-{{ section.id }}.esv-problem--settled .esv-problem__stat-block,
+    #esv-problem-{{ section.id }}.esv-problem--settled .esv-problem__symptom {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.45s ease-out, transform 0.45s ease-out;
+    }
+
+    /* Left column — staggered by row (90 ms per step) */
+    #esv-problem-{{ section.id }}.esv-problem--settled .esv-problem__eyebrow   { transition-delay:   0ms; }
+    #esv-problem-{{ section.id }}.esv-problem--settled .esv-problem__heading    { transition-delay:  90ms; }
+    #esv-problem-{{ section.id }}.esv-problem--settled .esv-problem__subheading { transition-delay: 180ms; }
+    #esv-problem-{{ section.id }}.esv-problem--settled .esv-problem__stat-block { transition-delay: 270ms; }
+
+    /* Right column — symptoms cascade at the same rhythm */
+    #esv-problem-{{ section.id }}.esv-problem--settled .esv-problem__symptom:nth-child(1) { transition-delay:   0ms; }
+    #esv-problem-{{ section.id }}.esv-problem--settled .esv-problem__symptom:nth-child(2) { transition-delay:  90ms; }
+    #esv-problem-{{ section.id }}.esv-problem--settled .esv-problem__symptom:nth-child(3) { transition-delay: 180ms; }
+    #esv-problem-{{ section.id }}.esv-problem--settled .esv-problem__symptom:nth-child(4) { transition-delay: 270ms; }
+    #esv-problem-{{ section.id }}.esv-problem--settled .esv-problem__symptom:nth-child(5) { transition-delay: 360ms; }
+    #esv-problem-{{ section.id }}.esv-problem--settled .esv-problem__symptom:nth-child(6) { transition-delay: 450ms; }
+
+  /* ── Tablet & mobile: single-column layout — symptoms continue the waterfall after left content ── */
+  @media (max-width: 1024px) {
+    #esv-problem-{{ section.id }}.esv-problem--settled .esv-problem__symptom:nth-child(1) { transition-delay: 360ms; }
+    #esv-problem-{{ section.id }}.esv-problem--settled .esv-problem__symptom:nth-child(2) { transition-delay: 450ms; }
+    #esv-problem-{{ section.id }}.esv-problem--settled .esv-problem__symptom:nth-child(3) { transition-delay: 540ms; }
+    #esv-problem-{{ section.id }}.esv-problem--settled .esv-problem__symptom:nth-child(4) { transition-delay: 630ms; }
+    #esv-problem-{{ section.id }}.esv-problem--settled .esv-problem__symptom:nth-child(5) { transition-delay: 720ms; }
+    #esv-problem-{{ section.id }}.esv-problem--settled .esv-problem__symptom:nth-child(6) { transition-delay: 810ms; }
+  }
+
+  /* ── Mobile: scale down intro text to fit narrow viewport ── */
+  @media (max-width: 749px) {
+    #esv-problem-{{ section.id }} .esv-problem__intro-stage {
+      padding: 0 6%;
+    }
+    #esv-problem-{{ section.id }} .esv-problem__intro-eyebrow {
+      font-size: clamp(1.8rem, 8vw, 2.5rem);
+    }
+    #esv-problem-{{ section.id }} .esv-problem__intro-heading {
+      font-size: clamp(0.45rem, 2vw, 0.625rem);
     }
   }
 </style>
 
 <script>
 (function() {
-  var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('esv-visible');
-        observer.unobserve(entry.target);
+  var section         = document.getElementById('esv-problem-{{ section.id }}');
+  var viewport        = section.querySelector('.esv-problem__left-viewport');
+  var leftText        = section.querySelector('.esv-problem__left-text');
+  var leftImage       = section.querySelector('.esv-problem__left-image');
+  var activeImg       = section.querySelector('.esv-problem__active-img');
+  var activeBody      = section.querySelector('.esv-problem__active-body');
+  var activeTitle     = section.querySelector('.esv-problem__active-title');
+  var activeIconWrap  = section.querySelector('.esv-problem__active-icon-wrap');
+  var symptoms        = section.querySelectorAll('.esv-problem__symptom');
+  var isDesktop       = function() { return window.innerWidth > 1024; };
+  var heightResetTimer = null;
+  var currentOpen     = null;
+  var isSwitching     = false;
+  var COLLAPSE_MS     = 430;
+  var EXPAND_MS       = 430;
+  var SWITCH_PAUSE    = 500;
+
+  function applyImageHeight() {
+    viewport.style.height = leftImage.scrollHeight + 'px';
+  }
+
+  function showImagePanel(imageUrl, bodyText, titleText) {
+    clearTimeout(heightResetTimer);
+    activeTitle.textContent = titleText || '';
+    activeBody.textContent  = bodyText  || '';
+    viewport.classList.add('is-image-active');
+    activeImg.onload = applyImageHeight;
+    activeImg.src    = imageUrl;
+    if (activeImg.complete && activeImg.naturalHeight > 0) {
+      applyImageHeight();
+    }
+  }
+
+  function hideImagePanel() {
+    viewport.style.height = leftText.scrollHeight + 'px';
+    viewport.classList.remove('is-image-active');
+    clearTimeout(heightResetTimer);
+    heightResetTimer = setTimeout(function() {
+      viewport.style.height = '';
+    }, 1350);
+  }
+
+  /* Collapse a symptom row to height 0 */
+  function collapseRow(el, cb) {
+    el.style.height   = el.scrollHeight + 'px';
+    el.style.overflow = 'hidden';
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() {
+        el.style.transition = 'height ' + (COLLAPSE_MS/1000) + 's cubic-bezier(0.76,0,0.24,1), opacity ' + (COLLAPSE_MS*0.7/1000) + 's ease';
+        el.style.height     = '0';
+        el.style.opacity    = '0';
+      });
+    });
+    setTimeout(function() { if (cb) cb(); }, COLLAPSE_MS);
+  }
+
+  /* Expand a symptom row back to natural height */
+  function expandRow(el, cb) {
+    var target = el.scrollHeight;
+    el.style.transition = 'height ' + (EXPAND_MS/1000) + 's cubic-bezier(0.76,0,0.24,1), opacity ' + (EXPAND_MS*0.8/1000) + 's ease 0.06s';
+    el.style.height     = target + 'px';
+    el.style.opacity    = '1';
+    setTimeout(function() {
+      el.style.height     = '';
+      el.style.overflow   = '';
+      el.style.transition = '';
+      if (cb) cb();
+    }, EXPAND_MS);
+  }
+
+  function openDesktop(sym) {
+    var imageUrl  = sym.dataset.image;
+    var bodyText  = sym.dataset.body;
+    var titleText = sym.querySelector('.esv-problem__symptom-title').textContent.trim();
+    var iconEl    = sym.querySelector('.esv-problem__symptom-icon');
+    activeIconWrap.innerHTML = iconEl ? iconEl.innerHTML : '';
+    sym.classList.add('is-open');
+    sym.querySelector('.esv-problem__symptom-header').setAttribute('aria-expanded', 'true');
+    collapseRow(sym, null);
+    if (imageUrl) showImagePanel(imageUrl, bodyText, titleText);
+  }
+
+  function closeDesktop(sym, cb) {
+    sym.classList.remove('is-open');
+    sym.querySelector('.esv-problem__symptom-header').setAttribute('aria-expanded', 'false');
+    hideImagePanel();
+    setTimeout(function() { expandRow(sym, cb); }, 80);
+  }
+
+  symptoms.forEach(function(symptom) {
+    var btn = symptom.querySelector('.esv-problem__symptom-header');
+
+    btn.addEventListener('click', function() {
+
+      /* ── Mobile behavior ── */
+      if (!isDesktop()) {
+        var wasOpen = symptom.classList.contains('is-open');
+        symptoms.forEach(function(s) {
+          s.classList.remove('is-open');
+          s.querySelector('.esv-problem__symptom-header').setAttribute('aria-expanded', 'false');
+        });
+        if (!wasOpen) {
+          symptom.classList.add('is-open');
+          btn.setAttribute('aria-expanded', 'true');
+          section.classList.add('esv-problem--mobile-open');
+          setTimeout(function() {
+            symptom.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 50);
+        } else {
+          section.classList.remove('esv-problem--mobile-open');
+        }
+        return;
+      }
+
+      /* ── Desktop behavior ── */
+      if (isSwitching) return;
+
+      var isOpen = (symptom === currentOpen);
+
+      if (isOpen) {
+        /* Toggle closed */
+        isSwitching = true;
+        closeDesktop(symptom, function() {
+          currentOpen = null;
+          isSwitching = false;
+        });
+
+      } else if (currentOpen) {
+        /* Switch: close previous → pause → open new */
+        isSwitching = true;
+        var prev = currentOpen;
+        currentOpen = null;
+        closeDesktop(prev, function() {
+          setTimeout(function() {
+            currentOpen = symptom;
+            openDesktop(symptom);
+            isSwitching = false;
+          }, SWITCH_PAUSE);
+        });
+
+      } else {
+        /* Open fresh */
+        currentOpen = symptom;
+        openDesktop(symptom);
       }
     });
-  }, { threshold: 0.12 });
-
-  document.querySelectorAll('#esv-problem-{{ section.id }} .esv-reveal').forEach(function(el) {
-    observer.observe(el);
   });
+
+  /* ── Click anywhere on the glass box to close ── */
+  viewport.addEventListener('click', function() {
+    if (!isDesktop() || isSwitching || !currentOpen) return;
+    isSwitching = true;
+    var prev = currentOpen;
+    currentOpen = null;
+    closeDesktop(prev, function() {
+      isSwitching = false;
+    });
+  });
+
+  /* ── Entrance animation (all screen sizes) ── */
+  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!prefersReduced) {
+    section.classList.add('esv-problem--pre-intro');
+
+    var introObserver = new IntersectionObserver(function(entries) {
+      if (!entries[0].isIntersecting) return;
+      introObserver.disconnect();
+
+      /* Phase 1: show intro */
+      section.classList.remove('esv-problem--pre-intro');
+      section.classList.add('esv-problem--showing');
+
+      /* Phase 2: after 5200ms, settle (intro out, layout in) */
+      setTimeout(function() {
+        section.classList.remove('esv-problem--showing');
+        section.classList.add('esv-problem--settling');
+
+        /* Phase 3: after 1300ms, waterfall cascade */
+        setTimeout(function() {
+          section.classList.remove('esv-problem--settling');
+          section.classList.add('esv-problem--settled');
+        }, 1300);
+      }, 5200);
+
+    }, { threshold: 0.4 });
+
+    introObserver.observe(section);
+  }
 })();
 </script>
 
@@ -370,6 +1143,11 @@
       "default": "Overworked eye muscles lock into the same focus distance for hours, losing their natural ability to shift and relax."
     },
     {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image"
+    },
+    {
       "type": "header",
       "content": "Symptom 2"
     },
@@ -384,6 +1162,11 @@
       "id": "symptom_2_body",
       "label": "Description",
       "default": "Screen concentration reduces your blink rate, leaving eyes under-lubricated and reactive — cycling between dryness and excessive tearing."
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image"
     },
     {
       "type": "header",
@@ -402,6 +1185,11 @@
       "default": "Eye strain doesn't stay in your eyes. Tension in the ciliary and extraocular muscles radiates outward, triggering recurring tension headaches."
     },
     {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image"
+    },
+    {
       "type": "header",
       "content": "Symptom 4"
     },
@@ -416,6 +1204,11 @@
       "id": "symptom_4_body",
       "label": "Description",
       "default": "After long screen sessions, eyes temporarily lose the ability to shift focus cleanly — a condition researchers call nearwork-induced transient myopia."
+    },
+    {
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "Image"
     },
     {
       "type": "header",
@@ -434,6 +1227,11 @@
       "default": "The eye's ability to switch between near and far distances weakens with prolonged close-up use, making everyday tasks feel slow and imprecise."
     },
     {
+      "type": "image_picker",
+      "id": "image_5",
+      "label": "Image"
+    },
+    {
       "type": "header",
       "content": "Symptom 6"
     },
@@ -450,15 +1248,10 @@
       "default": "Persistent visual stress inflames the surface of the eye and surrounding tissue, causing visible redness, irritation, and a dull ache that worsens through the day."
     },
     {
-      "type": "header",
-      "content": "Closing Statement"
+      "type": "image_picker",
+      "id": "image_6",
+      "label": "Image"
     },
-    {
-      "type": "textarea",
-      "id": "outro",
-      "label": "Outro text (use <strong> for emphasis)",
-      "default": "And most solutions? They hand you <strong>another screen</strong> to stare at."
-    }
   ],
   "presets": [
     {

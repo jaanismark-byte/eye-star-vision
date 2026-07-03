@@ -175,6 +175,9 @@
         --spacing-sections-desktop: {{ settings.spacing_sections }}px;
         --spacing-sections-mobile: {% if settings.spacing_sections < 24 %}{{ settings.spacing_sections }}{% else %}{{ settings.spacing_sections | times: 0.7 | round | at_least: 20 }}{% endif %}px;
 
+        --esv-text-scale: {{ settings.esv_text_scale | default: 110 | divided_by: 100.0 }};
+        --esv-muted-boost: {{ settings.esv_text_contrast_boost | default: 15 | divided_by: 100.0 }};
+
         --grid-desktop-vertical-spacing: {{ settings.spacing_grid_vertical }}px;
         --grid-desktop-horizontal-spacing: {{ settings.spacing_grid_horizontal }}px;
         --grid-mobile-vertical-spacing: {{ settings.spacing_grid_vertical | divided_by: 2 }}px;
@@ -250,10 +253,18 @@
           font-size: 1.6rem;
         }
       }
+
+      body.gradient {
+        background: rgb(var(--color-background));
+        background-image: none;
+      }
     {% endstyle %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
     {{ 'custom.css' | asset_url | stylesheet_tag }}
+    {%- if settings.cart_type == 'drawer' -%}
+      {{ 'component-cart-drawer.css' | asset_url | stylesheet_tag }}
+    {%- endif -%}
 
     {%- unless settings.type_body_font.system? -%}
       <link rel="preload" as="font" href="{{ settings.type_body_font | font_url }}" type="font/woff2" crossorigin>
@@ -293,7 +304,6 @@
       {%- render 'cart-drawer' -%}
     {%- endif -%}
 
-    {% sections 'header-group' %}
 
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
       {{ content_for_layout }}
@@ -350,5 +360,64 @@
     {%- if settings.predictive_search_enabled -%}
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+
+    <script>
+    (function() {
+      var locked = false;
+
+      function getSections() {
+        return Array.from(document.querySelectorAll('#MainContent > .shopify-section'));
+      }
+
+      function getIdx(sections) {
+        var mid = window.scrollY + window.innerHeight * 0.5;
+        var idx = 0;
+        for (var i = sections.length - 1; i >= 0; i--) {
+          var top = sections[i].getBoundingClientRect().top + window.scrollY;
+          if (top <= mid) { idx = i; break; }
+        }
+        return idx;
+      }
+
+      function scrollToY(targetY, duration) {
+        var startY = window.scrollY;
+        var dist = targetY - startY;
+        var startTs = null;
+        function step(ts) {
+          if (!startTs) startTs = ts;
+          var p = Math.min((ts - startTs) / duration, 1);
+          // easeInOutSine — gentle S-curve, no abrupt start or stop
+          var ease = -(Math.cos(Math.PI * p) - 1) / 2;
+          window.scrollTo(0, startY + dist * ease);
+          if (p < 1) { requestAnimationFrame(step); }
+          else { setTimeout(function() { locked = false; }, 300); }
+        }
+        requestAnimationFrame(step);
+      }
+
+      function snap(dir) {
+        var sections = getSections();
+        if (!sections.length) return;
+        var idx = getIdx(sections);
+        var target = dir > 0 ? sections[idx + 1] : sections[idx - 1];
+        if (!target) return;
+        locked = true;
+        document.body.style.overflow = '';
+        document.body.style.paddingRight = '';
+        var targetY = target.getBoundingClientRect().top + window.scrollY;
+        scrollToY(targetY, 2000);
+      }
+
+      // Wheel snap — desktop only (touch devices use native scroll per section)
+      if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        window.addEventListener('wheel', function(e) {
+          e.preventDefault();
+          if (!locked) snap(e.deltaY);
+        }, { passive: false });
+      }
+
+      console.log('[esv-snap] ready, _esvHero present:', !!window._esvHero);
+    })();
+    </script>
   </body>
 </html>

@@ -149,6 +149,35 @@
     ]
   },
   {
+    "name": "ESV text appearance",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Controls text size and darkness across the custom Eye Star Vision sections (hero, problem, how it works, science)."
+      },
+      {
+        "type": "range",
+        "id": "esv_text_scale",
+        "min": 90,
+        "max": 140,
+        "step": 5,
+        "unit": "%",
+        "label": "Text size",
+        "default": 110
+      },
+      {
+        "type": "range",
+        "id": "esv_text_contrast_boost",
+        "min": 0,
+        "max": 40,
+        "step": 5,
+        "unit": "%",
+        "label": "Extra contrast for muted/secondary text",
+        "default": 15
+      }
+    ]
+  },
+  {
     "name": "t:settings_schema.layout.name",
     "settings": [
       {

@@ -12,69 +12,105 @@
       {%- endif -%}
     </div>
 
-    <!-- Steps -->
-    <div class="esv-hiw__steps">
+    <!-- Circular gallery -->
+    <div class="esv-hiw__gallery esv-reveal" id="esv-hiw-gallery-{{ section.id }}">
+      <div class="esv-hiw__gallery-stage">
+        <div class="esv-hiw__gallery-ring" id="esv-hiw-ring-{{ section.id }}">
 
-      <div class="esv-hiw__step esv-reveal esv-reveal--delay-1">
-        <div class="esv-hiw__step-top">
-          <span class="esv-hiw__step-num">01</span>
-          <div class="esv-hiw__step-icon">
-            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="16" y="28" width="16" height="12" rx="3" stroke="currentColor" stroke-width="1.5"/>
-              <rect x="20" y="22" width="8" height="8" rx="2" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M24 8v6M24 8l-4 4M24 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M12 44h24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
-            </svg>
-          </div>
+          <button type="button" class="esv-hiw__gallery-card" style="--i: 0;"
+            data-num="01"
+            data-title="{{ section.settings.step_4_title | escape }}"
+            data-body="{{ section.settings.step_4_body | escape }}">
+            <div class="esv-hiw__gallery-img-wrap">
+              {%- if section.settings.step_4_image != blank -%}
+                <img class="esv-hiw__gallery-img" src="{{ section.settings.step_4_image }}" alt="{{ section.settings.step_4_title | escape }}" loading="lazy">
+              {%- endif -%}
+              <div class="esv-hiw__gallery-caption">
+                <span class="esv-hiw__gallery-num">01</span>
+                <h3 class="esv-hiw__gallery-title">{{ section.settings.step_4_title }}</h3>
+              </div>
+            </div>
+          </button>
+
+          <button type="button" class="esv-hiw__gallery-card" style="--i: 1;"
+            data-num="02"
+            data-title="{{ section.settings.step_1_title | escape }}"
+            data-body="{{ section.settings.step_1_body | escape }}">
+            <div class="esv-hiw__gallery-img-wrap">
+              {%- if section.settings.step_1_image != blank -%}
+                <img class="esv-hiw__gallery-img" src="{{ section.settings.step_1_image }}" alt="{{ section.settings.step_1_title | escape }}" loading="lazy">
+              {%- endif -%}
+              <div class="esv-hiw__gallery-caption">
+                <span class="esv-hiw__gallery-num">02</span>
+                <h3 class="esv-hiw__gallery-title">{{ section.settings.step_1_title }}</h3>
+              </div>
+            </div>
+          </button>
+
+          <button type="button" class="esv-hiw__gallery-card" style="--i: 2;"
+            data-num="03"
+            data-title="{{ section.settings.step_5_title | escape }}"
+            data-body="{{ section.settings.step_5_body | escape }}">
+            <div class="esv-hiw__gallery-img-wrap">
+              {%- if section.settings.step_5_image != blank -%}
+                <img class="esv-hiw__gallery-img" src="{{ section.settings.step_5_image }}" alt="{{ section.settings.step_5_title | escape }}" loading="lazy">
+              {%- endif -%}
+              <div class="esv-hiw__gallery-caption">
+                <span class="esv-hiw__gallery-num">03</span>
+                <h3 class="esv-hiw__gallery-title">{{ section.settings.step_5_title }}</h3>
+              </div>
+            </div>
+          </button>
+
+          <button type="button" class="esv-hiw__gallery-card" style="--i: 3;"
+            data-num="04"
+            data-title="{{ section.settings.step_2_title | escape }}"
+            data-body="{{ section.settings.step_2_body | escape }}">
+            <div class="esv-hiw__gallery-img-wrap">
+              {%- if section.settings.step_2_image != blank -%}
+                <img class="esv-hiw__gallery-img" src="{{ section.settings.step_2_image }}" alt="{{ section.settings.step_2_title | escape }}" loading="lazy">
+              {%- endif -%}
+              <div class="esv-hiw__gallery-caption">
+                <span class="esv-hiw__gallery-num">04</span>
+                <h3 class="esv-hiw__gallery-title">{{ section.settings.step_2_title }}</h3>
+              </div>
+            </div>
+          </button>
+
+          <button type="button" class="esv-hiw__gallery-card" style="--i: 4;"
+            data-num="05"
+            data-title="{{ section.settings.step_3_title | escape }}"
+            data-body="{{ section.settings.step_3_body | escape }}">
+            <div class="esv-hiw__gallery-img-wrap">
+              {%- if section.settings.step_3_image != blank -%}
+                <img class="esv-hiw__gallery-img" src="{{ section.settings.step_3_image }}" alt="{{ section.settings.step_3_title | escape }}" loading="lazy">
+              {%- endif -%}
+              <div class="esv-hiw__gallery-caption">
+                <span class="esv-hiw__gallery-num">05</span>
+                <h3 class="esv-hiw__gallery-title">{{ section.settings.step_3_title }}</h3>
+              </div>
+            </div>
+          </button>
+
+          {%- if section.settings.center_image != blank -%}
+            <img class="esv-hiw__center-img"
+              src="{{ section.settings.center_image | image_url: width: 600 }}"
+              alt="{{ section.settings.center_image.alt | default: 'Eye Star Vision device' | escape }}"
+              draggable="false">
+          {%- endif -%}
+
         </div>
-        <h3 class="esv-hiw__step-title">{{ section.settings.step_1_title }}</h3>
-        <p class="esv-hiw__step-body">{{ section.settings.step_1_body }}</p>
       </div>
+    </div>
 
-      <div class="esv-hiw__step-divider esv-reveal esv-reveal--delay-2">
-        <svg viewBox="0 0 40 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0 12h36M28 4l8 8-8 8" stroke="rgba(255,43,92,0.4)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+    <!-- Step description panel (2D — outside 3D context for crisp rendering) -->
+    <div class="esv-hiw__desc" id="esv-hiw-desc-{{ section.id }}" aria-live="polite">
+      <span class="esv-hiw__desc-num"></span>
+      <div class="esv-hiw__desc-text">
+        <h3 class="esv-hiw__desc-title"></h3>
+        <p class="esv-hiw__desc-body"></p>
       </div>
-
-      <div class="esv-hiw__step esv-reveal esv-reveal--delay-2">
-        <div class="esv-hiw__step-top">
-          <span class="esv-hiw__step-num">02</span>
-          <div class="esv-hiw__step-icon">
-            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <ellipse cx="24" cy="24" rx="18" ry="11" stroke="currentColor" stroke-width="1.5"/>
-              <circle cx="24" cy="24" r="5" stroke="currentColor" stroke-width="1.5"/>
-              <circle cx="24" cy="24" r="2" fill="#FF2B5C"/>
-              <!-- laser dot moving path -->
-              <path d="M6 24 Q15 14 24 24 Q33 34 42 24" stroke="rgba(255,43,92,0.35)" stroke-width="1" stroke-dasharray="3 2"/>
-            </svg>
-          </div>
-        </div>
-        <h3 class="esv-hiw__step-title">{{ section.settings.step_2_title }}</h3>
-        <p class="esv-hiw__step-body">{{ section.settings.step_2_body }}</p>
-      </div>
-
-      <div class="esv-hiw__step-divider esv-reveal esv-reveal--delay-3">
-        <svg viewBox="0 0 40 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0 12h36M28 4l8 8-8 8" stroke="rgba(255,43,92,0.4)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-
-      <div class="esv-hiw__step esv-reveal esv-reveal--delay-3">
-        <div class="esv-hiw__step-top">
-          <span class="esv-hiw__step-num">03</span>
-          <div class="esv-hiw__step-icon">
-            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="24" cy="24" r="16" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M24 14v10l6 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M8 8l4 4M40 8l-4 4" stroke="rgba(255,43,92,0.5)" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-          </div>
-        </div>
-        <h3 class="esv-hiw__step-title">{{ section.settings.step_3_title }}</h3>
-        <p class="esv-hiw__step-body">{{ section.settings.step_3_body }}</p>
-      </div>
-
+      <button type="button" class="esv-hiw__desc-close" aria-label="Close">&#x2715;</button>
     </div>
 
     <!-- Specs strip -->
@@ -109,14 +145,26 @@
 </section>
 
 <style>
+  /* Zero out the Dawn .section wrapper padding so 100svh is truly the full height */
+  #shopify-section-{{ section.id }} {
+    padding: 0 !important;
+  }
+
   #esv-hiw-{{ section.id }} {
     background: #f4f3f7;
-    padding: 120px 40px;
+    padding: 48px 40px 40px;
+    height: 100vh;
+    height: 100svh;
+    overflow: hidden;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
   }
 
   #esv-hiw-{{ section.id }} .esv-hiw__container {
     max-width: 1400px;
     margin: 0 auto;
+    width: 100%;
   }
 
   /* ── Header ── */
@@ -135,7 +183,7 @@
   }
 
   #esv-hiw-{{ section.id }} .esv-hiw__heading {
-    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
     font-weight: 800;
     line-height: 1.08;
     letter-spacing: -0.035em;
@@ -144,87 +192,171 @@
   }
 
   #esv-hiw-{{ section.id }} .esv-hiw__subheading {
-    font-size: clamp(1rem, 1.6vw, 1.15rem);
+    font-size: calc(clamp(1rem, 1.6vw, 1.15rem) * var(--esv-text-scale, 1));
     line-height: 1.7;
-    color: rgba(17,17,17,0.55);
+    color: rgba(17,17,17, calc(0.55 + var(--esv-muted-boost, 0)));
     margin: 0;
     max-width: 560px;
   }
 
-  /* ── Steps ── */
-  #esv-hiw-{{ section.id }} .esv-hiw__steps {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr auto 1fr;
-    gap: 0;
-    align-items: start;
-    margin-bottom: 72px;
+  /* ── Circular gallery ── */
+  #esv-hiw-{{ section.id }} .esv-hiw__gallery {
+    margin-bottom: 52px;
   }
 
-  #esv-hiw-{{ section.id }} .esv-hiw__step-divider {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 24px;
-    margin-top: 60px;
+  #esv-hiw-{{ section.id }} .esv-hiw__gallery-stage {
+    position: relative;
+    height: 340px;
   }
 
-  #esv-hiw-{{ section.id }} .esv-hiw__step-divider svg {
-    width: 48px;
-    height: 28px;
+  #esv-hiw-{{ section.id }} .esv-hiw__gallery-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    --esv-radius: 360;
   }
 
-  #esv-hiw-{{ section.id }} .esv-hiw__step {
-    background: rgba(0,0,0,0.04);
-    border: 1px solid rgba(0,0,0,0.09);
-    border-radius: 24px;
-    padding: 40px 36px;
-    transition: border-color 0.3s ease, background 0.3s ease;
+  /* ── Centre product image ── */
+  #esv-hiw-{{ section.id }} .esv-hiw__center-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 240px;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    user-select: none;
+    z-index: 50;
+    filter: drop-shadow(0 24px 48px rgba(0,0,0,0.35));
   }
 
-  #esv-hiw-{{ section.id }} .esv-hiw__step:hover {
-    background: rgba(0,0,0,0.07);
-    border-color: rgba(255,43,92,0.2);
+  #esv-hiw-{{ section.id }} .esv-hiw__gallery-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 330px;
+    height: 440px;
+    margin: -270px 0 0 -165px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    padding: 0;
+    cursor: pointer;
+    background: #1a1a1a;
+    box-shadow: 0 24px 48px rgba(0,0,0,0.18);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
   }
 
-  #esv-hiw-{{ section.id }} .esv-hiw__step-top {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    margin-bottom: 28px;
+  #esv-hiw-{{ section.id }} .esv-hiw__gallery-card.is-active {
+    border-color: #FF2B5C;
+    box-shadow: 0 24px 48px rgba(0,0,0,0.18), 0 0 0 3px rgba(255,43,92,0.25);
   }
 
-  #esv-hiw-{{ section.id }} .esv-hiw__step-num {
-    font-size: 3.5rem;
-    font-weight: 800;
-    letter-spacing: -0.05em;
-    color: rgba(255,43,92,0.2);
-    line-height: 1;
+  /* ── Image layer ── */
+  #esv-hiw-{{ section.id }} .esv-hiw__gallery-img-wrap {
+    position: absolute;
+    inset: 0;
   }
 
-  #esv-hiw-{{ section.id }} .esv-hiw__step-icon {
-    width: 48px;
-    height: 48px;
-    color: rgba(17,17,17,0.35);
-  }
-
-  #esv-hiw-{{ section.id }} .esv-hiw__step-icon svg {
+  #esv-hiw-{{ section.id }} .esv-hiw__gallery-img {
     width: 100%;
     height: 100%;
+    object-fit: cover;
+    display: block;
   }
 
-  #esv-hiw-{{ section.id }} .esv-hiw__step-title {
-    font-size: 1.2rem;
+  #esv-hiw-{{ section.id }} .esv-hiw__gallery-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    text-align: left;
+    background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0));
+  }
+
+  #esv-hiw-{{ section.id }} .esv-hiw__gallery-num {
+    display: block;
+    font-size: calc(0.75rem * var(--esv-text-scale, 1));
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #FF2B5C;
+    margin-bottom: 6px;
+  }
+
+  #esv-hiw-{{ section.id }} .esv-hiw__gallery-title {
+    font-size: calc(1.15rem * var(--esv-text-scale, 1));
     font-weight: 700;
     letter-spacing: -0.02em;
-    color: #111111;
-    margin: 0 0 14px;
+    color: #ffffff;
+    margin: 0;
   }
 
-  #esv-hiw-{{ section.id }} .esv-hiw__step-body {
-    font-size: 0.925rem;
-    line-height: 1.7;
-    color: rgba(17,17,17,0.5);
+  /* ── 2D description panel (outside 3D context — renders at full native resolution) ── */
+  #esv-hiw-{{ section.id }} .esv-hiw__desc {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    background: #111111;
+    border-radius: 16px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    pointer-events: none;
+  }
+
+  #esv-hiw-{{ section.id }} .esv-hiw__desc.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  #esv-hiw-{{ section.id }} .esv-hiw__desc-num {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #FF2B5C;
+    white-space: nowrap;
+    padding-top: 3px;
+  }
+
+  #esv-hiw-{{ section.id }} .esv-hiw__desc-text {
+    flex: 1;
+  }
+
+  #esv-hiw-{{ section.id }} .esv-hiw__desc-title {
+    font-size: calc(1rem * var(--esv-text-scale, 1));
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+    margin: 0 0 6px;
+    line-height: 1.25;
+  }
+
+  #esv-hiw-{{ section.id }} .esv-hiw__desc-body {
+    font-size: calc(0.82rem * var(--esv-text-scale, 1));
+    line-height: 1.6;
+    color: rgba(255,255,255,0.68);
     margin: 0;
+  }
+
+  #esv-hiw-{{ section.id }} .esv-hiw__desc-close {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.4);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 2px 0 0 8px;
+    line-height: 1;
+    flex-shrink: 0;
+    transition: color 0.2s;
+  }
+
+  #esv-hiw-{{ section.id }} .esv-hiw__desc-close:hover {
+    color: rgba(255,255,255,0.85);
   }
 
   /* ── Specs strip ── */
@@ -235,7 +367,7 @@
     gap: 0;
     border: 1px solid rgba(0,0,0,0.09);
     border-radius: 20px;
-    padding: 32px 40px;
+    padding: 20px 40px;
     background: rgba(0,0,0,0.03);
   }
 
@@ -256,11 +388,11 @@
   }
 
   #esv-hiw-{{ section.id }} .esv-hiw__spec-label {
-    font-size: 0.72rem;
+    font-size: calc(0.72rem * var(--esv-text-scale, 1));
     font-weight: 500;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: rgba(17,17,17,0.45);
+    color: rgba(17,17,17, calc(0.45 + var(--esv-muted-boost, 0)));
     text-align: center;
   }
 
@@ -286,13 +418,13 @@
   }
 
   @media (max-width: 1024px) {
-    #esv-hiw-{{ section.id }} .esv-hiw__steps {
-      grid-template-columns: 1fr;
+    #esv-hiw-{{ section.id }} .esv-hiw__gallery-stage {
+      height: 300px;
     }
-    #esv-hiw-{{ section.id }} .esv-hiw__step-divider {
-      transform: rotate(90deg);
-      margin: 8px auto;
-      padding: 0;
+    #esv-hiw-{{ section.id }} .esv-hiw__gallery-card {
+      width: 200px;
+      height: 280px;
+      margin: -140px 0 0 -100px;
     }
     #esv-hiw-{{ section.id }} .esv-hiw__specs {
       flex-wrap: wrap;
@@ -305,16 +437,37 @@
 
   @media (max-width: 749px) {
     #esv-hiw-{{ section.id }} {
-      padding: 80px 20px;
+      height: auto;
+      overflow: visible;
+      display: block;
+      padding: 40px 16px 44px;
     }
     #esv-hiw-{{ section.id }} .esv-hiw__header {
-      margin-bottom: 48px;
+      margin-bottom: 16px;
     }
-    #esv-hiw-{{ section.id }} .esv-hiw__step {
-      padding: 28px 24px;
+    #esv-hiw-{{ section.id }} .esv-hiw__gallery {
+      margin-bottom: 20px;
+    }
+    #esv-hiw-{{ section.id }} .esv-hiw__gallery-ring {
+      --esv-radius: 240;
+    }
+    #esv-hiw-{{ section.id }} .esv-hiw__gallery-stage {
+      height: 240px;
+    }
+    #esv-hiw-{{ section.id }} .esv-hiw__gallery-card {
+      width: 150px;
+      height: 210px;
+      margin: -105px 0 0 -75px;
+      border-radius: 16px;
+    }
+    #esv-hiw-{{ section.id }} .esv-hiw__gallery-caption {
+      padding: 14px;
+    }
+    #esv-hiw-{{ section.id }} .esv-hiw__gallery-title {
+      font-size: calc(0.95rem * var(--esv-text-scale, 1));
     }
     #esv-hiw-{{ section.id }} .esv-hiw__spec { flex: 0 0 calc(50% - 12px); }
-    #esv-hiw-{{ section.id }} .esv-hiw__specs { padding: 24px 20px; }
+    #esv-hiw-{{ section.id }} .esv-hiw__specs { padding: 18px 16px; }
   }
 </style>
 
@@ -332,6 +485,157 @@
   document.querySelectorAll('#esv-hiw-{{ section.id }} .esv-reveal').forEach(function(el) {
     observer.observe(el);
   });
+})();
+
+(function() {
+  var ITEMS      = 5;
+  var ANGLE_STEP = (2 * Math.PI) / ITEMS; /* radians */
+  var SPEED      = 0.028 * Math.PI / 180; /* deg→rad */
+  var RADIUS     = 360;
+  var MIN_SCALE  = 0.72;  /* scale of back cards */
+  var MIN_OPACITY = 0.28;
+
+  var ring      = document.getElementById('esv-hiw-ring-{{ section.id }}');
+  var desc      = document.getElementById('esv-hiw-desc-{{ section.id }}');
+  var cards     = ring ? Array.from(ring.querySelectorAll('.esv-hiw__gallery-card')) : [];
+
+  if (!ring || !cards.length) return;
+
+  function readRadius() {
+    var v = getComputedStyle(ring).getPropertyValue('--esv-radius').trim();
+    return v ? parseFloat(v) : 360;
+  }
+  RADIUS = readRadius();
+  window.addEventListener('resize', function() { RADIUS = readRadius(); });
+
+  var descNum   = desc ? desc.querySelector('.esv-hiw__desc-num')   : null;
+  var descTitle = desc ? desc.querySelector('.esv-hiw__desc-title') : null;
+  var descBody  = desc ? desc.querySelector('.esv-hiw__desc-body')  : null;
+  var descClose = desc ? desc.querySelector('.esv-hiw__desc-close') : null;
+
+  var rotation   = 0; /* in radians */
+  var paused     = false;
+  var rafId      = null;
+  var activeCard = null;
+  var animating  = false;
+
+  function applyPositions() {
+    cards.forEach(function(card, i) {
+      var angle = i * ANGLE_STEP + rotation;
+      var x     = Math.sin(angle) * RADIUS;
+      var depth = (Math.cos(angle) + 1) / 2; /* 0..1, 1 = front */
+      var scale = MIN_SCALE + (1 - MIN_SCALE) * depth;
+      var opacity = Math.max(MIN_OPACITY, depth);
+      card.style.transform = 'translateX(' + x.toFixed(2) + 'px) scale(' + scale.toFixed(4) + ')';
+      card.style.opacity   = opacity.toFixed(3);
+      card.style.zIndex    = Math.round(depth * 99);
+    });
+  }
+
+  function tick() {
+    if (!paused) rotation -= SPEED;
+    applyPositions();
+    rafId = requestAnimationFrame(tick);
+  }
+
+  /* Shortest-path target angle to bring card i to front (angle = 0 or 2π) */
+  function targetRotationFor(i) {
+    var base = -i * ANGLE_STEP;
+    var diff = ((base - rotation) % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI);
+    if (diff > Math.PI) diff -= 2 * Math.PI;
+    return rotation + diff;
+  }
+
+  function showDesc(card) {
+    if (!desc) return;
+    if (descNum)   descNum.textContent   = card.dataset.num   || '';
+    if (descTitle) descTitle.textContent = card.dataset.title || '';
+    if (descBody)  descBody.textContent  = card.dataset.body  || '';
+    desc.classList.add('is-visible');
+  }
+
+  function hideDesc() {
+    if (desc) desc.classList.remove('is-visible');
+  }
+
+  function deactivate(resumeAfter) {
+    if (!activeCard) return;
+    activeCard.classList.remove('is-active');
+    hideDesc();
+    activeCard = null;
+    if (resumeAfter) {
+      setTimeout(function() { paused = false; }, 400);
+    }
+  }
+
+  function activate(card, i) {
+    if (animating) return;
+
+    if (activeCard) {
+      activeCard.classList.remove('is-active');
+      hideDesc();
+      activeCard = null;
+    }
+
+    paused     = true;
+    activeCard = card;
+
+    var targetRot = targetRotationFor(i);
+    var delta     = Math.abs(targetRot - rotation);
+
+    if (delta > 0.01) {
+      animating = true;
+      cancelAnimationFrame(rafId);
+      rafId = null;
+
+      var startRot  = rotation;
+      var startTime = null;
+      var duration  = 700;
+
+      function animateTo(ts) {
+        if (!startTime) startTime = ts;
+        var t = Math.min((ts - startTime) / duration, 1);
+        /* ease in-out cubic */
+        var e = t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
+        rotation = startRot + (targetRot - startRot) * e;
+        applyPositions();
+        if (t < 1) {
+          rafId = requestAnimationFrame(animateTo);
+        } else {
+          rotation  = targetRot;
+          animating = false;
+          card.classList.add('is-active');
+          showDesc(card);
+          rafId = requestAnimationFrame(tick);
+        }
+      }
+      rafId = requestAnimationFrame(animateTo);
+
+    } else {
+      card.classList.add('is-active');
+      showDesc(card);
+    }
+  }
+
+  cards.forEach(function(card, i) {
+    card.addEventListener('click', function() {
+      if (card === activeCard) {
+        deactivate(true);
+      } else {
+        activate(card, i);
+      }
+    });
+  });
+
+  if (descClose) {
+    descClose.addEventListener('click', function() { deactivate(true); });
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && activeCard) deactivate(true);
+  });
+
+  rafId = requestAnimationFrame(tick);
 })();
 </script>
 
@@ -369,6 +673,11 @@
     },
     {
       "type": "text",
+      "id": "step_1_image",
+      "label": "Image URL (paste from Files)"
+    },
+    {
+      "type": "text",
       "id": "step_1_title",
       "label": "Title",
       "default": "Place & Aim"
@@ -382,6 +691,11 @@
     {
       "type": "header",
       "content": "Step 2"
+    },
+    {
+      "type": "text",
+      "id": "step_2_image",
+      "label": "Image URL (paste from Files)"
     },
     {
       "type": "text",
@@ -401,6 +715,11 @@
     },
     {
       "type": "text",
+      "id": "step_3_image",
+      "label": "Image URL (paste from Files)"
+    },
+    {
+      "type": "text",
       "id": "step_3_title",
       "label": "Title",
       "default": "Repeat Daily"
@@ -410,6 +729,48 @@
       "id": "step_3_body",
       "label": "Description",
       "default": "5 to 6 minutes per session, up to 6 times a day. Use it during work breaks, after long study sessions, or before bed. Consistent daily use is where the benefit builds."
+    },
+    {
+      "type": "header",
+      "content": "Step 4 (displayed first)"
+    },
+    {
+      "type": "text",
+      "id": "step_4_image",
+      "label": "Image URL (paste from Files)"
+    },
+    {
+      "type": "text",
+      "id": "step_4_title",
+      "label": "Title",
+      "default": "Power On"
+    },
+    {
+      "type": "textarea",
+      "id": "step_4_body",
+      "label": "Description",
+      "default": "One button. No app, no Wi-Fi, no pairing — press once and Eye Star Vision is ready to project."
+    },
+    {
+      "type": "header",
+      "content": "Step 5 (displayed between aiming and following)"
+    },
+    {
+      "type": "text",
+      "id": "step_5_image",
+      "label": "Image URL (paste from Files)"
+    },
+    {
+      "type": "text",
+      "id": "step_5_title",
+      "label": "Title",
+      "default": "Choose a Pattern"
+    },
+    {
+      "type": "textarea",
+      "id": "step_5_body",
+      "label": "Description",
+      "default": "Select from horizontal, vertical, diagonal, circular, or complex Lissajous curve patterns, suited to different training goals."
     },
     {
       "type": "header",
@@ -467,13 +828,22 @@
       "type": "text",
       "id": "spec_5_value",
       "label": "Spec 5 value",
-      "default": "No screen"
+      "default": "2 Modes"
     },
     {
       "type": "text",
       "id": "spec_5_label",
       "label": "Spec 5 label",
-      "default": "Required"
+      "default": "Relax · Train"
+    },
+    {
+      "type": "header",
+      "content": "Carousel Centre"
+    },
+    {
+      "type": "image_picker",
+      "id": "center_image",
+      "label": "Product image (background removed, floats in centre of carousel)"
     }
   ],
   "presets": [

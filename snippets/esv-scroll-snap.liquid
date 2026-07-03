@@ -1,0 +1,64 @@
+<script>
+(function() {
+  var locked = false;
+
+  function getSections() {
+    return Array.from(document.querySelectorAll('#MainContent > .shopify-section'));
+  }
+
+  function getIdx(sections) {
+    var mid = window.scrollY + window.innerHeight * 0.5;
+    var idx = 0;
+    for (var i = sections.length - 1; i >= 0; i--) {
+      var top = sections[i].getBoundingClientRect().top + window.scrollY;
+      if (top <= mid) { idx = i; break; }
+    }
+    return idx;
+  }
+
+  function snap(dir) {
+    var sections = getSections();
+    console.log('[snap] sections found:', sections.length, '| scrollY:', window.scrollY, '| dir:', dir);
+    if (!sections.length) return;
+
+    var idx = getIdx(sections);
+    console.log('[snap] current idx:', idx, '| section:', sections[idx] && sections[idx].id);
+
+    var target = dir > 0 ? sections[idx + 1] : sections[idx - 1];
+    console.log('[snap] target:', target ? target.id : 'none');
+    if (!target) return;
+
+    locked = true;
+    document.body.style.overflow = '';
+    document.body.style.paddingRight = '';
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setTimeout(function() { locked = false; }, 900);
+  }
+
+  window.addEventListener('wheel', function(e) {
+    var heroBlocking = window._esvHero && window._esvHero.needsWheel(e.deltaY);
+    console.log('[wheel] deltaY:', e.deltaY, '| heroBlocking:', heroBlocking, '| locked:', locked, '| scrollY:', window.scrollY);
+
+    if (heroBlocking) return;
+    e.preventDefault();
+    if (!locked) snap(e.deltaY);
+  }, { passive: false });
+
+  var ty = 0;
+  window.addEventListener('touchstart', function(e) {
+    ty = e.touches[0].clientY;
+  }, { passive: true });
+
+  window.addEventListener('touchmove', function(e) {
+    var dy = ty - e.touches[0].clientY;
+    if (window._esvHero && window._esvHero.needsWheel(dy)) return;
+    e.preventDefault();
+    if (!locked && Math.abs(dy) > 25) {
+      snap(dy);
+      ty = e.touches[0].clientY;
+    }
+  }, { passive: false });
+
+  console.log('[esv-scroll-snap] loaded, _esvHero:', !!window._esvHero);
+})();
+</script>
