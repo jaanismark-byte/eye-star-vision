@@ -1,0 +1,132 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "esv_hero_banner_fKD6Tn": {
+      "type": "esv-hero-banner",
+      "name": "ESV Hero Banner",
+      "settings": {
+        "menu": "main-menu",
+        "s2_eyebrow": "Patented Eye Training Technology",
+        "s2_heading": "Your eyes are working harder than they were built to.",
+        "s2_subheading": "",
+        "s2_button_label": "Discover Eye Star",
+        "s2_button_link": "",
+        "s2_trust_text": "Backed by 2 peer-reviewed studies · 4 international patents",
+        "eyebrow": "Patented Eye Training Technology",
+        "heading": "Your eyes are working harder than they were built to.",
+        "subheading": "",
+        "button_label": "Discover Eye Star",
+        "button_link": "",
+        "trust_text": "Backed by 2 peer-reviewed studies · 4 international patents",
+        "hero_height": 90
+      }
+    },
+    "esv_problem_P3frcT": {
+      "type": "esv-problem",
+      "name": "ESV — Problem",
+      "settings": {
+        "eyebrow": "The Problem",
+        "heading": "Your Screen Is Working Against You.",
+        "subheading": "Modern work, study, and entertainment keep eyes locked at close range for hours. Over time, this creates a compounding cycle of visual fatigue that rest alone cannot fix.",
+        "stat_number": "Up to 90%",
+        "stat_label": "Of daily computer users experience symptoms of Computer Vision Syndrome — eye fatigue, dryness, headaches, and blurred vision — yet most people accept this as normal.",
+        "symptom_1_title": "Eye Fatigue",
+        "symptom_1_body": "Overworked eye muscles lock into the same focus distance for hours, losing their natural ability to shift and relax.",
+        "image_1": "shopify://shop_images/Eye_Fatigue.png",
+        "symptom_2_title": "Dry & Watery Eyes",
+        "symptom_2_body": "Screen concentration reduces your blink rate, leaving eyes under-lubricated and reactive — cycling between dryness and excessive tearing.",
+        "image_2": "shopify://shop_images/Dry_and_watery_eyes_2.png",
+        "symptom_3_title": "Headaches",
+        "symptom_3_body": "Eye strain doesn't stay in your eyes. Tension in the ciliary and extraocular muscles radiates outward, triggering recurring tension headaches.",
+        "image_3": "shopify://shop_images/Headache.jpg",
+        "symptom_4_title": "Blurred Vision",
+        "symptom_4_body": "After long screen sessions, eyes temporarily lose the ability to shift focus cleanly — a condition researchers call nearwork-induced transient myopia.",
+        "image_4": "shopify://shop_images/Blurry_Vision.png",
+        "symptom_5_title": "Difficulty Focusing",
+        "symptom_5_body": "The eye's ability to switch between near and far distances weakens with prolonged close-up use, making everyday tasks feel slow and imprecise.",
+        "image_5": "shopify://shop_images/Difficulty_to_focus.png",
+        "symptom_6_title": "Eye Pain & Redness",
+        "symptom_6_body": "Persistent visual stress inflames the surface of the eye and surrounding tissue, causing visible redness, irritation, and a dull ache that worsens through the day.",
+        "image_6": "shopify://shop_images/Eye_Pain_and_Redness_2.png"
+      }
+    },
+    "esv_how_it_works_fwzEW4": {
+      "type": "esv-how-it-works",
+      "name": "ESV — How It Works",
+      "settings": {
+        "eyebrow": "How It Works",
+        "heading": "Follow the dot. Your eyes do the rest.",
+        "subheading": "No apps. No instructions to memorise. Eye Star Vision projects a guided laser target and your eyes simply follow — off-screen, in your own space.",
+        "step_1_title": "Place & Aim",
+        "step_1_body": "Set Eye Star Vision on any stable surface — desk, shelf, or bedside table. Point it toward a light-coloured wall or ceiling at least 2 metres away. No special setup required.",
+        "step_2_title": "Follow the Dot",
+        "step_2_body": "A red laser point moves through precisely designed patterns — horizontal, vertical, diagonal, circular, and complex Lissajous curves. Keep your head still and follow only with your eyes.",
+        "step_3_title": "Repeat Daily",
+        "step_3_body": "5 to 6 minutes per session, up to 6 times a day. Use it during work breaks, after long study sessions, or before bed. Consistent daily use is where the benefit builds.",
+        "spec_1_value": "5–6 min",
+        "spec_1_label": "Per session",
+        "spec_2_value": "6× daily",
+        "spec_2_label": "Recommended",
+        "spec_3_value": "Up to 50°",
+        "spec_3_label": "Movement range",
+        "spec_4_value": "~20°/s",
+        "spec_4_label": "Stimulus speed",
+        "spec_5_value": "2 Modes",
+        "spec_5_label": "Relax · Train"
+      }
+    },
+    "esv_science_z48WUH": {
+      "type": "esv-science",
+      "name": "ESV — Science & Research",
+      "settings": {
+        "eyebrow": "Science & Research",
+        "heading": "Peer-reviewed. Independently tested.",
+        "subheading": "Eye Star Vision is backed by published research from the University of Latvia and protected by 4 international patents across the US, Europe, and Canada.",
+        "stat_1_number": "89",
+        "stat_1_suffix": "",
+        "stat_1_label": "Participants",
+        "stat_2_number": "8",
+        "stat_2_suffix": "wk",
+        "stat_2_label": "Study Duration",
+        "stat_3_number": "35",
+        "stat_3_suffix": "%+",
+        "stat_3_label": "Complaint reduction",
+        "stat_4_number": "p<0.001",
+        "stat_4_suffix": "",
+        "stat_4_label": "Statistical significance",
+        "study_badge": "Peer-Reviewed Study",
+        "study_title": "Application of a New Device for Vision Relaxation in Computer Users",
+        "study_text": "An 8-week prospective study of 89 screen workers — each using screens 4 or more hours daily — assessed the effect of guided eye exercises using the Eye Roll device. Results showed a statistically significant reduction of 35% or more in visual complaint scores at 4 weeks, sustained and continued to improve through week 8. Both eye fatigue and visual discomfort showed significant improvement (p<0.001). The control group that received no exercises showed no change, confirming that the exercises — not time or placebo — were responsible for the benefit.",
+        "study_source": "Vision 2024, 8, 40 · Published June 23, 2024 · University of Latvia, Department of Optometry and Vision Science",
+        "study_funding": "EU Horizon Research Project No. 1.1.1.1/20/A/038",
+        "study_link_label": "Read the full study",
+        "study_link_url": "",
+        "patents_heading": "4 International Patents",
+        "patents_subheading": "The coordinated laser and mirror motor system at the heart of Eye Star Vision is protected across four territories, confirming its uniqueness as a device — not a generic eye-care accessory.",
+        "patent_1_number": "US 12,634,415 B2",
+        "patent_1_region": "United States · Granted 2026",
+        "patent_2_number": "EP4252416B1",
+        "patent_2_region": "European Union · Granted",
+        "patent_3_number": "CA3199637A1",
+        "patent_3_region": "Canada · Published",
+        "patent_4_number": "PCT/LV2021/050012",
+        "patent_4_region": "International · PCT",
+        "disclaimer": "Eye Star Vision is a wellness device for guided eye relaxation and movement. It is not a medical device and does not claim to treat, cure, or prevent any medical condition. Patent protection refers to the device mechanism and does not imply medical approval or vision correction."
+      }
+    }
+  },
+  "order": [
+    "esv_hero_banner_fKD6Tn",
+    "esv_problem_P3frcT",
+    "esv_how_it_works_fwzEW4",
+    "esv_science_z48WUH"
+  ]
+}

@@ -1,0 +1,854 @@
+<section class="gcarousel" id="gcarousel-{{ section.id }}">
+  <div class="gcarousel__header-wrap">
+    <div class="gcarousel__header">
+      <div class="gcarousel__text">
+        {% if section.settings.heading_line_1 != blank or section.settings.heading_line_2 != blank %}
+  <h2 class="gcarousel__heading">
+    {% if section.settings.heading_line_1 != blank %}
+      <span class="gcarousel__heading-line gcarousel__heading-line--one">
+        {{ section.settings.heading_line_1 }}
+      </span>
+    {% endif %}
+
+    {% if section.settings.heading_line_2 != blank %}
+      <span class="gcarousel__heading-line gcarousel__heading-line--two">
+        {{ section.settings.heading_line_2 }}
+      </span>
+    {% endif %}
+  </h2>
+{% endif %}
+        {% if section.settings.subheading != blank %}
+          <p class="gcarousel__subheading">{{ section.settings.subheading }}</p>
+        {% endif %}
+      </div>
+
+      <div class="gcarousel__arrows">
+        <button class="gcarousel__arrow gcarousel__arrow--prev" type="button" aria-label="Previous slide">
+          ←
+        </button>
+        <button class="gcarousel__arrow gcarousel__arrow--next" type="button" aria-label="Next slide">
+          →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  {% if section.blocks.size > 0 %}
+    <div class="gcarousel__viewport">
+      <div class="gcarousel__track">
+        {% for block in section.blocks %}
+          <div class="gcarousel__item" {{ block.shopify_attributes }}>
+            <a class="gcarousel__card" href="{{ block.settings.link }}">
+              {% if block.settings.image != blank %}
+                {{
+                  block.settings.image
+                  | image_url: width: 900
+                  | image_tag:
+                    loading: 'lazy',
+                    class: 'gcarousel__image',
+                    alt: block.settings.image.alt
+                }}
+              {% else %}
+                <div class="gcarousel__placeholder">
+                  {{ 'image' | placeholder_svg_tag: 'gcarousel__placeholder-svg' }}
+                </div>
+              {% endif %}
+
+              <div class="gcarousel__overlay"></div>
+
+              <div class="gcarousel__content">
+                {% if block.settings.title != blank %}
+                  <h3 class="gcarousel__card-title">{{ block.settings.title }}</h3>
+                {% endif %}
+
+                {% if block.settings.description != blank %}
+                  <p class="gcarousel__card-text">{{ block.settings.description }}</p>
+                {% endif %}
+
+                {% if block.settings.button_label != blank %}
+                  <span class="gcarousel__read-more">
+                    {{ block.settings.button_label }}
+                    <span class="gcarousel__read-arrow">→</span>
+                  </span>
+                {% endif %}
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="gcarousel__dots">
+      {% for block in section.blocks %}
+        <button
+          class="gcarousel__dot {% if forloop.first %}gcarousel__dot--active{% endif %}"
+          type="button"
+          data-gcarousel-dot="{{ forloop.index0 }}"
+          aria-label="Go to slide {{ forloop.index }}"
+        ></button>
+      {% endfor %}
+    </div>
+  {% endif %}
+</section>
+
+{% style %}
+  #gcarousel-{{ section.id }} {
+    background-color: {{ section.settings.background_color }};
+  }
+
+  #gcarousel-{{ section.id }} .gcarousel__heading {
+    color: {{ section.settings.heading_color }};
+  }
+
+  #gcarousel-{{ section.id }} .gcarousel__subheading {
+    color: {{ section.settings.text_color }};
+  }
+
+  #gcarousel-{{ section.id }} .gcarousel__arrow {
+    color: {{ section.settings.arrow_color }};
+  }
+
+  #gcarousel-{{ section.id }} .gcarousel__dot {
+    background-color: {{ section.settings.dot_color }};
+  }
+
+  #gcarousel-{{ section.id }} .gcarousel__dot--active {
+    background-color: {{ section.settings.dot_active_color }};
+  }
+{% endstyle %}
+
+<style>
+  .gcarousel {
+    padding: 120px 0;
+    overflow: hidden;
+    font-family: inherit;
+  }
+
+ .gcarousel__header-wrap {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+  .gcarousel__header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 56px;
+  }
+
+  .gcarousel__text {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+.gcarousel__heading {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  line-height: 0.9;
+  letter-spacing: -0.055em;
+  margin: 0;
+}
+
+.gcarousel__heading-line {
+  display: block;
+}
+  .gcarousel__subheading {
+    max-width: 560px;
+    font-size: 16px;
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .gcarousel__arrows {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-shrink: 0;
+    margin-right: 120px;
+  }
+
+.gcarousel__arrow {
+  width: 56px;
+  height: 56px;
+  border: 0;
+  background: transparent;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.9;
+  transition: opacity 0.2s ease, transform 0.2s ease, background 0.2s ease;
+}
+.gcarousel__arrow {
+  line-height: 1;
+  padding-bottom: 8px;
+}
+.gcarousel__arrow:hover {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.06);
+  transform: translateY(-1px);
+}
+
+  .gcarousel__arrow:hover {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.06);
+    transform: translateY(-1px);
+  }
+
+.gcarousel__viewport {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 20px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+ .gcarousel__track {
+  position: relative;
+  height: 440px;
+  width: 100%;
+}
+
+.gcarousel__item {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 360px;
+  max-width: 360px;
+  transition: transform 0.5s ease, opacity 0.5s ease, filter 0.5s ease;
+  transform-origin: center center;
+}
+.gcarousel__item.is-active {
+  transform: translateX(-50%) scale(1);
+  opacity: 1;
+  z-index: 5;
+}
+
+.gcarousel__item.is-prev {
+  transform: translateX(calc(-50% - 220px)) scale(0.94);
+  opacity: 0.9;
+  z-index: 4;
+}
+
+.gcarousel__item.is-next {
+  transform: translateX(calc(-50% + 220px)) scale(0.94);
+  opacity: 0.9;
+  z-index: 4;
+}
+
+.gcarousel__item.is-prev-2 {
+  transform: translateX(calc(-50% - 360px)) scale(0.88);
+  opacity: 0.45;
+  z-index: 3;
+}
+
+.gcarousel__item.is-next-2 {
+  transform: translateX(calc(-50% + 360px)) scale(0.88);
+  opacity: 0.45;
+  z-index: 3;
+}
+
+.gcarousel__item.is-hidden {
+  transform: translateX(-50%) scale(0.82);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+  .gcarousel__card {
+    position: relative;
+    display: block;
+    height: 432px;
+    overflow: hidden;
+    border-radius: 14px;
+    text-decoration: none;
+    color: #ffffff;
+    background: #111111;
+  }
+
+  .gcarousel__image,
+  .gcarousel__placeholder {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .gcarousel__image {
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.35s ease;
+  }
+
+  .gcarousel__card:hover .gcarousel__image {
+    transform: scale(1.05);
+  }
+
+  .gcarousel__placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e5e5e5;
+  }
+
+  .gcarousel__placeholder-svg {
+    width: 50%;
+    opacity: 0.25;
+  }
+
+  .gcarousel__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.35) 45%,
+      rgba(0, 0, 0, 0.82) 100%
+    );
+    z-index: 1;
+  }
+
+  .gcarousel__content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .gcarousel__card-title {
+    font-size: 22px;
+    line-height: 1.22;
+    font-weight: 700;
+    margin: 0 0 16px;
+    color: #ffffff;
+  }
+
+  .gcarousel__card-text {
+    font-size: 15px;
+    line-height: 1.55;
+    margin: 0 0 36px;
+    color: rgba(255, 255, 255, 0.92);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .gcarousel__read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #ffffff;
+  }
+
+  .gcarousel__read-arrow {
+    font-size: 22px;
+    transition: transform 0.2s ease;
+  }
+
+  .gcarousel__card:hover .gcarousel__read-arrow {
+    transform: translateX(4px);
+  }
+
+  .gcarousel__dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 32px;
+  }
+
+  .gcarousel__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    opacity: 0.25;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .gcarousel__dot--active {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+
+ @media (min-width: 1024px) {
+  .gcarousel__item {
+    width: 360px;
+    max-width: 360px;
+  }
+
+  .gcarousel__card {
+    height: 432px;
+  }
+}
+
+@media (max-width: 768px) {
+  .gcarousel {
+    padding: 80px 0;
+  }
+
+  .gcarousel__header {
+    align-items: flex-start;
+    margin-bottom: 36px;
+  }
+
+  .gcarousel__arrows {
+    display: none;
+  }
+
+.gcarousel__viewport {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.gcarousel__viewport::-webkit-scrollbar {
+  display: none;
+}
+
+  .gcarousel__track {
+    position: static;
+    display: flex;
+    gap: 16px;
+    height: auto;
+  }
+
+  .gcarousel__item {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 300px;
+    max-width: 300px;
+    flex: 0 0 300px;
+    transform: none !important;
+    opacity: 1 !important;
+    z-index: auto !important;
+  }
+
+  .gcarousel__card {
+    height: 420px;
+  }
+
+  .gcarousel__content {
+    padding: 24px;
+  }
+}
+
+  @media (max-width: 480px) {
+    .gcarousel__header-wrap {
+      padding: 0 20px;
+    }
+
+    .gcarousel__track {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .gcarousel__item {
+      flex-basis: 280px;
+      max-width: 280px;
+    }
+
+    .gcarousel__heading {
+      font-size: 36px;
+    }
+  }
+  #gcarousel-{{ section.id }} .gcarousel__heading-line--one {
+  color: {{ section.settings.heading_line_1_color }};
+  font-size: {{ section.settings.heading_line_1_size }}px;
+  font-weight: {{ section.settings.heading_line_1_weight }};
+  font-style: {% if section.settings.heading_line_1_italic %}italic{% else %}normal{% endif %};
+}
+
+#gcarousel-{{ section.id }} .gcarousel__heading-line--two {
+  color: {{ section.settings.heading_line_2_color }};
+  font-size: {{ section.settings.heading_line_2_size }}px;
+  font-weight: {{ section.settings.heading_line_2_weight }};
+  font-style: {% if section.settings.heading_line_2_italic %}italic{% else %}normal{% endif %};
+}
+
+@media (max-width: 768px) {
+  #gcarousel-{{ section.id }} .gcarousel__heading-line--one {
+    font-size: {{ section.settings.heading_line_1_mobile_size }}px;
+  }
+
+  #gcarousel-{{ section.id }} .gcarousel__heading-line--two {
+    font-size: {{ section.settings.heading_line_2_mobile_size }}px;
+  }
+}
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var section = document.getElementById('gcarousel-{{ section.id }}');
+    if (!section) return;
+
+    var items = Array.from(section.querySelectorAll('.gcarousel__item'));
+    var prev = section.querySelector('.gcarousel__arrow--prev');
+    var next = section.querySelector('.gcarousel__arrow--next');
+    var dots = Array.from(section.querySelectorAll('.gcarousel__dot'));
+
+    if (!items.length) return;
+
+   var currentIndex = items.length > 2 ? 2 : 0;
+
+    function updateDots() {
+      dots.forEach(function (dot, index) {
+        dot.classList.toggle('gcarousel__dot--active', index === currentIndex);
+      });
+    }
+
+  function updateButtons() {
+  if (prev) prev.disabled = false;
+  if (next) next.disabled = false;
+}
+
+function updateCards() {
+  items.forEach(function (item, index) {
+    item.classList.remove(
+      'is-active',
+      'is-prev',
+      'is-next',
+      'is-prev-2',
+      'is-next-2',
+      'is-hidden'
+    );
+
+    var diff = index - currentIndex;
+    var total = items.length;
+
+    if (diff > total / 2) diff -= total;
+    if (diff < -total / 2) diff += total;
+
+    if (diff === 0) {
+      item.classList.add('is-active');
+    } else if (diff === -1) {
+      item.classList.add('is-prev');
+    } else if (diff === 1) {
+      item.classList.add('is-next');
+    } else if (diff === -2) {
+      item.classList.add('is-prev-2');
+    } else if (diff === 2) {
+      item.classList.add('is-next-2');
+    } else {
+      item.classList.add('is-hidden');
+    }
+  });
+}
+
+    function updateCarousel() {
+      updateCards();
+      updateDots();
+      updateButtons();
+    }
+
+  if (prev) {
+  prev.addEventListener('click', function () {
+    currentIndex = (currentIndex - 1 + items.length) % items.length;
+    updateCarousel();
+  });
+}
+
+if (next) {
+  next.addEventListener('click', function () {
+    currentIndex = (currentIndex + 1) % items.length;
+    updateCarousel();
+  });
+}
+
+    dots.forEach(function (dot) {
+      dot.addEventListener('click', function () {
+        var index = parseInt(dot.getAttribute('data-gcarousel-dot'), 10);
+        if (!isNaN(index)) {
+          currentIndex = index;
+          updateCarousel();
+        }
+      });
+    });
+
+    updateCarousel();
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Gallery Carousel",
+  "tag": "section",
+  "class": "section-gallery-carousel",
+  "settings": [
+  {
+    "type": "header",
+    "content": "Heading"
+  },
+  {
+    "type": "text",
+    "id": "heading_line_1",
+    "label": "Heading line 1",
+    "default": "Backed by research into"
+  },
+  {
+    "type": "text",
+    "id": "heading_line_2",
+    "label": "Heading line 2",
+    "default": "guided eye relaxation"
+  },
+  {
+    "type": "color",
+    "id": "heading_line_1_color",
+    "label": "Line 1 color",
+    "default": "#111111"
+  },
+  {
+    "type": "color",
+    "id": "heading_line_2_color",
+    "label": "Line 2 color",
+    "default": "#111111"
+  },
+  {
+    "type": "range",
+    "id": "heading_line_1_size",
+    "label": "Line 1 desktop size",
+    "min": 32,
+    "max": 140,
+    "step": 2,
+    "unit": "px",
+    "default": 88
+  },
+  {
+    "type": "range",
+    "id": "heading_line_2_size",
+    "label": "Line 2 desktop size",
+    "min": 32,
+    "max": 140,
+    "step": 2,
+    "unit": "px",
+    "default": 88
+  },
+  {
+    "type": "range",
+    "id": "heading_line_1_mobile_size",
+    "label": "Line 1 mobile size",
+    "min": 28,
+    "max": 80,
+    "step": 2,
+    "unit": "px",
+    "default": 52
+  },
+  {
+    "type": "range",
+    "id": "heading_line_2_mobile_size",
+    "label": "Line 2 mobile size",
+    "min": 28,
+    "max": 80,
+    "step": 2,
+    "unit": "px",
+    "default": 52
+  },
+  {
+    "type": "select",
+    "id": "heading_line_1_weight",
+    "label": "Line 1 weight",
+    "default": "700",
+    "options": [
+      {
+        "value": "400",
+        "label": "Regular"
+      },
+      {
+        "value": "500",
+        "label": "Medium"
+      },
+      {
+        "value": "600",
+        "label": "Semi-bold"
+      },
+      {
+        "value": "700",
+        "label": "Bold"
+      }
+    ]
+  },
+  {
+    "type": "select",
+    "id": "heading_line_2_weight",
+    "label": "Line 2 weight",
+    "default": "700",
+    "options": [
+      {
+        "value": "400",
+        "label": "Regular"
+      },
+      {
+        "value": "500",
+        "label": "Medium"
+      },
+      {
+        "value": "600",
+        "label": "Semi-bold"
+      },
+      {
+        "value": "700",
+        "label": "Bold"
+      }
+    ]
+  },
+  {
+    "type": "checkbox",
+    "id": "heading_line_1_italic",
+    "label": "Line 1 italic",
+    "default": false
+  },
+  {
+    "type": "checkbox",
+    "id": "heading_line_2_italic",
+    "label": "Line 2 italic",
+    "default": false
+  },
+  {
+    "type": "textarea",
+    "id": "subheading",
+    "label": "Subheading",
+    "default": "Built on studies exploring eye movement, screen fatigue, and off-screen vision relaxation routines."
+  },
+  {
+    "type": "header",
+    "content": "Colors"
+  },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Subheading color",
+      "default": "#5f6472"
+    },
+    {
+      "type": "color",
+      "id": "arrow_color",
+      "label": "Arrow color",
+      "default": "#777777"
+    },
+    {
+      "type": "color",
+      "id": "dot_color",
+      "label": "Inactive dot color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "dot_active_color",
+      "label": "Active dot color",
+      "default": "#000000"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Gallery card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Card title",
+          "default": "shadcn/ui: Building a Modern Component Library"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Card description",
+          "default": "Explore how shadcn/ui revolutionized React component libraries by providing a unique approach to component distribution and customization."
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Read more"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Card link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Card image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Gallery Carousel",
+      "blocks": [
+        {
+          "type": "card",
+          "settings": {
+            "title": "shadcn/ui: Building a Modern Component Library",
+            "description": "Explore how shadcn/ui revolutionized React component libraries by making it easier to build beautiful, accessible applications.",
+            "button_label": "Read more"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "title": "Tailwind CSS: The Utility-First Revolution",
+            "description": "Discover how Tailwind CSS transformed the way developers style their applications with speed and flexibility.",
+            "button_label": "Read more"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "title": "Astro: The All-in-One Web Framework",
+            "description": "Learn how Astro helps developers build faster websites while keeping rich interactivity where needed.",
+            "button_label": "Read more"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "title": "React: Pioneering Component-Based UI",
+            "description": "See how React continues to shape modern web development with reusable, maintainable components.",
+            "button_label": "Read more"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "title": "Next.js: The React Framework for Production",
+            "description": "Explore how Next.js became a go-to framework for building production-ready React applications.",
+            "button_label": "Read more"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

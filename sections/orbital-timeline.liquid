@@ -1,0 +1,1022 @@
+<section class="orbital" id="orbital-{{ section.id }}">
+  <div class="orbital__inner">
+    {% if section.settings.heading != blank or section.settings.subheading != blank %}
+      <div class="orbital__top">
+        {% if section.settings.heading != blank %}
+          <h2 class="orbital__heading">{{ section.settings.heading }}</h2>
+        {% endif %}
+
+        {% if section.settings.subheading != blank %}
+          <p class="orbital__subheading">{{ section.settings.subheading }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="orbital__stage">
+      <div class="orbital__center">
+        <span class="orbital__center-ring orbital__center-ring--one"></span>
+        <span class="orbital__center-ring orbital__center-ring--two"></span>
+        <span class="orbital__center-core"></span>
+      </div>
+
+      <div class="orbital__orbit-ring"></div>
+
+      {% for block in section.blocks %}
+        <button
+          class="orbital__node"
+          type="button"
+          data-node-index="{{ forloop.index0 }}"
+          data-node-id="{{ forloop.index }}"
+          data-related="{{ block.settings.related_ids }}"
+          {{ block.shopify_attributes }}
+        >
+          <span class="orbital__node-glow"></span>
+
+          <span class="orbital__node-dot">
+{% if block.settings.icon == 'US' %}
+  <span class="orbital__node-icon orbital__flag orbital__flag--us"></span>
+{% elsif block.settings.icon == 'CA' %}
+  <span class="orbital__node-icon orbital__flag orbital__flag--ca"></span>
+{% elsif block.settings.icon == 'EU' %}
+  <span class="orbital__node-icon orbital__flag orbital__flag--eu"></span>
+{% elsif block.settings.icon != blank %}
+  <span class="orbital__node-icon">{{ block.settings.icon }}</span>
+{% else %}
+  <span class="orbital__node-icon">✦</span>
+{% endif %}
+          </span>
+
+          {% if block.settings.title != blank %}
+            <span class="orbital__node-label">{{ block.settings.title }}</span>
+          {% endif %}
+
+          <span class="orbital__card">
+            <span class="orbital__card-line"></span>
+
+            {% if block.settings.title != blank %}
+              <span class="orbital__card-title">{{ block.settings.title }}</span>
+            {% endif %}
+
+            {% if block.settings.content != blank %}
+              <span class="orbital__card-text">{{ block.settings.content }}</span>
+            {% endif %}
+
+          </span>
+        </button>
+      {% endfor %}
+    </div>
+  {% if section.settings.bottom_subheading != blank %}
+  <p class="orbital__bottom-subheading">
+    <span class="orbital__bottom-note">NOTE:</span>
+    {{ section.settings.bottom_subheading }}
+  </p>
+{% endif %}
+  </div>
+</section>
+
+{% style %}
+  #orbital-{{ section.id }} {
+    background: {{ section.settings.background_color }};
+    color: {{ section.settings.text_color }};
+  }
+
+  #orbital-{{ section.id }} .orbital__heading {
+    color: {{ section.settings.heading_color }};
+  }
+
+  #orbital-{{ section.id }} .orbital__subheading {
+    color: {{ section.settings.subheading_color }};
+  }
+
+  #orbital-{{ section.id }} .orbital__center {
+    background: radial-gradient(circle, {{ section.settings.center_color }} 0%, {{ section.settings.center_color }} 35%, transparent 72%);
+  }
+
+  #orbital-{{ section.id }} .orbital__node-dot {
+    border-color: {{ section.settings.node_border_color }};
+  }
+
+  #orbital-{{ section.id }} .orbital__node.is-active .orbital__node-dot {
+    background: {{ section.settings.active_node_color }};
+    color: {{ section.settings.active_node_text_color }};
+    border-color: {{ section.settings.active_node_color }};
+  }
+
+  #orbital-{{ section.id }} .orbital__energy-bar span {
+    background: linear-gradient(90deg, {{ section.settings.energy_start_color }}, {{ section.settings.energy_end_color }});
+  }
+{% endstyle %}
+
+<style>
+.orbital {
+  position: relative;
+  overflow: hidden;
+  font-family: inherit;
+  padding: 90px 24px;
+  isolation: isolate;
+}
+.orbital::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  opacity: 0.85;
+  background:
+    radial-gradient(circle at 14% 34%, rgba(212, 175, 55, 0.16) 0 1px, transparent 2px),
+    radial-gradient(circle at 78% 58%, rgba(212, 175, 55, 0.22) 0 1px, transparent 2px),
+    radial-gradient(circle at 42% 72%, rgba(212, 175, 55, 0.10) 0 1px, transparent 2px),
+
+    linear-gradient(90deg, rgba(212, 175, 55, 0.10) 1px, transparent 1px),
+    linear-gradient(rgba(212, 175, 55, 0.08) 1px, transparent 1px),
+
+    linear-gradient(90deg, transparent 0 48%, rgba(212, 175, 55, 0.12) 48% 48.4%, transparent 48.4% 100%),
+    linear-gradient(0deg, transparent 0 52%, rgba(212, 175, 55, 0.10) 52% 52.4%, transparent 52.4% 100%);
+  background-size:
+    137px 103px,
+    211px 169px,
+    263px 191px,
+    82px 82px,
+    82px 82px,
+    360px 260px,
+    420px 300px;
+  background-position:
+    17px 31px,
+    43px 11px,
+    91px 73px,
+    center,
+    center,
+    120px 80px,
+    40px 130px;
+}
+.orbital__inner::before {
+  content: "";
+  position: absolute;
+  inset: 120px -80px 80px;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.38;
+  background:
+    linear-gradient(90deg, transparent 0 18%, rgba(212, 175, 55, 0.16) 18% 18.2%, transparent 18.2% 100%),
+    linear-gradient(90deg, transparent 0 62%, rgba(212, 175, 55, 0.20) 62% 62.3%, transparent 62.3% 100%),
+    linear-gradient(0deg, transparent 0 35%, rgba(212, 175, 55, 0.14) 35% 35.2%, transparent 35.2% 100%),
+    linear-gradient(0deg, transparent 0 72%, rgba(212, 175, 55, 0.18) 72% 72.3%, transparent 72.3% 100%),
+    radial-gradient(circle at 18% 35%, rgba(212, 175, 55, 0.24) 0 2px, transparent 3px),
+    radial-gradient(circle at 62% 72%, rgba(212, 175, 55, 0.28) 0 2px, transparent 3px),
+    radial-gradient(circle at 84% 42%, rgba(212, 175, 55, 0.20) 0 2px, transparent 3px);
+  background-size:
+    520px 280px,
+    460px 320px,
+    420px 260px,
+    560px 300px,
+    520px 280px,
+    460px 320px,
+    560px 300px;
+}
+
+.orbital::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 52%, rgba(255,43,92,0.13), transparent 32%),
+    radial-gradient(circle at 50% 52%, rgba(255,255,255,0.055), transparent 46%),
+    linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.035) 50%, transparent 100%);
+  opacity: 0.9;
+}
+
+.orbital__inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.orbital__top {
+  text-align: center;
+  max-width: 1080px;
+  margin: 0 auto 12px;
+}
+
+.orbital__heading {
+  max-width: 980px;
+  margin: 0 auto;
+  font-size: clamp(42px, 5.6vw, 76px);
+  line-height: 0.95;
+  font-weight: 800;
+  letter-spacing: -0.045em;
+}
+
+.orbital__subheading {
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 22px auto 0;
+  max-width: 720px;
+}
+.orbital__bottom-subheading {
+  max-width: 820px;
+  margin: 0px auto;
+  text-align: center;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #FFFFFF;
+}
+.orbital__bottom-note {
+  font-size: 16px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.04em;
+}
+
+  .orbital__stage {
+    position: relative;
+    height: 570px;
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    isolation: isolate;
+  }
+
+ .orbital__stage::before {
+  content: "";
+  position: absolute;
+  width: 620px;
+  height: 620px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 50%;
+  background:
+    linear-gradient(90deg, transparent 0%, transparent 49.7%, rgba(255,255,255,0.14) 50%, transparent 50.3%, transparent 100%),
+    linear-gradient(0deg, transparent 0%, transparent 49.7%, rgba(255,255,255,0.14) 50%, transparent 50.3%, transparent 100%),
+    radial-gradient(circle, transparent 0 18%, rgba(255,43,92,0.22) 18.3%, transparent 18.8%),
+    radial-gradient(circle, transparent 0 31%, rgba(255,255,255,0.12) 31.2%, transparent 31.6%),
+    radial-gradient(circle, transparent 0 45%, rgba(255,255,255,0.09) 45.2%, transparent 45.6%),
+    radial-gradient(circle, transparent 0 58%, rgba(255,255,255,0.06) 58.2%, transparent 58.6%);
+  opacity: 0.85;
+}
+
+  .orbital__center {
+    position: absolute;
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: orbitalCenterPulse 3s ease-in-out infinite;
+  }
+
+  .orbital__center-core {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(8px);
+    z-index: 2;
+  }
+
+  .orbital__center-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.22);
+    animation: orbitalPing 1.8s ease-out infinite;
+  }
+
+  .orbital__center-ring--one {
+    width: 96px;
+    height: 96px;
+  }
+
+  .orbital__center-ring--two {
+    width: 122px;
+    height: 122px;
+    animation-delay: 0.6s;
+    opacity: 0.6;
+  }
+
+.orbital__orbit-ring {
+  position: absolute;
+  width: 410px;
+  height: 410px;
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 50%;
+  z-index: 1;
+  box-shadow:
+    0 0 0 74px rgba(255,255,255,0.055),
+    0 0 0 142px rgba(255,255,255,0.035);
+}
+
+  .orbital__node {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 46px;
+    height: 46px;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    color: #ffffff;
+    transition: opacity 0.45s ease, filter 0.45s ease;
+  }
+
+.orbital__node-glow {
+  position: absolute;
+  inset: -14px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,43,92,0.42), transparent 68%);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+  .orbital__node-dot {
+    position: relative;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.4);
+    background: rgba(0,0,0,0.78);
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(8px);
+    transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    z-index: 3;
+  }
+
+.orbital__node-icon {
+  font-size: 24px;
+  line-height: 1;
+}
+.orbital__flag {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.orbital__flag--us {
+  background-image: url('https://flagcdn.com/us.svg');
+}
+
+.orbital__flag--ca {
+  background-image: url('https://flagcdn.com/ca.svg');
+}
+
+.orbital__flag--eu {
+  background-image: url('https://flagcdn.com/eu.svg');
+}
+
+  .orbital__node-label {
+    position: absolute;
+    top: 58px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.72);
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+
+  .orbital__node:hover .orbital__node-dot {
+    transform: scale(1.15);
+  }
+
+  .orbital__node:hover .orbital__node-glow,
+  .orbital__node.is-related .orbital__node-glow {
+    opacity: 1;
+  }
+
+  .orbital__node.is-active .orbital__node-dot {
+    transform: scale(1.45);
+    box-shadow: 0 0 34px rgba(255,255,255,0.28);
+  }
+
+  .orbital__node.is-active .orbital__node-label {
+    color: #ffffff;
+    transform: translateX(-50%) scale(1.15);
+  }
+
+  .orbital__node.is-related .orbital__node-dot {
+    animation: orbitalRelatedPulse 1.3s ease-in-out infinite;
+  }
+
+  .orbital__card {
+    position: absolute;
+    top: 86px;
+    left: 50%;
+    width: 280px;
+    transform: translateX(-50%) translateY(10px);
+    background: rgba(0,0,0,0.88);
+    border: 1px solid rgba(255,255,255,0.24);
+    border-radius: 14px;
+    padding: 18px;
+    color: #ffffff;
+    text-align: left;
+    opacity: 0;
+    pointer-events: none;
+    backdrop-filter: blur(16px);
+    box-shadow: 0 22px 60px rgba(0,0,0,0.38);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    z-index: 30;
+  }
+
+  .orbital__node.is-active .orbital__card {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .orbital__card-line {
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    width: 1px;
+    height: 18px;
+    background: rgba(255,255,255,0.5);
+  }
+
+  .orbital__card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .orbital__status {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.4);
+    padding: 4px 8px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .orbital__status--completed {
+    background: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
+  }
+
+  .orbital__status--in-progress {
+    background: rgba(255,255,255,0.18);
+    color: #ffffff;
+  }
+
+  .orbital__status--pending {
+    background: rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.75);
+  }
+
+  .orbital__date {
+    font-size: 11px;
+    font-family: monospace;
+    color: rgba(255,255,255,0.55);
+  }
+
+  .orbital__card-title {
+    display: block;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+
+  .orbital__card-text {
+    display: block;
+    font-size: 13px;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.78);
+  }
+
+  .orbital__energy {
+    display: block;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+  }
+
+  .orbital__energy-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 11px;
+    color: rgba(255,255,255,0.72);
+    margin-bottom: 8px;
+  }
+
+  .orbital__energy-bar {
+    display: block;
+    width: 100%;
+    height: 5px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.12);
+    overflow: hidden;
+  }
+
+  .orbital__energy-bar span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+  }
+
+  @keyframes orbitalCenterPulse {
+    0%, 100% {
+      transform: scale(0.96);
+      opacity: 0.9;
+    }
+
+    50% {
+      transform: scale(1.06);
+      opacity: 1;
+    }
+  }
+
+  @keyframes orbitalPing {
+    0% {
+      transform: scale(0.8);
+      opacity: 0.75;
+    }
+
+    100% {
+      transform: scale(1.7);
+      opacity: 0;
+    }
+  }
+
+  @keyframes orbitalRelatedPulse {
+    0%, 100% {
+      box-shadow: 0 0 0 rgba(255,255,255,0);
+    }
+
+    50% {
+      box-shadow: 0 0 34px rgba(255,255,255,0.55);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .orbital {
+      padding: 70px 18px;
+    }
+
+    .orbital__stage {
+      height: 620px;
+      transform: scale(0.82);
+      transform-origin: center center;
+      margin-top: -40px;
+      margin-bottom: -60px;
+    }
+
+    .orbital__orbit-ring {
+      width: 340px;
+      height: 340px;
+    }
+
+    .orbital__card {
+      width: 250px;
+    }
+    .orbital__node-label {
+  white-space: normal;
+  width: 110px;
+  text-align: center;
+  line-height: 1.2;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+  }
+
+  @media (max-width: 480px) {
+    .orbital__stage {
+      transform: scale(0.72);
+      margin-top: -70px;
+      margin-bottom: -100px;
+    }
+
+    .orbital__heading {
+      font-size: 36px;
+    }
+
+    .orbital__subheading {
+      font-size: 14px;
+    }
+  }
+</style>
+
+<script>
+  (function () {
+    function initOrbitalTimeline(section) {
+      if (!section || section.dataset.orbitalInitialized === 'true') return;
+      section.dataset.orbitalInitialized = 'true';
+
+      var stage = section.querySelector('.orbital__stage');
+      var nodes = Array.prototype.slice.call(section.querySelectorAll('.orbital__node'));
+
+      if (!stage || !nodes.length) return;
+
+      var rotation = 0;
+      var autoRotate = true;
+      var speed = {{ section.settings.rotation_speed | default: 0.3 }};
+      var radius = {{ section.settings.orbit_radius | default: 205 }};
+      var lastTime = null;
+
+      function parseRelated(value) {
+        if (!value) return [];
+
+        return value
+          .split(',')
+          .map(function (item) {
+            return parseInt(item.trim(), 10);
+          })
+          .filter(function (number) {
+            return !isNaN(number);
+          });
+      }
+
+      function clearActive() {
+        autoRotate = true;
+
+        nodes.forEach(function (node) {
+          node.classList.remove('is-active', 'is-related');
+        });
+      }
+
+      function setActive(node) {
+        var wasActive = node.classList.contains('is-active');
+
+        nodes.forEach(function (item) {
+          item.classList.remove('is-active', 'is-related');
+        });
+
+        if (wasActive) {
+          clearActive();
+          return;
+        }
+
+        autoRotate = false;
+        node.classList.add('is-active');
+
+        var relatedIds = parseRelated(node.getAttribute('data-related'));
+
+        nodes.forEach(function (item) {
+          var id = parseInt(item.getAttribute('data-node-id'), 10);
+
+          if (relatedIds.indexOf(id) !== -1) {
+            item.classList.add('is-related');
+          }
+        });
+      }
+
+      function getResponsiveRadius() {
+if (window.innerWidth <= 480) return radius * 0.68;
+if (window.innerWidth <= 768) return radius * 0.78;
+        return radius;
+      }
+
+      function updatePositions() {
+        var total = nodes.length;
+        var currentRadius = getResponsiveRadius();
+
+        nodes.forEach(function (node, index) {
+          var angle = ((index / total) * 360 + rotation) % 360;
+          var radian = angle * Math.PI / 180;
+
+          var x = currentRadius * Math.cos(radian);
+          var y = currentRadius * Math.sin(radian);
+
+          var depth = (1 + Math.sin(radian)) / 2;
+          var opacity = 0.45 + depth * 0.55;
+          var zIndex = Math.round(20 + depth * 50);
+
+          if (node.classList.contains('is-active')) {
+            opacity = 1;
+            zIndex = 100;
+          }
+
+          node.style.transform = 'translate(-50%, -50%) translate(' + x + 'px, ' + y + 'px)';
+          node.style.opacity = opacity;
+          node.style.zIndex = zIndex;
+        });
+      }
+
+      function animate(timestamp) {
+        if (lastTime === null) {
+          lastTime = timestamp;
+        }
+
+        var delta = timestamp - lastTime;
+        lastTime = timestamp;
+
+        if (autoRotate) {
+          rotation = (rotation + speed * (delta / 16.67)) % 360;
+        }
+
+        updatePositions();
+        requestAnimationFrame(animate);
+      }
+
+      nodes.forEach(function (node) {
+        node.addEventListener('click', function (event) {
+          event.stopPropagation();
+          setActive(node);
+        });
+      });
+
+      stage.addEventListener('click', function (event) {
+        if (event.target === stage) {
+          clearActive();
+        }
+      });
+
+      window.addEventListener('resize', updatePositions);
+
+      updatePositions();
+      requestAnimationFrame(animate);
+    }
+
+    function initAllOrbitalTimelines() {
+      var sections = document.querySelectorAll('[id^="orbital-"]');
+
+      sections.forEach(function (section) {
+        initOrbitalTimeline(section);
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initAllOrbitalTimelines);
+    } else {
+      initAllOrbitalTimelines();
+    }
+
+    document.addEventListener('shopify:section:load', function (event) {
+      var section = event.target.querySelector('[id^="orbital-"]');
+
+      if (section) {
+        initOrbitalTimeline(section);
+      }
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Orbital Timeline",
+  "tag": "section",
+  "class": "section-orbital-timeline",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "A smarter routine for tired eyes"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Explore the key steps behind a guided off-screen eye reset routine."
+    },
+    {
+  "type": "textarea",
+  "id": "bottom_subheading",
+  "label": "Bottom subheading",
+  "default": "Designed to guide your eyes through a simple off-screen reset routine."
+},
+    {
+      "type": "range",
+      "id": "orbit_radius",
+      "label": "Orbit radius",
+      "min": 140,
+      "max": 300,
+      "step": 5,
+      "unit": "px",
+      "default": 205
+    },
+    {
+      "type": "range",
+      "id": "rotation_speed",
+      "label": "Rotation speed",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "default": 0.3
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading color",
+      "default": "#b8b8b8"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Main text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "center_color",
+      "label": "Center orb color",
+      "default": "#FF2B5C"
+    },
+    {
+      "type": "color",
+      "id": "node_border_color",
+      "label": "Node border color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "active_node_color",
+      "label": "Active node color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "active_node_text_color",
+      "label": "Active node text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "energy_start_color",
+      "label": "Energy bar start",
+      "default": "#3b82f6"
+    },
+    {
+      "type": "color",
+      "id": "energy_end_color",
+      "label": "Energy bar end",
+      "default": "#FF2B5C"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "node",
+      "name": "Timeline node",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Node title",
+          "default": "Planning"
+        },
+        {
+          "type": "text",
+          "id": "date",
+          "label": "Date / label",
+          "default": "Step 01"
+        },
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon / emoji",
+          "default": "✦"
+        },
+        {
+          "type": "textarea",
+          "id": "content",
+          "label": "Card content",
+          "default": "Describe this stage of the routine or process."
+        },
+        {
+          "type": "select",
+          "id": "status",
+          "label": "Status style",
+          "default": "completed",
+          "options": [
+            {
+              "value": "completed",
+              "label": "Completed"
+            },
+            {
+              "value": "in-progress",
+              "label": "In progress"
+            },
+            {
+              "value": "pending",
+              "label": "Pending"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "status_label",
+          "label": "Status label",
+          "default": "Complete"
+        },
+        {
+          "type": "range",
+          "id": "energy",
+          "label": "Energy level",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "unit": "%",
+          "default": 80
+        },
+        {
+          "type": "text",
+          "id": "related_ids",
+          "label": "Related node numbers",
+          "default": "2",
+          "info": "Use comma-separated node numbers, for example: 2,3. Node numbers follow the block order."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Orbital Timeline",
+      "blocks": [
+        {
+          "type": "node",
+          "settings": {
+            "title": "Target",
+            "date": "Step 01",
+            "icon": "◎",
+            "content": "A clear visual target gives your eyes something specific to follow instead of random movement.",
+            "status": "completed",
+            "status_label": "Complete",
+            "energy": 100,
+            "related_ids": "2"
+          }
+        },
+        {
+          "type": "node",
+          "settings": {
+            "title": "Movement",
+            "date": "Step 02",
+            "icon": "↔",
+            "content": "Guided movement helps your eyes shift away from locked close-up focus.",
+            "status": "completed",
+            "status_label": "Complete",
+            "energy": 85,
+            "related_ids": "1,3"
+          }
+        },
+        {
+          "type": "node",
+          "settings": {
+            "title": "Reset",
+            "date": "Step 03",
+            "icon": "✦",
+            "content": "Short off-screen routines can make screen breaks more structured and repeatable.",
+            "status": "in-progress",
+            "status_label": "Active",
+            "energy": 65,
+            "related_ids": "2,4"
+          }
+        },
+        {
+          "type": "node",
+          "settings": {
+            "title": "Habit",
+            "date": "Step 04",
+            "icon": "⏱",
+            "content": "Repeating the routine daily makes the reset easier to remember and maintain.",
+            "status": "pending",
+            "status_label": "Next",
+            "energy": 40,
+            "related_ids": "3"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

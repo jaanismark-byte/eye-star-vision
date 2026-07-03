@@ -1,0 +1,777 @@
+<section class="esv-science" id="esv-science-{{ section.id }}">
+  <div class="esv-science__container">
+
+    <!-- Header -->
+    <div class="esv-science__header esv-reveal">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="esv-science__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      <h2 class="esv-science__heading">{{ section.settings.heading }}</h2>
+      {%- if section.settings.subheading != blank -%}
+        <p class="esv-science__subheading">{{ section.settings.subheading }}</p>
+      {%- endif -%}
+    </div>
+
+    <!-- Study stats row -->
+    <div class="esv-science__stats esv-reveal esv-reveal--delay-1">
+      <div class="esv-science__stat">
+        <span class="esv-science__stat-num" data-count="{{ section.settings.stat_1_number }}">{{ section.settings.stat_1_number }}</span>
+        <span class="esv-science__stat-suffix">{{ section.settings.stat_1_suffix }}</span>
+        <span class="esv-science__stat-label">{{ section.settings.stat_1_label }}</span>
+      </div>
+      <div class="esv-science__stat-divider"></div>
+      <div class="esv-science__stat">
+        <span class="esv-science__stat-num">{{ section.settings.stat_2_number }}</span>
+        <span class="esv-science__stat-suffix">{{ section.settings.stat_2_suffix }}</span>
+        <span class="esv-science__stat-label">{{ section.settings.stat_2_label }}</span>
+      </div>
+      <div class="esv-science__stat-divider"></div>
+      <div class="esv-science__stat">
+        <span class="esv-science__stat-num">{{ section.settings.stat_3_number }}</span>
+        <span class="esv-science__stat-suffix">{{ section.settings.stat_3_suffix }}</span>
+        <span class="esv-science__stat-label">{{ section.settings.stat_3_label }}</span>
+      </div>
+      <div class="esv-science__stat-divider"></div>
+      <div class="esv-science__stat">
+        <span class="esv-science__stat-num">{{ section.settings.stat_4_number }}</span>
+        <span class="esv-science__stat-suffix">{{ section.settings.stat_4_suffix }}</span>
+        <span class="esv-science__stat-label">{{ section.settings.stat_4_label }}</span>
+      </div>
+    </div>
+
+    <!-- Patents -->
+    <div class="esv-science__patents esv-reveal">
+      <div class="esv-science__patents-header">
+        <h3 class="esv-science__patents-heading">{{ section.settings.patents_heading }}</h3>
+        <p class="esv-science__patents-sub">{{ section.settings.patents_subheading }}</p>
+      </div>
+      <!-- Globe -->
+      <div class="esv-science__globe-wrap">
+        <canvas id="esv-globe-{{ section.id }}" class="esv-science__globe"></canvas>
+        <canvas id="esv-globe-ov-{{ section.id }}" class="esv-science__globe-overlay" aria-label="Interactive patent map — tap a country badge to see details"></canvas>
+      </div>
+
+      <!-- Patent detail panel (2D, crisp, slides in below globe) -->
+      <div class="esv-science__patent-panel" id="esv-patent-panel-{{ section.id }}">
+        <span class="esv-science__patent-panel-badge"></span>
+        <div class="esv-science__patent-panel-text">
+          <strong class="esv-science__patent-panel-num"></strong>
+          <p class="esv-science__patent-panel-region"></p>
+        </div>
+        <button type="button" class="esv-science__patent-panel-close" aria-label="Close">&#x2715;</button>
+      </div>
+
+    </div>
+
+    <!-- Disclaimer -->
+    {%- if section.settings.disclaimer != blank -%}
+      <p class="esv-science__disclaimer esv-reveal">{{ section.settings.disclaimer }}</p>
+    {%- endif -%}
+
+  </div>
+</section>
+
+<style>
+  #esv-science-{{ section.id }} {
+    background: #f4f3f7;
+    padding: 120px 40px;
+  }
+
+  #esv-science-{{ section.id }} .esv-science__container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* ── Header ── */
+  #esv-science-{{ section.id }} .esv-science__header {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 72px;
+  }
+
+  #esv-science-{{ section.id }} .esv-science__eyebrow {
+    font-size: clamp(0.75rem, 1.2vw, 0.875rem);
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #FF2B5C;
+    margin: 0 0 20px;
+  }
+
+  #esv-science-{{ section.id }} .esv-science__heading {
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+    color: #111111;
+    margin: 0 0 24px;
+  }
+
+  #esv-science-{{ section.id }} .esv-science__subheading {
+    font-size: calc(clamp(1rem, 1.6vw, 1.15rem) * var(--esv-text-scale, 1));
+    line-height: 1.7;
+    color: rgba(17,17,17, calc(0.55 + var(--esv-muted-boost, 0)));
+    margin: 0;
+  }
+
+  /* ── Stats row ── */
+  #esv-science-{{ section.id }} .esv-science__stats {
+    display: flex;
+    align-items: stretch;
+    border: 1px solid rgba(0,0,0,0.09);
+    border-radius: 24px;
+    overflow: hidden;
+    margin-bottom: 24px;
+    background: rgba(0,0,0,0.03);
+  }
+
+  #esv-science-{{ section.id }} .esv-science__stat {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 32px;
+    gap: 4px;
+  }
+
+  #esv-science-{{ section.id }} .esv-science__stat-num {
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: #111111;
+    line-height: 1;
+  }
+
+  #esv-science-{{ section.id }} .esv-science__stat-suffix {
+    font-size: clamp(1.2rem, 2vw, 1.8rem);
+    font-weight: 800;
+    color: #FF2B5C;
+    line-height: 1;
+    margin-top: -4px;
+  }
+
+  #esv-science-{{ section.id }} .esv-science__stat-label {
+    font-size: calc(0.72rem * var(--esv-text-scale, 1));
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(17,17,17, calc(0.45 + var(--esv-muted-boost, 0)));
+    margin-top: 8px;
+    text-align: center;
+  }
+
+  #esv-science-{{ section.id }} .esv-science__stat-divider {
+    width: 1px;
+    background: rgba(0,0,0,0.1);
+    flex-shrink: 0;
+  }
+
+  /* ── Patents / Globe ── */
+  #esv-science-{{ section.id }} .esv-science__patents-header {
+    margin-bottom: 24px;
+    text-align: center;
+  }
+
+  #esv-science-{{ section.id }} .esv-science__patents-heading {
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: #111111;
+    margin: 0 0 10px;
+  }
+
+  #esv-science-{{ section.id }} .esv-science__patents-sub {
+    font-size: calc(0.9rem * var(--esv-text-scale, 1));
+    line-height: 1.65;
+    color: rgba(17,17,17, calc(0.5 + var(--esv-muted-boost, 0)));
+    margin: 0 auto;
+    max-width: 560px;
+  }
+
+  #esv-science-{{ section.id }} .esv-science__globe-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 540px;
+    margin: 0 auto;
+    aspect-ratio: 1 / 1;
+  }
+
+  #esv-science-{{ section.id }} .esv-science__globe,
+  #esv-science-{{ section.id }} .esv-science__globe-overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+
+  #esv-science-{{ section.id }} .esv-science__globe {
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+
+  #esv-science-{{ section.id }} .esv-science__globe-overlay {
+    cursor: grab;
+    background: transparent;
+  }
+
+  #esv-science-{{ section.id }} .esv-science__globe-overlay:active {
+    cursor: grabbing;
+  }
+
+  /* Patent detail panel */
+  #esv-science-{{ section.id }} .esv-science__patent-panel {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: #111111;
+    border-radius: 16px;
+    padding: 20px 24px;
+    margin: 16px auto 0;
+    max-width: 540px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    pointer-events: none;
+  }
+
+  #esv-science-{{ section.id }} .esv-science__patent-panel.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  #esv-science-{{ section.id }} .esv-science__patent-panel-badge {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: #FF2B5C;
+    white-space: nowrap;
+    padding-top: 2px;
+  }
+
+  #esv-science-{{ section.id }} .esv-science__patent-panel-text {
+    flex: 1;
+  }
+
+  #esv-science-{{ section.id }} .esv-science__patent-panel-num {
+    display: block;
+    font-size: calc(0.95rem * var(--esv-text-scale, 1));
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 4px;
+  }
+
+  #esv-science-{{ section.id }} .esv-science__patent-panel-region {
+    font-size: calc(0.78rem * var(--esv-text-scale, 1));
+    color: rgba(255,255,255,0.55);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  #esv-science-{{ section.id }} .esv-science__patent-panel-close {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.4);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 2px 0 0 8px;
+    flex-shrink: 0;
+    transition: color 0.2s;
+  }
+
+  #esv-science-{{ section.id }} .esv-science__patent-panel-close:hover {
+    color: rgba(255,255,255,0.85);
+  }
+
+  /* ── Disclaimer ── */
+  #esv-science-{{ section.id }} .esv-science__disclaimer {
+    font-size: calc(0.72rem * var(--esv-text-scale, 1));
+    line-height: 1.6;
+    color: rgba(17,17,17, calc(0.3 + var(--esv-muted-boost, 0)));
+    text-align: center;
+    max-width: 760px;
+    margin: 48px auto 0;
+  }
+
+  /* ── Scroll-reveal ── */
+  #esv-science-{{ section.id }} .esv-reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  #esv-science-{{ section.id }} .esv-reveal--delay-1 { transition-delay: 0.1s; }
+  #esv-science-{{ section.id }} .esv-reveal--delay-2 { transition-delay: 0.22s; }
+  #esv-science-{{ section.id }} .esv-reveal--delay-3 { transition-delay: 0.34s; }
+  #esv-science-{{ section.id }} .esv-reveal.esv-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 749px) {
+    #esv-science-{{ section.id }} {
+      padding: 40px 16px 44px;
+    }
+    #esv-science-{{ section.id }} .esv-science__header {
+      margin-bottom: 28px;
+    }
+    #esv-science-{{ section.id }} .esv-science__stats {
+      flex-direction: column;
+    }
+    #esv-science-{{ section.id }} .esv-science__stat {
+      padding: 22px 18px;
+    }
+    #esv-science-{{ section.id }} .esv-science__stat-divider {
+      width: 100%;
+      height: 1px;
+    }
+  }
+</style>
+
+<script>
+(function() {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('esv-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('#esv-science-{{ section.id }} .esv-reveal').forEach(function(el) {
+    observer.observe(el);
+  });
+})();
+</script>
+
+<script type="module">
+import createGlobe from 'https://esm.sh/cobe@0.6.3';
+
+(function() {
+  var canvas  = document.getElementById('esv-globe-{{ section.id }}');
+  var overlay = document.getElementById('esv-globe-ov-{{ section.id }}');
+  var panel   = document.getElementById('esv-patent-panel-{{ section.id }}');
+  if (!canvas || !overlay) return;
+
+  var ctx = overlay.getContext('2d');
+  var panelBadge  = panel && panel.querySelector('.esv-science__patent-panel-badge');
+  var panelNum    = panel && panel.querySelector('.esv-science__patent-panel-num');
+  var panelRegion = panel && panel.querySelector('.esv-science__patent-panel-region');
+  var panelClose  = panel && panel.querySelector('.esv-science__patent-panel-close');
+
+  var THETA = 0.3;
+
+  var PATENTS = [
+    { lat: 38.9072,  lon: -77.0369,  badge: 'US',  number: '{{ section.settings.patent_1_number | escape }}', region: '{{ section.settings.patent_1_region | escape }}' },
+    { lat: 50.8503,  lon:   4.3517,  badge: 'EU',  number: '{{ section.settings.patent_2_number | escape }}', region: '{{ section.settings.patent_2_region | escape }}' },
+    { lat: 45.4215,  lon: -75.6972,  badge: 'CA',  number: '{{ section.settings.patent_3_number | escape }}', region: '{{ section.settings.patent_3_region | escape }}' },
+    { lat: 56.9496,  lon:  24.1052,  badge: 'PCT', number: '{{ section.settings.patent_4_number | escape }}', region: '{{ section.settings.patent_4_region | escape }}' },
+  ];
+
+  var autoPhi     = 0;
+  var dragPhi     = 0;
+  var startDragPhi = 0;
+  var pointerDownX = null;
+  var pointerMoved = false;
+  var isDragging  = false;
+  var paused      = false;
+  var activeIdx   = null;
+  var width       = 0;
+
+  /* ── Projection ── */
+  function project(lat, lon, phi, size) {
+    var lam  = lon * Math.PI / 180;
+    var plat = lat * Math.PI / 180;
+    var x = Math.cos(plat) * Math.sin(lam);
+    var y = Math.sin(plat);
+    var z = Math.cos(plat) * Math.cos(lam);
+    /* Derived from cobe@0.6.3 source: markers stored as (cos(lat)*cos(lon), sin(lat),
+       -cos(lat)*sin(lon)), projected via row-vec × L(theta,phi). With my standard
+       sphere coords (x=cos*sin(lon), y=sin(lat), z=cos*cos(lon)):
+       W = cos(theta)*x + sin(theta)*y  (theta-combined term, phi-independent)
+       screen_x = cos(phi)*z + sin(phi)*W
+       screen_y = cos(theta)*y - sin(theta)*x   (constant as globe spins)
+       visible  = sin(phi)*z - cos(phi)*W > 0                                    */
+    var ct = Math.cos(THETA), st = Math.sin(THETA);
+    var W    = ct * x + st * y;
+    var cp = Math.cos(phi), sp = Math.sin(phi);
+    var x_sc  = cp * z + sp * W;
+    var y_sc  = ct * y - st * x;
+    var z_vis = sp * z - cp * W;
+    if (z_vis < 0.05) return null;
+    var r = size / 2;
+    return { x: size / 2 + x_sc * r, y: size / 2 - y_sc * r };
+  }
+
+  /* ── Draw rounded rect (roundRect polyfill) ── */
+  function fillRoundRect(c, x, y, w, h, r) {
+    c.beginPath();
+    c.moveTo(x + r, y);
+    c.lineTo(x + w - r, y);
+    c.quadraticCurveTo(x + w, y, x + w, y + r);
+    c.lineTo(x + w, y + h - r);
+    c.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    c.lineTo(x + r, y + h);
+    c.quadraticCurveTo(x, y + h, x, y + h - r);
+    c.lineTo(x, y + r);
+    c.quadraticCurveTo(x, y, x + r, y);
+    c.closePath();
+    c.fill();
+  }
+
+  /* ── Overlay — draw click rings at each projected dot position ── */
+  function drawOverlay(totalPhi) {
+    var size = overlay.offsetWidth;
+    if (!size) return;
+    if (overlay.width !== size || overlay.height !== size) {
+      overlay.width  = size;
+      overlay.height = size;
+    }
+    ctx.clearRect(0, 0, size, size);
+
+    PATENTS.forEach(function(p, i) {
+      var pos = project(p.lat, p.lon, totalPhi, size);
+      if (!pos) return;
+      var isActive = activeIdx === i;
+      ctx.beginPath();
+      ctx.arc(pos.x, pos.y, isActive ? 14 : 10, 0, 2 * Math.PI);
+      ctx.strokeStyle = isActive ? '#FF2B5C' : 'rgba(255,43,92,0.7)';
+      ctx.lineWidth   = isActive ? 2.5 : 1.5;
+      ctx.stroke();
+    });
+  }
+
+  /* ── onRender (called every frame by COBE) ── */
+  function onRender(state) {
+    if (!paused && !isDragging) autoPhi += 0.005;
+    var totalPhi = autoPhi + dragPhi;
+    state.phi    = totalPhi;
+    state.width  = width * 2;
+    state.height = width * 2;
+    drawOverlay(totalPhi);
+  }
+
+  function onResize() {
+    width = canvas.offsetWidth || 400;
+  }
+  window.addEventListener('resize', onResize);
+  onResize();
+
+  /* ── Init globe ── */
+  createGlobe(canvas, {
+    devicePixelRatio: 2,
+    width:  width * 2,
+    height: width * 2,
+    phi: 0,
+    theta: THETA,
+    dark: 1,
+    diffuse: 1.2,
+    mapSamples: 16000,
+    mapBrightness: 6,
+    baseColor:   [0.1,  0.1,  0.16],
+    markerColor: [1,    43/255, 92/255],
+    glowColor:   [0.35, 0.35, 0.55],
+    markers: PATENTS.map(function(p) {
+      return { location: [p.lat, p.lon], size: 0.07 };
+    }),
+    onRender: onRender
+  });
+
+  setTimeout(function() { canvas.style.opacity = '1'; });
+
+  /* ── Pointer interaction ── */
+  function clientX(e) {
+    return e.touches ? e.touches[0].clientX : e.clientX;
+  }
+
+  overlay.addEventListener('pointerdown', function(e) {
+    isDragging    = true;
+    pointerDownX  = clientX(e);
+    startDragPhi  = autoPhi;
+    dragPhi       = 0;
+    pointerMoved  = false;
+    overlay.setPointerCapture(e.pointerId);
+  });
+
+  overlay.addEventListener('pointermove', function(e) {
+    if (!isDragging) return;
+    var dx = clientX(e) - pointerDownX;
+    if (Math.abs(dx) > 4) pointerMoved = true;
+    dragPhi = dx / 180;
+  });
+
+  overlay.addEventListener('pointerup', function(e) {
+    if (!isDragging) return;
+    isDragging = false;
+
+    if (!pointerMoved) {
+      /* Click — hit test */
+      var rect     = overlay.getBoundingClientRect();
+      var cx       = e.clientX - rect.left;
+      var cy       = e.clientY - rect.top;
+      var size     = overlay.offsetWidth;
+      var totalPhi = autoPhi + dragPhi;
+      var hitR     = 28;
+      var hit      = null;
+
+      PATENTS.forEach(function(p, i) {
+        var pos = project(p.lat, p.lon, totalPhi, size);
+        if (!pos) return;
+        var dx = cx - pos.x, dy = cy - pos.y;
+        if (Math.sqrt(dx*dx + dy*dy) < hitR) hit = i;
+      });
+
+      if (hit !== null) {
+        activeIdx = hit;
+        paused    = true;
+        showPanel(PATENTS[hit]);
+      } else if (activeIdx !== null) {
+        activeIdx = null;
+        paused    = false;
+        hidePanel();
+      }
+      dragPhi = 0;
+    } else {
+      /* Drag ended — absorb delta into autoPhi */
+      autoPhi += dragPhi;
+      dragPhi  = 0;
+      if (activeIdx === null) paused = false;
+    }
+  });
+
+  overlay.addEventListener('pointercancel', function() {
+    if (pointerMoved) { autoPhi += dragPhi; }
+    dragPhi    = 0;
+    isDragging = false;
+  });
+
+  /* ── Panel show/hide ── */
+  function showPanel(patent) {
+    if (!panel) return;
+    if (panelBadge)  panelBadge.textContent  = patent.badge;
+    if (panelNum)    panelNum.textContent     = patent.number;
+    if (panelRegion) panelRegion.textContent  = patent.region;
+    panel.classList.add('is-visible');
+  }
+
+  function hidePanel() {
+    if (panel) panel.classList.remove('is-visible');
+  }
+
+  if (panelClose) {
+    panelClose.addEventListener('click', function() {
+      activeIdx = null;
+      paused    = false;
+      hidePanel();
+    });
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && activeIdx !== null) {
+      activeIdx = null;
+      paused    = false;
+      hidePanel();
+    }
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "ESV — Science & Research",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Header"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Science & Research"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Peer-reviewed. Independently tested."
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Eye Star Vision is backed by published research from the University of Latvia and protected by 4 international patents across the US, Europe, and Canada."
+    },
+    {
+      "type": "header",
+      "content": "Study Stat 1"
+    },
+    {
+      "type": "text",
+      "id": "stat_1_number",
+      "label": "Number",
+      "default": "89"
+    },
+    {
+      "type": "text",
+      "id": "stat_1_suffix",
+      "label": "Suffix (e.g. +, %)"
+    },
+    {
+      "type": "text",
+      "id": "stat_1_label",
+      "label": "Label",
+      "default": "Participants"
+    },
+    {
+      "type": "header",
+      "content": "Study Stat 2"
+    },
+    {
+      "type": "text",
+      "id": "stat_2_number",
+      "label": "Number",
+      "default": "8"
+    },
+    {
+      "type": "text",
+      "id": "stat_2_suffix",
+      "label": "Suffix",
+      "default": "wk"
+    },
+    {
+      "type": "text",
+      "id": "stat_2_label",
+      "label": "Label",
+      "default": "Study Duration"
+    },
+    {
+      "type": "header",
+      "content": "Study Stat 3"
+    },
+    {
+      "type": "text",
+      "id": "stat_3_number",
+      "label": "Number",
+      "default": "35"
+    },
+    {
+      "type": "text",
+      "id": "stat_3_suffix",
+      "label": "Suffix",
+      "default": "%+"
+    },
+    {
+      "type": "text",
+      "id": "stat_3_label",
+      "label": "Label",
+      "default": "Complaint reduction"
+    },
+    {
+      "type": "header",
+      "content": "Study Stat 4"
+    },
+    {
+      "type": "text",
+      "id": "stat_4_number",
+      "label": "Number",
+      "default": "p<0.001"
+    },
+    {
+      "type": "text",
+      "id": "stat_4_suffix",
+      "label": "Suffix"
+    },
+    {
+      "type": "text",
+      "id": "stat_4_label",
+      "label": "Label",
+      "default": "Statistical significance"
+    },
+    {
+      "type": "header",
+      "content": "Patents"
+    },
+    {
+      "type": "text",
+      "id": "patents_heading",
+      "label": "Patents heading",
+      "default": "4 International Patents"
+    },
+    {
+      "type": "textarea",
+      "id": "patents_subheading",
+      "label": "Patents subheading",
+      "default": "The coordinated laser and mirror motor system at the heart of Eye Star Vision is protected across four territories, confirming its uniqueness as a device — not a generic eye-care accessory."
+    },
+    {
+      "type": "text",
+      "id": "patent_1_number",
+      "label": "Patent 1 number",
+      "default": "US 12,634,415 B2"
+    },
+    {
+      "type": "text",
+      "id": "patent_1_region",
+      "label": "Patent 1 region",
+      "default": "United States · Granted 2026"
+    },
+    {
+      "type": "text",
+      "id": "patent_2_number",
+      "label": "Patent 2 number",
+      "default": "EP4252416B1"
+    },
+    {
+      "type": "text",
+      "id": "patent_2_region",
+      "label": "Patent 2 region",
+      "default": "European Union · Granted"
+    },
+    {
+      "type": "text",
+      "id": "patent_3_number",
+      "label": "Patent 3 number",
+      "default": "CA3199637A1"
+    },
+    {
+      "type": "text",
+      "id": "patent_3_region",
+      "label": "Patent 3 region",
+      "default": "Canada · Published"
+    },
+    {
+      "type": "text",
+      "id": "patent_4_number",
+      "label": "Patent 4 number",
+      "default": "PCT/LV2021/050012"
+    },
+    {
+      "type": "text",
+      "id": "patent_4_region",
+      "label": "Patent 4 region",
+      "default": "International · PCT"
+    },
+    {
+      "type": "header",
+      "content": "Disclaimer"
+    },
+    {
+      "type": "textarea",
+      "id": "disclaimer",
+      "label": "Disclaimer text",
+      "default": "Eye Star Vision is a wellness device for guided eye relaxation and movement. It is not a medical device and does not claim to treat, cure, or prevent any medical condition. Patent protection refers to the device mechanism and does not imply medical approval or vision correction."
+    }
+  ],
+  "presets": [
+    {
+      "name": "ESV — Science & Research"
+    }
+  ]
+}
+{% endschema %}

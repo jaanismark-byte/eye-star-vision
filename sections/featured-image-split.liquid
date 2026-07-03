@@ -1,0 +1,528 @@
+<section class="ftabs">
+  <div class="ftabs__container">
+
+    {% if section.settings.heading != blank %}
+      <div class="ftabs__top">
+        <h2 class="ftabs__main-heading">{{ section.settings.heading }}</h2>
+        {% if section.settings.subheading != blank %}
+          <p class="ftabs__main-sub">{{ section.settings.subheading }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div class="ftabs__nav" role="tablist">
+        {% for block in section.blocks %}
+          <button
+            class="ftabs__tab {% if forloop.first %}ftabs__tab--active{% endif %}"
+            role="tab"
+            aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+            data-tab="{{ forloop.index }}"
+            {{ block.shopify_attributes }}
+          >
+            {% if block.settings.tab_icon != blank %}
+              <span class="ftabs__tab-icon">{{ block.settings.tab_icon }}</span>
+            {% endif %}
+            {{ block.settings.tab_label }}
+          </button>
+        {% endfor %}
+      </div>
+
+      <div class="ftabs__panels">
+        {% for block in section.blocks %}
+          <div
+            class="ftabs__panel {% if forloop.first %}ftabs__panel--active{% endif %}"
+            role="tabpanel"
+            data-panel="{{ forloop.index }}"
+            {{ block.shopify_attributes }}
+          >
+            <div class="ftabs__panel-content">
+              {% if block.settings.badge != blank %}
+                <span class="ftabs__badge">{{ block.settings.badge }}</span>
+              {% endif %}
+              {% if block.settings.heading != blank %}
+                <h3 class="ftabs__panel-heading">{{ block.settings.heading }}</h3>
+              {% endif %}
+              {% if block.settings.text != blank %}
+                <p class="ftabs__panel-text">{{ block.settings.text }}</p>
+              {% endif %}
+              {% if block.settings.button_label != blank %}
+                <a href="{{ block.settings.button_url }}" class="ftabs__btn">
+                  {{ block.settings.button_label }}
+                </a>
+              {% endif %}
+            </div>
+            <div class="ftabs__panel-image">
+              {% if block.settings.image != blank %}
+                {{
+                  block.settings.image
+                  | image_url: width: 800
+                  | image_tag:
+                    loading: 'lazy',
+                    class: 'ftabs__img',
+                    alt: block.settings.image.alt
+                }}
+              {% else %}
+                <div class="ftabs__img-placeholder">
+                  {{ 'image' | placeholder_svg_tag: 'ftabs__placeholder-svg' }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+  </div>
+</section>
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    background-color: {{ section.settings.background_color }};
+  }
+  #shopify-section-{{ section.id }} .ftabs__main-heading,
+  #shopify-section-{{ section.id }} .ftabs__panel-heading {
+    color: {{ section.settings.heading_color }};
+  }
+  #shopify-section-{{ section.id }} .ftabs__main-sub,
+  #shopify-section-{{ section.id }} .ftabs__panel-text {
+    color: {{ section.settings.text_color }};
+  }
+  #shopify-section-{{ section.id }} .ftabs__tab {
+  color: {{ section.settings.text_color }};
+  border-color: {{ section.settings.text_color }};
+  }
+  #shopify-section-{{ section.id }} .ftabs__tab--active {
+    background-color: {{ section.settings.tab_active_bg }};
+    color: {{ section.settings.tab_active_text }};
+    border-color: {{ section.settings.tab_active_bg }};
+  }
+  #shopify-section-{{ section.id }} .ftabs__btn {
+    background-color: {{ section.settings.button_bg_color }};
+    color: {{ section.settings.button_text_color }};
+  }
+#shopify-section-{{ section.id }} .ftabs__badge {
+  color: #FF2B5C;
+  background-color: #121212;
+  border-color: #FF2B5C;
+}
+{% endstyle %}
+
+<style>
+  .ftabs {
+    padding: 80px 24px;
+    font-family: inherit;
+  }
+  .ftabs__container {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  .ftabs__top {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .ftabs__main-heading {
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin: 0;
+  }
+  .ftabs__main-sub {
+    font-size: 17px;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 480px;
+    margin-inline: auto;
+  }
+  /* Tab nav */
+  .ftabs__nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .ftabs__tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 999px;
+    border: 1px solid;
+    background: transparent;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+    font-family: inherit;
+  }
+  .ftabs__tab-icon {
+    font-size: 16px;
+  }
+  /* Panels */
+  .ftabs__panels {
+    position: relative;
+  }
+.ftabs__panel {
+  display: none;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.ftabs__panel--active {
+  display: grid;
+  animation: ftabsFadeIn 1.2s ease;
+}
+
+@keyframes ftabsFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ftabs__panel-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ftabs__badge {
+  display: inline-flex;
+  width: fit-content;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 999px;
+  border: 1px solid;
+  letter-spacing: 0.01em;
+  margin-left: 180px;
+  margin-bottom: 24px;
+}
+
+.ftabs__panel-heading {
+  font-size: clamp(30px, 3.5vw, 46px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.ftabs__panel-text {
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.ftabs__btn {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 13px 28px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  margin-top: 4px;
+}
+
+.ftabs__btn:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+.ftabs__panel-image {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.ftabs__img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: contain;
+  display: block;
+  border-radius: 16px;
+}
+
+.ftabs__img-placeholder {
+  aspect-ratio: 4/3;
+  background: #f3f4f6;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ftabs__placeholder-svg {
+  width: 60%;
+  height: 60%;
+  opacity: 0.3;
+}
+
+@media (max-width: 768px) {
+  .ftabs { 
+    padding: 60px 20px; 
+  }
+
+  .ftabs__panel--active {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .ftabs__panel-image { 
+    order: -1;
+  }
+
+  .ftabs__img {
+    aspect-ratio: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .ftabs__panel-content {
+    align-items: center;
+    text-align: center;
+  }
+
+  .ftabs__badge {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 24px;
+  }
+
+  .ftabs__tab { 
+    font-size: 14px; 
+    padding: 8px 16px; 
+  }
+}
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var section = document.getElementById('shopify-section-{{ section.id }}');
+    if (!section) return;
+
+    var tabs = section.querySelectorAll('.ftabs__tab');
+    var panels = section.querySelectorAll('.ftabs__panel');
+    var autoRotate;
+    var currentIndex = 0;
+
+    function switchTab(tab) {
+      var idx = tab.getAttribute('data-tab');
+
+      tabs.forEach(function (t) {
+        t.classList.remove('ftabs__tab--active');
+        t.setAttribute('aria-selected', 'false');
+      });
+
+      panels.forEach(function (p) {
+        p.classList.remove('ftabs__panel--active');
+      });
+
+      tab.classList.add('ftabs__tab--active');
+      tab.setAttribute('aria-selected', 'true');
+
+      var panel = section.querySelector('.ftabs__panel[data-panel="' + idx + '"]');
+      if (panel) panel.classList.add('ftabs__panel--active');
+
+      currentIndex = parseInt(idx, 10) - 1;
+    }
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        clearInterval(autoRotate);
+        switchTab(tab);
+      });
+    });
+
+    if (tabs.length > 1) {
+      autoRotate = setInterval(function () {
+        currentIndex = currentIndex + 1;
+
+        if (currentIndex >= tabs.length) {
+          currentIndex = 0;
+        }
+
+        switchTab(tabs[currentIndex]);
+      }, 2500);
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Feature Tabs",
+  "tag": "section",
+  "class": "section-feature-tabs",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Top Section"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Main heading",
+      "default": "Everything your store needs"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Discover what makes us different."
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#0f0f0f"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Body text color",
+      "default": "#a1a1aa"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_bg",
+      "label": "Active tab background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_text",
+      "label": "Active tab text",
+      "default": "#0f0f0f"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text",
+      "default": "#0f0f0f"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_label",
+          "label": "Tab button label",
+          "default": "Feature One"
+        },
+        {
+          "type": "text",
+          "id": "tab_icon",
+          "label": "Tab icon (emoji)",
+          "default": "⚡"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge text",
+          "default": "New"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Panel heading",
+          "default": "Make your site a true standout."
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Panel description",
+          "default": "Discover new trends that help you craft sleek, highly functional pages that convert."
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Learn More"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Panel image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Feature Tabs",
+      "blocks": [
+        {
+          "type": "tab",
+          "settings": {
+            "tab_label": "Boost Revenue",
+            "tab_icon": "⚡",
+            "badge": "Revenue",
+            "heading": "Make your site a true standout.",
+            "text": "Discover new web trends that help you craft sleek, highly functional sites that drive traffic and convert leads into customers.",
+            "button_label": "Shop Now"
+          }
+        },
+        {
+          "type": "tab",
+          "settings": {
+            "tab_label": "Higher Engagement",
+            "tab_icon": "👆",
+            "badge": "Engagement",
+            "heading": "Keep customers coming back.",
+            "text": "Build lasting relationships with your audience through thoughtful design and seamless experiences.",
+            "button_label": "Explore"
+          }
+        },
+        {
+          "type": "tab",
+          "settings": {
+            "tab_label": "Stunning Layouts",
+            "tab_icon": "▦",
+            "badge": "Design",
+            "heading": "Beautiful pages, zero effort.",
+            "text": "Professional-looking sections that make your store stand out from the competition instantly.",
+            "button_label": "See More"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

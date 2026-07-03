@@ -1,0 +1,57 @@
+/* Product Page */
+
+.product .product-form__buttons .product-form__submit,
+.product .product-form__buttons .shopify-payment-button__button,
+#CartDrawer .cart__checkout-button{
+  font-size: 1.7rem;
+  font-weight: bold;
+}
+
+.product .product-form__buttons .shopify-payment-button .shopify-payment-button__button{
+  --color-button: var(--color-secondary-button);
+  --color-button-text: var(--color-secondary-button-text);
+}
+
+.product .product-form__buttons .shopify-payment-button .shopify-payment-button__button:after {
+  --border-opacity: var( --buttons-border-opacity);
+}
+
+#CartDrawer .cartdrawer__paymentbadges .cartdrawer__payment{
+  margin-top: 1.5rem;
+}
+
+#CartDrawer .cartdrawer__paymentbadges .list-payment{
+  justify-content: center;
+}
+
+#CartDrawer .cart_hurry_text{
+  margin-bottom: 1.5rem;
+}
+
+#CartDrawer .cart_res{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: #FFF8E0;
+  padding: 5px 10px;
+  text-align: center;
+  border: 1px solid #F9D47A;
+  margin-bottom: 1.5rem;
+}
+
+#CartDrawer .cart_res .cart_res--countdowntimer #demo{
+  display: flex;
+  align-items: center;
+  margin: unset;
+  margin-left: 5px;
+  margin-right: 5px
+}
+
+#CartDrawer .cart_res .cart_res--countdowntimer p {
+  margin: unset;
+}
+
+
+
+
